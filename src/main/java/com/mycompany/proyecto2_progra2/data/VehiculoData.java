@@ -26,7 +26,7 @@ public class VehiculoData {
     private Element raiz;
     private String rutaDocumento;
     // => Se tiene que cambiar la ruta
-    public static final String RUTA_ARCHIVO = "C:\\Users\\jeffr\\OneDrive\\Documentos\\Progra2-2025\\Proyecto2\\Proyecto2_Progra2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\vehiculos.xml";
+    public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\2025\\Progra\\Proyecto-2\\TallerMecanico-Proyecto2\\xml\\vehiculos.xml";
 
     public VehiculoData() throws IOException, JDOMException, FileNotFoundException {
         if (new File(RUTA_ARCHIVO).exists()) {
