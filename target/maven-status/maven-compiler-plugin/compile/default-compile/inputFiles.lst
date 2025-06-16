@@ -8,6 +8,8 @@ C:\Users\jimen\OneDrive\Escritorio\2025\Progra\Proyecto-2\TallerMecanico-Proyect
 C:\Users\jimen\OneDrive\Escritorio\2025\Progra\Proyecto-2\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\domain\Vehiculo.java
 C:\Users\jimen\OneDrive\Escritorio\2025\Progra\Proyecto-2\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\JakartaRestConfiguration.java
 C:\Users\jimen\OneDrive\Escritorio\2025\Progra\Proyecto-2\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\resources\JakartaEE11Resource.java
+C:\Users\jimen\OneDrive\Escritorio\2025\Progra\Proyecto-2\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\cliente\ActualizarClienteServlet.java
+C:\Users\jimen\OneDrive\Escritorio\2025\Progra\Proyecto-2\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\cliente\ModificarClienteServlet.java
 C:\Users\jimen\OneDrive\Escritorio\2025\Progra\Proyecto-2\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\cliente\MostrarClientesServlet.java
 C:\Users\jimen\OneDrive\Escritorio\2025\Progra\Proyecto-2\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\cliente\RegistrarClienteServlet.java
 C:\Users\jimen\OneDrive\Escritorio\2025\Progra\Proyecto-2\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\vehiculo\MostrarVehiculosServlet.java

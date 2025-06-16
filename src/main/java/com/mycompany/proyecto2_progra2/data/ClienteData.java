@@ -124,4 +124,24 @@ public class ClienteData {
 
         return null;
     }
+    
+    public void actualizar(Cliente actualizado) throws IOException{
+        
+        List<Element>listarClientes=raiz.getChildren("cliente");
+        
+        for(Element eCliente:listarClientes){
+             if (eCliente.getAttributeValue("id").equals(actualizado.getId())) {
+            eCliente.getChild("nombre").setText(actualizado.getNombre());
+            eCliente.getChild("primerApellido").setText(actualizado.getPrimerApellido());
+            eCliente.getChild("segundoApellido").setText(actualizado.getSegundoApellido());
+            eCliente.getChild("telefono").setText(String.valueOf(actualizado.getTelefono()));
+            eCliente.getChild("direccion").setText(actualizado.getDireccion());
+            eCliente.getChild("email").setText(actualizado.getEmail());
+
+            guardar(); // Guardar los cambios en el archivo XML
+            break; 
+        }
+    }
 }
+}
+

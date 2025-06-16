@@ -1,40 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+<web-app version="6.0" 
+         xmlns="https://jakarta.ee/xml/ns/jakartaee" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+
+ 
     <servlet>
         <servlet-name>RegistrarClienteServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.cliente.RegistrarClienteServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>MostrarClientesServlet</servlet-name>
-        <servlet-class>com.mycompany.proyecto2_progra2.servlets.cliente.MostrarClientesServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>RegistrarVehiculoServlet</servlet-name>
-        <servlet-class>com.mycompany.proyecto2_progra2.servlets.vehiculo.RegistrarVehiculoServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>MostrarVehiculosServlet</servlet-name>
-        <servlet-class>com.mycompany.proyecto2_progra2.servlets.vehiculo.MostrarVehiculosServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegistrarClienteServlet</servlet-name>
         <url-pattern>/registrarCliente</url-pattern>
     </servlet-mapping>
+
+  
+    <servlet>
+        <servlet-name>MostrarClientesServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.cliente.MostrarClientesServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MostrarClientesServlet</servlet-name>
         <url-pattern>/mostrarClientes</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ModificarClienteServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.cliente.ModificarClienteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ModificarClienteServlet</servlet-name>
+        <url-pattern>/modificarCliente</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ActualizarClienteServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.cliente.ActualizarClienteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ActualizarClienteServlet</servlet-name>
+        <url-pattern>/actualizarCliente</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RegistrarVehiculoServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.vehiculo.RegistrarVehiculoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrarVehiculoServlet</servlet-name>
         <url-pattern>/registrarVehiculo</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MostrarVehiculosServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.vehiculo.MostrarVehiculosServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>MostrarVehiculosServlet</servlet-name>
         <url-pattern>/mostrarVehiculos</url-pattern>
     </servlet-mapping>
+
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
+
 </web-app>
