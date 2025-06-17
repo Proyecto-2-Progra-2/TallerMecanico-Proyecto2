@@ -38,7 +38,8 @@ public class RegistrarClienteServlet extends HttpServlet {
                     req.getParameter("segundoApellido"), Integer.parseInt(req.getParameter("telefono")),
                     req.getParameter("direccion"), req.getParameter("email"));
             this.clienteData.insertar(cliente);
-            req.getRequestDispatcher("registrar_cliente.jsp").forward(req, resp);
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
+            //hacer una ventanaa de registrado exitoso
         } catch (JDOMException ex) {
             Logger.getLogger(RegistrarClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FileNotFoundException ex) {
