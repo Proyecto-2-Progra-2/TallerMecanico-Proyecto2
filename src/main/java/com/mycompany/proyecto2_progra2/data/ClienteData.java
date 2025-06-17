@@ -24,7 +24,7 @@ public class ClienteData {
     private Element raiz;
     private String rutaDocumento;
     // => Se tiene que cambiar la ruta
-    public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\TallerMecanico-Proyecto2\\xml\\clientes.xml";
+    public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\2025\\Progra\\Proyecto-2\\TallerMecanico-Proyecto2\\xml\\clientes.xml";
 
     public ClienteData() throws IOException, JDOMException {
     File archivo = new File(RUTA_ARCHIVO);
@@ -98,33 +98,40 @@ public class ClienteData {
 
         return clientes;
     }
-
-    public Cliente findOne(String id) {
-        ArrayList<Cliente> clientes = findAll();
-
-        // => Clonar y ordenar la lista por id
-        clientes.sort((c1, c2) -> c1.getId().compareToIgnoreCase(c2.getId()));
-
-        int left = 0;
-        int right = clientes.size() - 1;
-
-        while (left <= right) {
-            int mid = (left + right) / 2;
-            Cliente midCliente = clientes.get(mid);
-            int compare = midCliente.getId().compareToIgnoreCase(id);
-
-            if (compare == 0) {
-                return midCliente;
-            } else if (compare < 0) {
-                left = mid + 1;
-            } else {
-                right = mid - 1;
-            }
-        }
-
+// para enocntrar el error use system.
+   public Cliente findOne(String id) {
+    if (id == null || id.isEmpty()) {
+        System.out.println("ID nulo o vacío en búsqueda de cliente.");
         return null;
     }
-    
+
+    ArrayList<Cliente> clientes = findAll();
+
+    // Ordenar por ID para búsqueda binaria:AQUI ES DONDE SE USA 
+    clientes.sort((c1, c2) -> c1.getId().compareToIgnoreCase(c2.getId()));
+
+    int left = 0;
+    int right = clientes.size() - 1;
+
+    while (left <= right) {
+        int mid = (left + right) / 2;
+        Cliente midCliente = clientes.get(mid);
+        int compare = midCliente.getId().compareToIgnoreCase(id);
+
+        if (compare == 0) {
+            System.out.println("Cliente encontrado con ID: " + id);
+            return midCliente;
+        } else if (compare < 0) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+
+    System.out.println(" Cliente no encontrado con ID: " + id);
+    return null;
+}
+
     public void actualizar(Cliente actualizado) throws IOException{
         
         List<Element>listarClientes = raiz.getChildren("cliente");

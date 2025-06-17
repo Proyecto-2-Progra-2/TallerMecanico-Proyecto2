@@ -60,6 +60,25 @@
         <url-pattern>/mostrarVehiculos</url-pattern>
     </servlet-mapping>
 
+
+<servlet>
+    <servlet-name>ModificarVehiculoServlet</servlet-name>
+    <servlet-class>com.mycompany.proyecto2_progra2.servlets.vehiculo.ModificarVehiculoServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>ModificarVehiculoServlet</servlet-name>
+    <url-pattern>/modificarVehiculo</url-pattern>
+</servlet-mapping>
+
+
+   <servlet>
+        <servlet-name>MostrarClienteServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.vehiculo.MostrarClienteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MostrarClienteServlet</servlet-name>
+        <url-pattern>/mostrarCliente</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>

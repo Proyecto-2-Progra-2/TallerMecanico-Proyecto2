@@ -62,6 +62,29 @@
             background-color: #f0f8ff;
         }
 
+        .action-btn {
+            margin: 2px;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+            font-size: 0.9em;
+        }
+
+        .modificar-btn { background-color: #f39c12; }
+        .modificar-btn:hover { background-color: #e67e22; }
+
+        .cliente-btn { background-color: #2980b9; }
+        .cliente-btn:hover { background-color: #2471a3; }
+
+        .eliminar-btn { background-color: #e74c3c; }
+        .eliminar-btn:hover { background-color: #c0392b; }
+
+        form {
+            display: inline;
+        }
+
         @media screen and (max-width: 768px) {
             table, thead, tbody, th, td, tr {
                 display: block;
@@ -108,6 +131,7 @@
                     <th>Cilindraje</th>
                     <th>Año</th>
                     <th>Dueño (ID)</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -122,10 +146,24 @@
                     <td data-label="Cilindraje"><%= vehiculo.getCilindraje() %></td>
                     <td data-label="Año"><%= vehiculo.getAnnio() %></td>
                     <td data-label="Dueño"><%= vehiculo.getDuenno().getId() %></td>
+                    <td>
+                        <form action="modificarVehiculo" method="GET">
+                            <input type="hidden" name="placa" value="<%= vehiculo.getPlaca() %>">
+                            <button type="submit" class="action-btn modificar-btn">Modificar</button>
+                        </form>
+                        <form action="mostrarCliente" method="GET">
+                            <input type="hidden" name="id" value="<%= vehiculo.getDuenno().getId() %>">
+                            <button type="submit" class="action-btn cliente-btn">Ver Cliente</button>
+                        </form>
+                        <form action="eliminarVehiculo" method="POST" onsubmit="return confirm('¿Está seguro que desea eliminar este vehículo?');">
+                            <input type="hidden" name="placa" value="<%= vehiculo.getPlaca() %>">
+                            <button type="submit" class="action-btn eliminar-btn">Eliminar</button>
+                        </form>
+                    </td>
                 </tr>
                 <% }
                 } else { %>
-                <tr><td colspan="8" style="text-align:center;">No hay vehículos registrados.</td></tr>
+                <tr><td colspan="9" style="text-align:center;">No hay vehículos registrados.</td></tr>
                 <% } %>
             </tbody>
         </table>
