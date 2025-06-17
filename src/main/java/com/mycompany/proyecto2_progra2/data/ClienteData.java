@@ -27,20 +27,20 @@ public class ClienteData {
     public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\2025\\Progra\\Proyecto-2\\TallerMecanico-Proyecto2\\xml\\clientes.xml";
 
     public ClienteData() throws IOException, JDOMException {
-    File archivo = new File(RUTA_ARCHIVO);
-    if (archivo.exists()) {
-        SAXBuilder saxBuilder = new SAXBuilder();
-        saxBuilder.setIgnoringElementContentWhitespace(true);
-        this.document = saxBuilder.build(archivo); // ✅ CAMBIO AQUÍ
-        this.raiz = document.getRootElement();
-        this.rutaDocumento = RUTA_ARCHIVO;
-    } else {
-        this.rutaDocumento = RUTA_ARCHIVO;
-        this.raiz = new Element("clientes");
-        this.document = new Document(raiz);
-        guardar();
-    }
-}
+        File archivo = new File(RUTA_ARCHIVO);
+        if (archivo.exists()) {
+            SAXBuilder saxBuilder = new SAXBuilder();
+            saxBuilder.setIgnoringElementContentWhitespace(true);
+            this.document = saxBuilder.build(archivo); // ✅ CAMBIO AQUÍ
+            this.raiz = document.getRootElement();
+            this.rutaDocumento = RUTA_ARCHIVO;
+        } else {
+            this.rutaDocumento = RUTA_ARCHIVO;
+            this.raiz = new Element("clientes");
+            this.document = new Document(raiz);
+            guardar();
+        }
+    }   
 
     private void guardar() throws IOException, FileNotFoundException {
         Format format = Format.getPrettyFormat();
@@ -138,17 +138,17 @@ public class ClienteData {
         
         for(Element eCliente:listarClientes){
              if (eCliente.getAttributeValue("id").equals(actualizado.getId())) {
-            eCliente.getChild("nombre").setText(actualizado.getNombre());
-            eCliente.getChild("primerApellido").setText(actualizado.getPrimerApellido());
-            eCliente.getChild("segundoApellido").setText(actualizado.getSegundoApellido());
-            eCliente.getChild("telefono").setText(String.valueOf(actualizado.getTelefono()));
-            eCliente.getChild("direccion").setText(actualizado.getDireccion());
-            eCliente.getChild("email").setText(actualizado.getEmail());
+                eCliente.getChild("nombre").setText(actualizado.getNombre());
+                eCliente.getChild("primerApellido").setText(actualizado.getPrimerApellido());
+                eCliente.getChild("segundoApellido").setText(actualizado.getSegundoApellido());
+                eCliente.getChild("telefono").setText(String.valueOf(actualizado.getTelefono()));
+                eCliente.getChild("direccion").setText(actualizado.getDireccion());
+                eCliente.getChild("email").setText(actualizado.getEmail());
 
-            guardar(); // Guardar los cambios en el archivo XML
-            break; 
-        }
+                guardar(); // Guardar los cambios en el archivo XML
+                break; 
+            }
+        }   
     }
-}
 }
 
