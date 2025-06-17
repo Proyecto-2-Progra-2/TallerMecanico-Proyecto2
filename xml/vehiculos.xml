@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vehiculos />
+<vehiculos><vehiculo placa="AE-100"><color>Blanco</color><marca>Toyota</marca><estilo>Sport</estilo><VIN>1HGCM82633A004352</VIN><cilindraje></cilindraje><annio>2020</annio><duennio>305630588</duennio></vehiculo></vehiculos>
