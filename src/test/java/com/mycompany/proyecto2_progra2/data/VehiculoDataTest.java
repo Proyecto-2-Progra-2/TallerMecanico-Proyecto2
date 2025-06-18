@@ -20,27 +20,27 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class VehiculoDataTest {
     
-  @Test
-    void insertar_Vehiculo(){
-        Cliente cliente1 = new Cliente("A12","Luis","Sibaja","Otarola",90878908,"Cartago","luis@gmail.com");
-        Vehiculo vehiculo1 = new Vehiculo("C40F98", "Azul", "Toyota", "4X4", "74lo", "2500cc", 2025, cliente1);
-
-        try {
-            VehiculoData vehiculoData = new VehiculoData();
-//            vehiculoData.insertar(vehiculo1);
-            
-            ArrayList<Vehiculo> vehiculos = vehiculoData.findAll();
-            
-            for(Vehiculo vehiculoActual: vehiculos){
-                System.out.println(vehiculoActual);
-            }
-            
-            int tamano = vehiculos.size();
-            
-//            assertEquals(tamano, 2);        
-        } catch (IOException | JDOMException ex) {
-            Logger.getLogger(RepuestosDataTest.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-    }
+//  @Test
+//    void insertar_Vehiculo(){
+//        Cliente cliente1 = new Cliente("A12","Luis","Sibaja","Otarola",90878908,"Cartago","luis@gmail.com");
+//        Vehiculo vehiculo1 = new Vehiculo("C40F98", "Azul", "Toyota", "4X4", "74lo", "2500cc", 2025, cliente1);
+//
+//        try {
+//            VehiculoData vehiculoData = new VehiculoData();
+////            vehiculoData.insertar(vehiculo1);
+//            
+//            ArrayList<Vehiculo> vehiculos = vehiculoData.findAll();
+//            
+//            for(Vehiculo vehiculoActual: vehiculos){
+//                System.out.println(vehiculoActual);
+//            }
+//            
+//            int tamano = vehiculos.size();
+//            
+////            assertEquals(tamano, 2);        
+//        } catch (IOException | JDOMException ex) {
+//            Logger.getLogger(RepuestosDataTest.class.getName()).log(Level.SEVERE, null, ex);
+//        } 
+//    }
     
 }

@@ -29,8 +29,8 @@ public class RepuestosData {
     private String rutaDocumento;
     // => Se tiene que cambiar la ruta
     //public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\TallerMecanico-Proyecto2\\xml\\repuestos.xml";
-    public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\xml\\repuestos.xml";
-
+    //public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\xml\\repuestos.xml";
+    public static final String RUTA_ARCHIVO = "C:\\Users\\jeffr\\OneDrive\\Documentos\\Proyecto2-Progra2\\TallerMecanico-Proyecto2\\xml\\repuestos.xml";
     
     
     public RepuestosData() throws IOException, JDOMException {
@@ -43,7 +43,7 @@ public class RepuestosData {
             this.rutaDocumento = RUTA_ARCHIVO;
         } else {
             this.rutaDocumento = RUTA_ARCHIVO;
-            this.raiz = new Element("clientes");
+            this.raiz = new Element("repuestos");
             this.document = new Document(raiz);
             guardar();
         }

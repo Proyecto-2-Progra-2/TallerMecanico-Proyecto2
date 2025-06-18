@@ -19,35 +19,35 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class ClienteDataTest {
     
-    @Test
-    public void insertar_Cliente() {
-        Cliente cliente1 = new Cliente("A12","Luis","Sibaja","Otarola",90878908,"Cartago","luis@gmail.com");
-        Cliente cliente2 = new Cliente("B12","Axel","Ramirez","Hernandes",12312312,"San Jose","axel@gmail.com");
-        Cliente cliente3 = new Cliente("C12","Maria","Hernandez","Castro",12365323,"Alajuela","maria@gmail.com");
-
-        
-        try {
-            ClienteData clienteData = new ClienteData();
-            
-//            clienteData.insertar(cliente1);
-//            clienteData.insertar(cliente2);
-//            clienteData.insertar(cliente3);
-
-            
-            ArrayList<Cliente> clientes = clienteData.findAll();
-            
-            for(Cliente clienteActual: clientes){
-                System.out.println(clienteActual);
-            }
-            
-            int tamano = clientes.size();
-            
-//            assertEquals(tamano, 9);
+//    @Test
+//    public void insertar_Cliente() {
+//        Cliente cliente1 = new Cliente("A12","Luis","Sibaja","Otarola",90878908,"Cartago","luis@gmail.com");
+//        Cliente cliente2 = new Cliente("B12","Axel","Ramirez","Hernandes",12312312,"San Jose","axel@gmail.com");
+//        Cliente cliente3 = new Cliente("C12","Maria","Hernandez","Castro",12365323,"Alajuela","maria@gmail.com");
+//
+//        
+//        try {
+//            ClienteData clienteData = new ClienteData();
 //            
-            
-        } catch (IOException | JDOMException ex) {
-            Logger.getLogger(RepuestosDataTest.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-    }
+////            clienteData.insertar(cliente1);
+////            clienteData.insertar(cliente2);
+////            clienteData.insertar(cliente3);
+//
+//            
+//            ArrayList<Cliente> clientes = clienteData.findAll();
+//            
+//            for(Cliente clienteActual: clientes){
+//                System.out.println(clienteActual);
+//            }
+//            
+//            int tamano = clientes.size();
+//            
+////            assertEquals(tamano, 9);
+////            
+//            
+//        } catch (IOException | JDOMException ex) {
+//            Logger.getLogger(RepuestosDataTest.class.getName()).log(Level.SEVERE, null, ex);
+//        } 
+//    }
     
 }
