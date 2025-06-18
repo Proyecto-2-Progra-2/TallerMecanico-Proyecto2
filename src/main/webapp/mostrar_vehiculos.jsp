@@ -37,10 +37,19 @@
             padding: 30px;
         }
 
+        .mensaje {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+            font-weight: bold;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
             background-color: white;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             border-radius: 10px;
@@ -118,6 +127,15 @@
     </header>
 
     <main>
+
+   
+        <%
+            String mensaje = request.getParameter("mensaje");
+            if ("eliminado".equals(mensaje)) {
+        %>
+            <div class="mensaje">🚗 Vehículo eliminado correctamente.</div>
+        <% } %>
+
         <% ArrayList<Vehiculo> vehiculos = (ArrayList<Vehiculo>) request.getAttribute("vehiculos"); %>
 
         <table>
@@ -147,19 +165,19 @@
                     <td data-label="Año"><%= vehiculo.getAnnio() %></td>
                     <td data-label="Dueño"><%= vehiculo.getDuenno().getId() %></td>
                     <td>
-                        <form action="modificarVehiculo" method="GET">
-                            <input type="hidden" name="placa" value="<%= vehiculo.getPlaca() %>">
-                            <button type="submit" class="action-btn modificar-btn">Modificar</button>
-                        </form>
-                        <form action="mostrarCliente" method="GET">
-                            <input type="hidden" name="id" value="<%= vehiculo.getDuenno().getId() %>">
-                            <button type="submit" class="action-btn cliente-btn">Ver Cliente</button>
-                        </form>
-                        <form action="eliminarVehiculo" method="POST" onsubmit="return confirm('¿Está seguro que desea eliminar este vehículo?');">
-                            <input type="hidden" name="placa" value="<%= vehiculo.getPlaca() %>">
-                            <button type="submit" class="action-btn eliminar-btn">Eliminar</button>
-                        </form>
-                    </td>
+                      <form action="${pageContext.request.contextPath}/modificarVehiculo" method="GET">
+    <input type="hidden" name="placa" value="<%= vehiculo.getPlaca() %>">
+    <button type="submit" class="action-btn modificar-btn">Modificar</button>
+</form>
+<form action="${pageContext.request.contextPath}/mostrarCliente" method="GET">
+    <input type="hidden" name="id" value="<%= vehiculo.getDuenno().getId() %>">
+    <button type="submit" class="action-btn cliente-btn">Ver Cliente</button>
+</form>
+<form action="${pageContext.request.contextPath}/eliminarVehiculo" method="POST" onsubmit="return confirm('¿Está seguro que desea eliminar este vehículo?');">
+    <input type="hidden" name="placa" value="<%= vehiculo.getPlaca() %>">
+    <button type="submit" class="action-btn eliminar-btn">Eliminar</button>
+</form>
+                </td>
                 </tr>
                 <% }
                 } else { %>

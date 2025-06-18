@@ -1,6 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<vehiculos><vehiculo placa="AE-100"><color>Blanco</color><marca>Suzuki</marca><estilo>Sport</estilo><VIN>1HGCM82633A004352</VIN><cilindraje>2</cilindraje><annio>2020</annio><duennio>305630588</duennio></vehiculo></vehiculos>
-=======
-<vehiculos><vehiculo placa="AE-100"><color>Blanco</color><marca>Toyota</marca><estilo>Sport</estilo><VIN>1HGCM82633A004352</VIN><cilindraje /><annio>2020</annio><duennio>305630588</duennio></vehiculo><vehiculo placa="C40F98"><color>Azul</color><marca>Toyota</marca><estilo>4X4</estilo><VIN>74lo</VIN><cilindraje>2500cc</cilindraje><annio>2025</annio><duennio>A12</duennio></vehiculo></vehiculos>
->>>>>>> 9e72f68f3916df828d1c5c15d74b6b366839f8b2
+<clientes><vehiculo placa="0001"><color>Negro</color><marca>Hyundai</marca><estilo>Vynil</estilo><VIN>1HGCM82633A004352</VIN><cilindraje>10</cilindraje><annio>2020</annio><duennio>2</duennio></vehiculo><vehiculo placa="0002"><color>Blanco</color><marca>Hyundai</marca><estilo>Sport</estilo><VIN>1HGCM82633A004352</VIN><cilindraje /><annio>2020</annio><duennio>2</duennio></vehiculo></clientes>

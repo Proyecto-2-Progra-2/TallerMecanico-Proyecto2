@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,14 +28,16 @@ public class VehiculoData {
     private Element raiz;
     private String rutaDocumento;
     // => Se tiene que cambiar la ruta
-    public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\2025\\Progra\\Proyecto-2\\TallerMecanico-Proyecto2\\xml\\vehiculos.xml";
-
+    
+    public static final String RUTA_ARCHIVO ="C:\\Users\\jimen\\OneDrive\\Escritorio\\2025\\Progra\\Proyecto-2\\TallerMecanico-Proyecto2\\xml\\vehiculos.xml";
+   
+        
     public VehiculoData() throws IOException, JDOMException {
     File archivo = new File(RUTA_ARCHIVO);
     if (archivo.exists()) {
         SAXBuilder saxBuilder = new SAXBuilder();
         saxBuilder.setIgnoringElementContentWhitespace(true);
-        this.document = saxBuilder.build(archivo); // ✅ CAMBIO AQUÍ
+        this.document = saxBuilder.build(archivo); 
         this.raiz = document.getRootElement();
         this.rutaDocumento = RUTA_ARCHIVO;
     } else {
@@ -47,7 +50,7 @@ public class VehiculoData {
 
     private void guardar() throws IOException, FileNotFoundException {
         Format format = Format.getPrettyFormat();
-        format.setEncoding("UTF-8"); //es buena practica especificar la codificacion
+        format.setEncoding("UTF-8"); 
 
         XMLOutputter xmlOutputter = new XMLOutputter();
         PrintWriter printWriter = new PrintWriter(this.rutaDocumento);
@@ -153,6 +156,7 @@ public class VehiculoData {
         ClienteData clienteData = new ClienteData();
         return clienteData.findOne(idDuenno);
     }
+    
     public void actualizar(Vehiculo vehiculo) throws IOException{
         
         List<Element> vehiculos=this.raiz.getChildren();
@@ -185,21 +189,23 @@ public class VehiculoData {
         }
     }
 
-   public void eliminar(String placa) throws IOException {
+  public void eliminar(String placa) throws IOException {
     List<Element> vehiculos = this.raiz.getChildren("vehiculo");
     boolean eliminado = false;
-    for (int i = 0; i < vehiculos.size(); i++) {
-        Element eVehiculo = vehiculos.get(i);
+
+    Iterator<Element> iterator = vehiculos.iterator();
+    while (iterator.hasNext()) {
+        Element eVehiculo = iterator.next();
         if (eVehiculo.getAttributeValue("placa").equals(placa)) {
-            this.raiz.removeContent(eVehiculo);
+            iterator.remove(); // elimina del documento
             eliminado = true;
-            break;  // Paramos al encontrar y eliminar
+            break;
         }
     }
+
     if (eliminado) {
-        guardar(); // Guardar cambios en XML
+        guardar(); // guarda el XML actualizado
     } else {
-        // Opcional: lanzar excepción o manejar que no se encontró
         System.out.println("Vehículo con placa " + placa + " no encontrado.");
     }
 }

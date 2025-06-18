@@ -5,25 +5,16 @@ com\mycompany\proyecto2_progra2\domain\OrdenTrabajo.class
 com\mycompany\proyecto2_progra2\domain\Vehiculo.class
 com\mycompany\proyecto2_progra2\servlets\cliente\ModificarClienteServlet.class
 com\mycompany\proyecto2_progra2\data\Test.class
-<<<<<<< HEAD
-com\mycompany\proyecto2_progra2\servlets\vehiculo\EliminarVehiculoServlet.class
-=======
 com\mycompany\proyecto2_progra2\data\RepuestosData.class
->>>>>>> 9e72f68f3916df828d1c5c15d74b6b366839f8b2
+com\mycompany\proyecto2_progra2\servlets\vehiculo\EliminarVehiculoServlet.class
 com\mycompany\proyecto2_progra2\domain\Cliente.class
 com\mycompany\proyecto2_progra2\resources\JakartaEE11Resource.class
 com\mycompany\proyecto2_progra2\servlets\cliente\ActualizarClienteServlet.class
 com\mycompany\proyecto2_progra2\servlets\cliente\MostrarClientesServlet.class
-<<<<<<< HEAD
 com\mycompany\proyecto2_progra2\servlets\vehiculo\MostrarClienteServlet.class
-=======
->>>>>>> 9e72f68f3916df828d1c5c15d74b6b366839f8b2
 com\mycompany\proyecto2_progra2\data\ClienteData.class
 com\mycompany\proyecto2_progra2\data\VehiculoData.class
 com\mycompany\proyecto2_progra2\servlets\vehiculo\MostrarVehiculosServlet.class
 com\mycompany\proyecto2_progra2\servlets\cliente\RegistrarClienteServlet.class
 com\mycompany\proyecto2_progra2\JakartaRestConfiguration.class
-<<<<<<< HEAD
 com\mycompany\proyecto2_progra2\servlets\vehiculo\ModificarVehiculoServlet.class
-=======
->>>>>>> 9e72f68f3916df828d1c5c15d74b6b366839f8b2
