@@ -49,10 +49,25 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
+            margin-right: 5px; 
         }
 
         .btn-modificar:hover {
             background-color: #e67e22;
+        }
+
+        .btn-eliminar {
+            background-color: #e74c3c; 
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-eliminar:hover {
+            background-color: #c0392b;
         }
     </style>
 </head>
@@ -85,9 +100,13 @@
                 <td><%= cliente.getDireccion() %></td>
                 <td><%= cliente.getEmail() %></td>
                 <td>
-                    <form action="modificarCliente" method="GET" style="margin:0;">
+                    <form action="modificarCliente" method="GET" style="display:inline-block; margin:0;">
                         <input type="hidden" name="id" value="<%= cliente.getId() %>">
                         <input type="submit" class="btn-modificar" value="Modificar">
+                    </form>
+                    <form action="eliminarCliente" method="POST" style="display:inline-block; margin:0;" onsubmit="return confirm('¿Está seguro de que desea eliminar este cliente?');">
+                        <input type="hidden" name="id" value="<%= cliente.getId() %>">
+                        <input type="submit" class="btn-eliminar" value="Eliminar">
                     </form>
                 </td>
             </tr>

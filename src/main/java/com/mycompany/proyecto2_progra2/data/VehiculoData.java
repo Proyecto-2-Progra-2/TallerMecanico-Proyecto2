@@ -30,7 +30,9 @@ public class VehiculoData {
     // => Se tiene que cambiar la ruta
     
     public static final String RUTA_ARCHIVO ="C:\\Users\\jimen\\OneDrive\\Escritorio\\2025\\Progra\\Proyecto-2\\TallerMecanico-Proyecto2\\xml\\vehiculos.xml";
-   
+  // public static final String RUTA_ARCHIVO = "C:\Repositorios\Proyecto2-Programación2\TallerMecanico-Proyecto2\xml\clientes.xml";
+
+//public static final String RUTA_ARCHIVO = "C:\Repositorios\Proyecto2-Programación2\TallerMecanico-Proyecto2\xml\repuestos.xml";
         
     public VehiculoData() throws IOException, JDOMException {
     File archivo = new File(RUTA_ARCHIVO);
