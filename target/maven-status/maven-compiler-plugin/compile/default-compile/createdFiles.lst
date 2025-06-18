@@ -5,6 +5,7 @@ com\mycompany\proyecto2_progra2\domain\OrdenTrabajo.class
 com\mycompany\proyecto2_progra2\domain\Vehiculo.class
 com\mycompany\proyecto2_progra2\servlets\cliente\ModificarClienteServlet.class
 com\mycompany\proyecto2_progra2\data\Test.class
+com\mycompany\proyecto2_progra2\servlets\repuesto\MostrarRepuestosServlet.class
 com\mycompany\proyecto2_progra2\data\RepuestosData.class
 com\mycompany\proyecto2_progra2\servlets\vehiculo\EliminarVehiculoServlet.class
 com\mycompany\proyecto2_progra2\domain\Cliente.class
@@ -14,6 +15,7 @@ com\mycompany\proyecto2_progra2\servlets\cliente\MostrarClientesServlet.class
 com\mycompany\proyecto2_progra2\servlets\vehiculo\MostrarClienteServlet.class
 com\mycompany\proyecto2_progra2\data\ClienteData.class
 com\mycompany\proyecto2_progra2\data\VehiculoData.class
+com\mycompany\proyecto2_progra2\servlets\repuesto\RegistrarRepuestoServlet.class
 com\mycompany\proyecto2_progra2\servlets\vehiculo\MostrarVehiculosServlet.class
 com\mycompany\proyecto2_progra2\servlets\cliente\RegistrarClienteServlet.class
 com\mycompany\proyecto2_progra2\JakartaRestConfiguration.class

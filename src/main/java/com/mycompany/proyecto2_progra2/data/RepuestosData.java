@@ -28,8 +28,11 @@ public class RepuestosData {
     private Element raiz;
     private String rutaDocumento;
     // => Se tiene que cambiar la ruta
-    public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\TallerMecanico-Proyecto2\\xml\\repuestos.xml";
+    //public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\TallerMecanico-Proyecto2\\xml\\repuestos.xml";
+    public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\xml\\repuestos.xml";
 
+    
+    
     public RepuestosData() throws IOException, JDOMException {
         File archivo = new File(RUTA_ARCHIVO);
         if (archivo.exists()) {
