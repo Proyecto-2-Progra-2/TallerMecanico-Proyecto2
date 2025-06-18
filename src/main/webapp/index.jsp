@@ -110,7 +110,18 @@
                 <input type="submit" value="Mostrar Vehículos">
             </form>
         </div>
-
+        
+        <div class="box">
+            <img src="https://i.pinimg.com/736x/0f/24/36/0f243658b7ad1e72dfaef6b7a6b541c2.jpg" alt="Repuesto Icono">
+            <h2>Repuestos</h2>
+            <form action="registrarRepuesto" method="GET">
+                <input type="submit" value="Registrar Repuesto">
+            </form>
+            <form action="mostrarRepuestos" method="GET">
+                <input type="submit" value="Mostrar Repuestos">
+            </form>
+        </div>
+    
     </div>
 </body>
 </html>

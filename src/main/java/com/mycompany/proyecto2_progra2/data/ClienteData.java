@@ -25,10 +25,17 @@ public class ClienteData {
     private String rutaDocumento;
     
     // => Se tiene que cambiar la ruta
+<<<<<<< HEAD
     public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\2025\\Progra\\Proyecto-2\\TallerMecanico-Proyecto2\\xml\\clientes.xml";
 //public static final String RUTA_ARCHIVO = "C:\Repositorios\Proyecto2-Programación2\TallerMecanico-Proyecto2\xml\clientes.xml";
 
 //public static final String RUTA_ARCHIVO = "C:\Repositorios\Proyecto2-Programación2\TallerMecanico-Proyecto2\xml\repuestos.xml";
+=======
+    //public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\2025\\Progra\\Proyecto-2\\TallerMecanico-Proyecto2\\xml\\clientes.xml";
+    public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\xml\\clientes.xml";
+
+    
+>>>>>>> 8ebec427e82cea1e5faaaf395e8ece832ffa745d
     public ClienteData() throws IOException, JDOMException {
         File archivo = new File(RUTA_ARCHIVO);
         if (archivo.exists()) {
