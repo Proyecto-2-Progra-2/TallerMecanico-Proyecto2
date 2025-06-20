@@ -4,19 +4,29 @@ public class OrdenTrabajo {
     
     private String id, descripcion, fechaIngreso, estado, detalleRecepcionVehiculo,
             fechaDevolucion;
+    private Vehiculo vehiculo;
     private DetalleOrden detalleOrden;
     private double precio;
 
     public OrdenTrabajo(String id, String descripcion, String fechaIngreso, String estado, 
-            String detalleRecepcionVehiculo, String fechaDevolucion, DetalleOrden detalleOrden) {
+            String detalleRecepcionVehiculo, String fechaDevolucion, Vehiculo vehiculo, DetalleOrden detalleOrden) {
         this.id = id;
         this.descripcion = descripcion;
         this.fechaIngreso = fechaIngreso;
         this.estado = estado;
         this.detalleRecepcionVehiculo = detalleRecepcionVehiculo;
         this.fechaDevolucion = fechaDevolucion;
+        this.vehiculo = vehiculo;
         this.detalleOrden = detalleOrden;
         this.precio = this.detalleOrden.getPrecioTotal();
+    }
+
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
     }
 
     public String getId() {
@@ -85,11 +95,7 @@ public class OrdenTrabajo {
 
     @Override
     public String toString() {
-        return "OrdenTrabajo{" + "id=" + id + ", descripcion=" + descripcion + 
-                ", fechaIngreso=" + fechaIngreso + ", estado=" + estado + 
-                ", detalleRecepcionVehiculo=" + detalleRecepcionVehiculo + 
-                ", fechaDevolucion=" + fechaDevolucion + ", detalleOrden=" + detalleOrden + 
-                ", precio=" + precio + '}';
+        return "OrdenTrabajo{" + "id=" + id + ", descripcion=" + descripcion + ", fechaIngreso=" + fechaIngreso + ", estado=" + estado + ", detalleRecepcionVehiculo=" + detalleRecepcionVehiculo + ", fechaDevolucion=" + fechaDevolucion + ", vehiculo=" + vehiculo + ", detalleOrden=" + detalleOrden + ", precio=" + precio + '}';
     }
     
 }
