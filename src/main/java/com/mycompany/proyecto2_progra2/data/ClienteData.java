@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -23,7 +24,7 @@ public class ClienteData {
     private Document document;
     private Element raiz;
     private String rutaDocumento;
-    
+
     // => Se tiene que cambiar la ruta
     //public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\2025\\Progra\\Proyecto-2\\TallerMecanico-Proyecto2\\xml\\clientes.xml";
     //public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\xml\\clientes.xml";
@@ -34,7 +35,7 @@ public class ClienteData {
         if (archivo.exists()) {
             SAXBuilder saxBuilder = new SAXBuilder();
             saxBuilder.setIgnoringElementContentWhitespace(true);
-            this.document = saxBuilder.build(archivo); 
+            this.document = saxBuilder.build(archivo);
             this.raiz = document.getRootElement();
             this.rutaDocumento = RUTA_ARCHIVO;
         } else {
@@ -43,7 +44,7 @@ public class ClienteData {
             this.document = new Document(raiz);
             guardar();
         }
-    }   
+    }
 
     private void guardar() throws IOException, FileNotFoundException {
         Format format = Format.getPrettyFormat();
@@ -101,46 +102,46 @@ public class ClienteData {
 
         return clientes;
     }
-// para enocntrar el error use system.
-   public Cliente findOne(String id) {
-    if (id == null || id.isEmpty()) {
-        System.out.println("ID nulo o vacío en búsqueda de cliente.");
+
+    public Cliente findOne(String id) {
+        if (id == null || id.isEmpty()) {
+            System.out.println("ID nulo o vacío en búsqueda de cliente.");
+            return null;
+        }
+
+        ArrayList<Cliente> clientes = findAll();
+
+        // Ordenar por ID para búsqueda binaria:AQUI ES DONDE SE USA 
+        clientes.sort((c1, c2) -> c1.getId().compareToIgnoreCase(c2.getId()));
+
+        int left = 0;
+        int right = clientes.size() - 1;
+
+        while (left <= right) {
+            int mid = (left + right) / 2;
+            Cliente midCliente = clientes.get(mid);
+            int compare = midCliente.getId().compareToIgnoreCase(id);
+
+            if (compare == 0) {
+                System.out.println("Cliente encontrado con ID: " + id);
+                return midCliente;
+            } else if (compare < 0) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        System.out.println(" Cliente no encontrado con ID: " + id);
         return null;
     }
 
-    ArrayList<Cliente> clientes = findAll();
+    public void actualizar(Cliente actualizado) throws IOException {
 
-    // Ordenar por ID para búsqueda binaria:AQUI ES DONDE SE USA 
-    clientes.sort((c1, c2) -> c1.getId().compareToIgnoreCase(c2.getId()));
+        List<Element> listarClientes = raiz.getChildren("cliente");
 
-    int left = 0;
-    int right = clientes.size() - 1;
-
-    while (left <= right) {
-        int mid = (left + right) / 2;
-        Cliente midCliente = clientes.get(mid);
-        int compare = midCliente.getId().compareToIgnoreCase(id);
-
-        if (compare == 0) {
-            System.out.println("Cliente encontrado con ID: " + id);
-            return midCliente;
-        } else if (compare < 0) {
-            left = mid + 1;
-        } else {
-            right = mid - 1;
-        }
-    }
-
-    System.out.println(" Cliente no encontrado con ID: " + id);
-    return null;
-}
-
-    public void actualizar(Cliente actualizado) throws IOException{
-        
-        List<Element>listarClientes = raiz.getChildren("cliente");
-        
-        for(Element eCliente:listarClientes){
-             if (eCliente.getAttributeValue("id").equals(actualizado.getId())) {
+        for (Element eCliente : listarClientes) {
+            if (eCliente.getAttributeValue("id").equals(actualizado.getId())) {
                 eCliente.getChild("nombre").setText(actualizado.getNombre());
                 eCliente.getChild("primerApellido").setText(actualizado.getPrimerApellido());
                 eCliente.getChild("segundoApellido").setText(actualizado.getSegundoApellido());
@@ -149,9 +150,29 @@ public class ClienteData {
                 eCliente.getChild("email").setText(actualizado.getEmail());
 
                 guardar(); // Guardar los cambios en el archivo XML
-                break; 
+                break;
             }
-        }   
+        }
+    }
+
+    public void eliminar(String id) throws IOException {
+        List<Element> eClientes = this.raiz.getChildren();
+        boolean eliminado = false;
+
+        Iterator<Element> iterator = eClientes.iterator();
+        while (iterator.hasNext()) {
+            Element eCliente = iterator.next();
+            if (eCliente.getAttribute("id").equals(id)) {
+                iterator.remove();
+                eliminado = true;
+                break;
+            }
+        }
+
+        if (eliminado) {
+            guardar();
+        } else {
+            System.out.println("Cliente con identificacion: " + id + " no encontrado.");
+        }
     }
 }
-

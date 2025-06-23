@@ -16,6 +16,10 @@
         <servlet-name>MostrarRepuestosServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.MostrarRepuestosServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EliminarClienteServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.cliente.EliminarClienteServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrarClienteServlet</servlet-name>
         <url-pattern>/registrarCliente</url-pattern>
@@ -83,6 +87,10 @@
     <servlet-mapping>
         <servlet-name>MostrarRepuestosServlet</servlet-name>
         <url-pattern>/mostrarRepuestos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarClienteServlet</servlet-name>
+        <url-pattern>/eliminarCliente</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

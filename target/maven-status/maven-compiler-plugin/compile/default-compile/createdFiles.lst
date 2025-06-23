@@ -1,10 +1,10 @@
 com\mycompany\proyecto2_progra2\domain\DetalleOrden.class
 com\mycompany\proyecto2_progra2\servlets\vehiculo\RegistrarVehiculoServlet.class
 com\mycompany\proyecto2_progra2\domain\Repuesto.class
-com\mycompany\proyecto2_progra2\servlets\cliente\EliminarClientesServlet.class
 com\mycompany\proyecto2_progra2\domain\OrdenTrabajo.class
 com\mycompany\proyecto2_progra2\domain\Vehiculo.class
 com\mycompany\proyecto2_progra2\servlets\cliente\ModificarClienteServlet.class
+com\mycompany\proyecto2_progra2\servlets\cliente\EliminarClienteServlet.class
 com\mycompany\proyecto2_progra2\data\Test.class
 com\mycompany\proyecto2_progra2\servlets\repuesto\MostrarRepuestosServlet.class
 com\mycompany\proyecto2_progra2\data\RepuestosData.class

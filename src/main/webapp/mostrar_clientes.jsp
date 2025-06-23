@@ -104,7 +104,7 @@
                         <input type="hidden" name="id" value="<%= cliente.getId() %>">
                         <input type="submit" class="btn-modificar" value="Modificar">
                     </form>
-                    <form action="eliminarCliente" method="POST" style="display:inline-block; margin:0;" onsubmit="return confirm('¿Está seguro de que desea eliminar este cliente?');">
+                    <form action="${pageContext.request.contextPath}/eliminarCliente" method="POST" style="display:inline-block; margin:0;" onsubmit="return confirm('¿Está seguro de que desea eliminar este cliente?');">
                         <input type="hidden" name="id" value="<%= cliente.getId() %>">
                         <input type="submit" class="btn-eliminar" value="Eliminar">
                     </form>
