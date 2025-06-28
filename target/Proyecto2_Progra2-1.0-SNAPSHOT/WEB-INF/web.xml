@@ -28,6 +28,22 @@
         <servlet-name>MostrarOrdenesTrabajoServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.MostrarOrdenesTrabajoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModificarOrdenTrabajoServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.ModificarOrdenTrabajoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarVehiculoServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.MostrarVehiculoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarOrdenTrabajoServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.EliminarOrdenTrabajoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarDetalleOrdenServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.MostrarDetalleOrdenServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrarClienteServlet</servlet-name>
         <url-pattern>/registrarCliente</url-pattern>
@@ -107,6 +123,22 @@
     <servlet-mapping>
         <servlet-name>MostrarOrdenesTrabajoServlet</servlet-name>
         <url-pattern>/mostrarOrdenesTrabajo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarOrdenTrabajoServlet</servlet-name>
+        <url-pattern>/modificarOrdenTrabajo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarVehiculoServlet</servlet-name>
+        <url-pattern>/mostrarVehiculo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarOrdenTrabajoServlet</servlet-name>
+        <url-pattern>/eliminarOrdenTrabajo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarDetalleOrdenServlet</servlet-name>
+        <url-pattern>/mostrarDetalleOrden</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

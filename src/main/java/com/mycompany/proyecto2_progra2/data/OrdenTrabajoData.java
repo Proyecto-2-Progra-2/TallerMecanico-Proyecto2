@@ -4,11 +4,15 @@
  */
 package com.mycompany.proyecto2_progra2.data;
 
+import com.mycompany.proyecto2_progra2.domain.DetalleOrden;
 import com.mycompany.proyecto2_progra2.domain.OrdenTrabajo;
+import com.mycompany.proyecto2_progra2.domain.Repuesto;
+import com.mycompany.proyecto2_progra2.domain.Vehiculo;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -81,7 +85,7 @@ public class OrdenTrabajoData {
 
         Element detalleOrden = new Element("detalleOrden");
         detalleOrden.addContent(ordenTrabajo.getDetalleOrden().getId());
-        
+
         Element precio = new Element("precio");
         precio.addContent(String.valueOf(ordenTrabajo.getPrecio()));
 
@@ -106,6 +110,30 @@ public class OrdenTrabajoData {
             }
         }
         return false;
+    }
+
+    // Falta las clases del detalle de la orden
+    public ArrayList<OrdenTrabajo> findAll() throws JDOMException, IOException {
+        // hay que eliminar esto
+        ArrayList<Repuesto> repuestos = new ArrayList<>();
+        repuestos.add(new Repuesto("1", "repuesto1", 2, 25000));
+        repuestos.add(new Repuesto("2", "repuesto2", 1, 75000));
+
+        ArrayList<OrdenTrabajo> ordenes = new ArrayList<>();
+
+        List<Element> elementos = this.raiz.getChildren();
+        for (Element elemento : elementos) {
+            OrdenTrabajo o = new OrdenTrabajo(elemento.getAttributeValue("id"),
+                    elemento.getChildText("descripcion"), elemento.getChildText("fechaIngreso"),
+                    elemento.getChildText("estado"), elemento.getChildText("detalleRecepcion"),
+                    elemento.getChildText("fechaDevolucion"),
+                    new VehiculoData().findOne(elemento.getChildText("vehiculo")), 
+                    new DetalleOrden("123", "Sin observacion", 20000, repuestos));
+            o.setPrecio(Double.parseDouble(elemento.getChildText("precio")));
+            ordenes.add(o);
+        }
+
+        return ordenes;
     }
 
 }
