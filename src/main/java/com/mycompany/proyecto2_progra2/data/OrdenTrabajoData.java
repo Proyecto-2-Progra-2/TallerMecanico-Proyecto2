@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -136,13 +137,58 @@ public class OrdenTrabajoData {
         return ordenes;
     }
     
-    public void modificar(OrdenTrabajo orden) {
+    public OrdenTrabajo findOne(String id) throws JDOMException, IOException {
+        ArrayList<OrdenTrabajo> ordenes = findAll();
+        
+        for (OrdenTrabajo orden : ordenes) {
+            if (orden.getId().equalsIgnoreCase(id)) {
+                return orden;
+            }
+        }
+        
+        return null;
+    }
+    
+    public void modificar(OrdenTrabajo orden) throws IOException {
         boolean encontrado = false;
         List<Element> elementos = this.raiz.getChildren();
         for (Element elemento : elementos) {
             if (elemento.getAttributeValue("id").equalsIgnoreCase(orden.getId())) {
                 elemento.getChild("descripcion").setText(orden.getDescripcion());
+                elemento.getChild("estado").setText(orden.getEstado());
+                elemento.getChild("detalleRecepcion").setText(orden.getDetalleRecepcionVehiculo());
+                elemento.getChild("fechaDevolucion").setText(orden.getFechaDevolucion());
+                
+                encontrado = true;
+                break;
             }
+        }
+        if (encontrado) {
+            guardar();
+        } else {
+            throw new IOException("La orden con el ID: " + orden.getId() + ", no se encontró!");
+
+        }
+    }
+    
+    public void eliminar(String id) throws IOException {
+        List<Element> elementos = this.raiz.getChildren();
+        boolean eliminado = false;
+        
+        Iterator<Element> iterator = elementos.iterator();
+        while (iterator.hasNext()) {
+            Element eOrden = iterator.next();
+            if (eOrden.getAttributeValue("id").equalsIgnoreCase(id)) {
+                iterator.remove();
+                eliminado = true;
+                break;
+            }
+        }
+        
+        if (eliminado) {
+            guardar();
+        } else {
+            System.out.println("La orden con el id: " + id + ", no encontrada.");
         }
     }
 

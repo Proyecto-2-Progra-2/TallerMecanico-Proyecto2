@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ordenes><orden id="138132"><descripcion>Descripción de prueba</descripcion><fechaIngreso>27/06/2025</fechaIngreso><estado>en reparación</estado><detalleRecepcion>Detalles de prueba</detalleRecepcion><fechaDevolucion>21/07/2025</fechaDevolucion><vehiculo>202589</vehiculo><detalleOrden>123</detalleOrden><precio>120000.0</precio></orden></ordenes>
+<ordenes><orden id="138132"><descripcion>Descripción de prueba editada</descripcion><fechaIngreso>27/06/2025</fechaIngreso><estado>listo para entrega</estado><detalleRecepcion>Detalles de prueba editada</detalleRecepcion><fechaDevolucion>05/10/2025</fechaDevolucion><vehiculo>202589</vehiculo><detalleOrden>123</detalleOrden><precio>120000.0</precio></orden></ordenes>
