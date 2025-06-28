@@ -20,6 +20,14 @@
         <servlet-name>EliminarClienteServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.cliente.EliminarClienteServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegistrarOrdenTrabajoServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.RegistrarOrdenTrabajoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarOrdenesTrabajoServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.MostrarOrdenesTrabajoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrarClienteServlet</servlet-name>
         <url-pattern>/registrarCliente</url-pattern>
@@ -91,6 +99,14 @@
     <servlet-mapping>
         <servlet-name>EliminarClienteServlet</servlet-name>
         <url-pattern>/eliminarCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrarOrdenTrabajoServlet</servlet-name>
+        <url-pattern>/registrarOrdenTrabajo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarOrdenesTrabajoServlet</servlet-name>
+        <url-pattern>/mostrarOrdenesTrabajo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
