@@ -112,7 +112,7 @@
             </div>
             <div>
                 <label for="cilindraje">Cilindraje:</label>
-                <input type="text" id="cilindraje" name="direccion" required>
+                <input type="text" id="cilindraje" name="cilindraje" required>
             </div>
             <div>
                 <label for="annio">Año:</label>

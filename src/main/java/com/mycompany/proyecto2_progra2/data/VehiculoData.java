@@ -165,18 +165,18 @@ public class VehiculoData {
             if (eVehiculo.getAttributeValue("placa").equalsIgnoreCase(vehiculo.getPlaca())) // actualizar los datos si son iguales
             {
                 eVehiculo.getChild("color").setText(vehiculo.getColor());
+
+                eVehiculo.getChild("marca").setText(vehiculo.getMarca());
+                eVehiculo.getChild("estilo").setText(vehiculo.getEstilo());
+                eVehiculo.getChild("VIN").setText(vehiculo.getVin());
+                eVehiculo.getChild("cilindraje").setText(vehiculo.getCilindraje());
+                eVehiculo.getChild("annio").setText(String.valueOf(vehiculo.getAnnio()));
+                eVehiculo.getChild("duennio").setText(vehiculo.getDuenno().getId());
+
+                enocntrado = true; // cierro centinela 
+
+                break;// salir del ciclo 
             }
-            eVehiculo.getChild("marca").setText(vehiculo.getMarca());
-            eVehiculo.getChild("estilo").setText(vehiculo.getEstilo());
-            eVehiculo.getChild("VIN").setText(vehiculo.getVin());
-            eVehiculo.getChild("cilindraje").setText(vehiculo.getCilindraje());
-            eVehiculo.getChild("annio").setText(String.valueOf(vehiculo.getAnnio()));
-            eVehiculo.getChild("duennio").setText(vehiculo.getDuenno().getId());
-
-            enocntrado = true; // cierro centinela 
-
-            break;// salir del ciclo 
-
         }
         if (enocntrado) {
             guardar();// guarad la info 

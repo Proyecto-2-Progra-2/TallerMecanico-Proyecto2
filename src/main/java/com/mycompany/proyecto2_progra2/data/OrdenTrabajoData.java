@@ -135,5 +135,15 @@ public class OrdenTrabajoData {
 
         return ordenes;
     }
+    
+    public void modificar(OrdenTrabajo orden) {
+        boolean encontrado = false;
+        List<Element> elementos = this.raiz.getChildren();
+        for (Element elemento : elementos) {
+            if (elemento.getAttributeValue("id").equalsIgnoreCase(orden.getId())) {
+                elemento.getChild("descripcion").setText(orden.getDescripcion());
+            }
+        }
+    }
 
 }
