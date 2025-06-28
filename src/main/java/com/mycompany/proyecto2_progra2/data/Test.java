@@ -25,6 +25,7 @@ public class Test {
         try {
             ClienteData clienteData = new ClienteData();
             VehiculoData vehiculoData = new VehiculoData();
+//            clienteData.eliminar("25896");
 //            clienteData.insertar(new Cliente("101", "Juan", "Aguirre", "Perez", 71694987, "Turrialba", "Email"));
 //            ArrayList<Cliente> cs = clienteData.findAll();
 //            for (int i = 0; i < cs.size(); i++) {

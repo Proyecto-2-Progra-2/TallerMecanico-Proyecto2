@@ -28,7 +28,7 @@ public class ClienteData {
     // => Se tiene que cambiar la ruta
     //public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\2025\\Progra\\Proyecto-2\\TallerMecanico-Proyecto2\\xml\\clientes.xml";
     //public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\xml\\clientes.xml";
-    public static final String RUTA_ARCHIVO = "C:\\Users\\jeffr\\OneDrive\\Documentos\\Proyecto2-Progra2\\TallerMecanico-Proyecto2\\xml\\clientes.xml";
+    public static final String RUTA_ARCHIVO = "C:\\Users\\jeffr\\OneDrive\\Documentos\\Proyecto2-Progra2\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\clientes.xml";
 
     public ClienteData() throws IOException, JDOMException {
         File archivo = new File(RUTA_ARCHIVO);
@@ -162,7 +162,7 @@ public class ClienteData {
         Iterator<Element> iterator = eClientes.iterator();
         while (iterator.hasNext()) {
             Element eCliente = iterator.next();
-            if (eCliente.getAttribute("id").equals(id)) {
+            if (eCliente.getAttributeValue("id").equals(id)) {
                 iterator.remove();
                 eliminado = true;
                 break;

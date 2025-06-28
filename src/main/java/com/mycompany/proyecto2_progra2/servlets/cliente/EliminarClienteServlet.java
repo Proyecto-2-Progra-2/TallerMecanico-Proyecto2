@@ -6,7 +6,6 @@ package com.mycompany.proyecto2_progra2.servlets.cliente;
 
 import com.mycompany.proyecto2_progra2.data.ClienteData;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,16 +23,26 @@ public class EliminarClienteServlet extends HttpServlet {
     private ClienteData clienteData;
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void init() throws ServletException {
         try {
             this.clienteData = new ClienteData();
-            String id = req.getParameter("id");
-            this.clienteData.eliminar(id);
-            resp.sendRedirect("mostrarClientes?mensaje=eliminado");
-        } catch (JDOMException ex) {
+        } catch (IOException | JDOMException ex) {
             Logger.getLogger(EliminarClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
-            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al eliminar el cliente");
         }
     }
-    
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String id = req.getParameter("id");
+        System.out.println("Eliminando cliente con id: " + id);
+
+        try {
+            this.clienteData.eliminar(id);
+            resp.sendRedirect("mostrarClientes?mensaje=eliminado");
+        } catch (IOException e) {
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al eliminar el cliente");
+        }
+
+    }
+
 }
