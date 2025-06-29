@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ordenes><orden id="999929"><descripcion>Llantas</descripcion><fechaIngreso>28/06/2025</fechaIngreso><estado>diagnóstico</estado><detalleRecepcion>LLantas</detalleRecepcion><fechaDevolucion>28/06/2025</fechaDevolucion><vehiculo>1</vehiculo><detalleOrden>123</detalleOrden><precio>120000.0</precio></orden></ordenes>

@@ -6,6 +6,7 @@ com\mycompany\proyecto2_progra2\servlets\cliente\EliminarClienteServlet.class
 com\mycompany\proyecto2_progra2\data\Test.class
 com\mycompany\proyecto2_progra2\servlets\repuesto\MostrarRepuestosServlet.class
 com\mycompany\proyecto2_progra2\data\RepuestosData.class
+com\mycompany\proyecto2_progra2\data\OrdenDetalleData.class
 com\mycompany\proyecto2_progra2\resources\JakartaEE11Resource.class
 com\mycompany\proyecto2_progra2\servlets\ordenTrabajo\MostrarVehiculoServlet.class
 com\mycompany\proyecto2_progra2\servlets\ordenTrabajo\ModificarOrdenTrabajoServlet.class

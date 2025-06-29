@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : mostrar_ordenes_trabajo
     Created on : 27 jun 2025, 18:37:33
     Author     : jeffr
@@ -101,6 +101,14 @@
                 background-color: #2471a3;
             }
 
+            /* Nuevo estilo para el botón de ver detalle */
+            .detalle-btn {
+                background-color: #17a2b8; /* Un color más de "información" o "azul claro" */
+            }
+            .detalle-btn:hover {
+                background-color: #138496;
+            }
+
             .eliminar-btn {
                 background-color: #e74c3c;
             }
@@ -148,7 +156,7 @@
                 String mensaje = request.getParameter("mensaje");
                 if ("eliminado".equals(mensaje)) {
             %>
-            <div class="mensaje">🚗 orden de trabajo eliminada correctamente.</div>
+            <div class="mensaje">🚗 Orden de trabajo eliminada correctamente.</div>
             <% } %>
 
             <% ArrayList<OrdenTrabajo> ordenes = (ArrayList<OrdenTrabajo>) request.getAttribute("ordenes"); %>
@@ -157,11 +165,11 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Descripcion</th>
-                        <th>Fecha de ingreso</th>
+                        <th>Descripción</th>
+                        <th>Fecha de Ingreso</th>
                         <th>Estado</th>
-                        <th>Detalle de recepcion del vehiculo</th>
-                        <th>Fecha estimada de devolucion</th>
+                        <th>Detalle de Recepción del Vehículo</th>
+                        <th>Fecha Estimada de Devolución</th>
                         <th>Precio</th>
                         <th>Acciones</th>
                     </tr>
@@ -170,13 +178,13 @@
                     <% if (ordenes != null) {
                             for (OrdenTrabajo orden : ordenes) {%>
                     <tr>
-                        <td data-label="Placa"><%= orden.getId()%></td>
-                        <td data-label="Color"><%= orden.getDescripcion()%></td>
-                        <td data-label="Marca"><%= orden.getFechaIngreso()%></td>
-                        <td data-label="Estilo"><%= orden.getEstado()%></td>
-                        <td data-label="VIN"><%= orden.getDetalleRecepcionVehiculo()%></td>
-                        <td data-label="Cilindraje"><%= orden.getFechaDevolucion()%></td>
-                        <td data-label="Dueño"><%= orden.getPrecio()%></td>
+                        <td data-label="ID"><%= orden.getId()%></td>
+                        <td data-label="Descripción"><%= orden.getDescripcion()%></td>
+                        <td data-label="Fecha de Ingreso"><%= orden.getFechaIngreso()%></td>
+                        <td data-label="Estado"><%= orden.getEstado()%></td>
+                        <td data-label="Detalle de Recepción"><%= orden.getDetalleRecepcionVehiculo()%></td>
+                        <td data-label="Fecha de Devolución"><%= orden.getFechaDevolucion()%></td>
+                        <td data-label="Precio">₡<%= String.format("%,.2f", orden.getPrecio())%></td>
                         <td>
                             <form action="${pageContext.request.contextPath}/modificarOrdenTrabajo" method="GET">
                                 <input type="hidden" name="id" value="<%= orden.getId()%>">
@@ -184,11 +192,11 @@
                             </form>
                             <form action="${pageContext.request.contextPath}/mostrarVehiculo" method="GET">
                                 <input type="hidden" name="vehiculo" value="<%= orden.getVehiculo().getPlaca()%>">
-                                <button type="submit" class="action-btn cliente-btn">Ver Vehiculo</button>
+                                <button type="submit" class="action-btn cliente-btn">Ver Vehículo</button>
                             </form>
                             <form action="${pageContext.request.contextPath}/mostrarDetalleOrden" method="GET">
-                                <input type="hidden" name="detalle" value="<%= orden.getDetalleOrden().getId()%>">
-                                <button type="submit" class="action-btn eliminar-btn">Ver Detalle de la Orden</button>
+                                <input type="hidden" name="idDetalleOrden" value="<%= orden.getDetalleOrden().getId()%>"> <%-- Cambié el nombre del parámetro a 'idDetalleOrden' --%>
+                                <button type="submit" class="action-btn detalle-btn">Ver Detalle</button>
                             </form>
                             <form action="${pageContext.request.contextPath}/eliminarOrdenTrabajo" method="POST" onsubmit="return confirm('¿Está seguro que desea eliminar esta orden de trabajo?');">
                                 <input type="hidden" name="id" value="<%= orden.getId()%>">
@@ -198,7 +206,7 @@
                     </tr>
                     <% }
                     } else { %>
-                    <tr><td colspan="10" style="text-align:center;">No hay ordenes registradas.</td></tr>
+                    <tr><td colspan="8" style="text-align:center;">No hay órdenes registradas.</td></tr>
                     <% }%>
                 </tbody>
             </table>
