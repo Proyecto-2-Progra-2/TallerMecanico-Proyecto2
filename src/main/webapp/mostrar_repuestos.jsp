@@ -107,6 +107,20 @@
             transform: translateY(-1px);
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+        
+        .btn-eliminar {
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-eliminar {
+            background-color: #e67e22;
+        }
     </style>
 </head>
 <body>
@@ -117,6 +131,7 @@
     
     <h2 class="page-title">Inventario Actual de Repuestos</h2>
 
+<<<<<<< HEAD
     <div class="container">
         <% ArrayList<Repuesto> repuestosList = (ArrayList<Repuesto>) request.getAttribute("repuesto"); %>
 
@@ -154,5 +169,40 @@
             </p>
         <% } %>
     </div>
+
+    <% ArrayList<Repuesto> repuestos = (ArrayList<Repuesto>) request.getAttribute("repuestos"); %>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Identificación</th>
+                <th>Nombre</th>
+                <th>Cantidad (Stock)</th>
+                <th>Precio</th> 
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (Repuesto repuesto : repuestos) { %>
+            <tr>
+                <td><%= repuesto.getId() %></td>
+                <td><%= repuesto.getNombre() %></td>
+                <td><%= repuesto.getCantidad() %></td>
+                <td><%= repuesto.getPrecio() %></td>    
+                <td>                 
+                    <form action="${pageContext.request.contextPath}/modificarRepuesto" method="GET">
+                        <input type="hidden" name="id" value="<%= repuesto.getId()%>">
+                        <input type="submit" class="btn-modificar" value="Modificar">
+                    </form>    
+                    <form action="${pageContext.request.contextPath}/eliminarRepuesto" method="POST" style="display:inline-block; margin:0;" onsubmit="return confirm('¿Está seguro de que desea eliminar este repuesto?');">
+                        <input type="hidden" name="id" value="<%= repuesto.getId() %>">
+                        <input type="submit" class="btn-eliminar" value="Eliminar">
+                    </form>
+                </td>
+            </tr>
+            <% } %>
+        </tbody>
+    </table>
+
 </body>
 </html>

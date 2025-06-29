@@ -35,7 +35,7 @@ public class MostrarRepuestosServlet extends HttpServlet {
             // => Traemos los repuestos del xml
             this.repuestos = this.repuestosData.findAll();
             
-            req.setAttribute("repuesto", this.repuestos);
+            req.setAttribute("repuestos", this.repuestos);
             req.getRequestDispatcher("mostrar_repuestos.jsp").forward(req, resp);
         } catch (JDOMException ex) {
             Logger.getLogger(MostrarRepuestosServlet.class.getName()).log(Level.SEVERE, null, ex);

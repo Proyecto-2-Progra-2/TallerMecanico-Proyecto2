@@ -44,6 +44,18 @@
         <servlet-name>MostrarDetalleOrdenServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.MostrarDetalleOrdenServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ActualizarRepuestoServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.ActualizarRepuestoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarRepuestoServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.EliminarRepuestoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModificarRepuestoServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.ModificarRepuestoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrarClienteServlet</servlet-name>
         <url-pattern>/registrarCliente</url-pattern>
@@ -139,6 +151,18 @@
     <servlet-mapping>
         <servlet-name>MostrarDetalleOrdenServlet</servlet-name>
         <url-pattern>/mostrarDetalleOrden</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActualizarRepuestoServlet</servlet-name>
+        <url-pattern>/actualizarRepuesto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarRepuestoServlet</servlet-name>
+        <url-pattern>/eliminarRepuesto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarRepuestoServlet</servlet-name>
+        <url-pattern>/modificarRepuesto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
