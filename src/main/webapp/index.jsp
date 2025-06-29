@@ -126,10 +126,10 @@
             <img src="https://media.istockphoto.com/id/1409477431/es/vector/servicio-de-autom%C3%B3vil.jpg?s=612x612&w=0&k=20&c=v9Rt0Y8SRPuGJjl2nu55R5emWQxIx-SDbYzUgdcD_7U=" alt="Orden de trabajo Icono">
             <h2>Ordenes de Trabajo</h2>
             <form action="registrarOrdenTrabajo" method="GET">
-                <input type="submit" value="Registrar Repuesto">
+                <input type="submit" value="Registrar Orden de Trabajo">
             </form>
-            <form action="mostrarOrdenesTrabajo" method="GET">
-                <input type="submit" value="Mostrar Repuestos">
+            <form action="listadoOrdenes" method="GET">
+                <input type="submit" value="Mostrar Ordenes de Trabajo">
             </form>
         </div>
         

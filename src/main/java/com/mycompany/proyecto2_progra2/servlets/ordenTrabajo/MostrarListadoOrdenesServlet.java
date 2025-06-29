@@ -15,38 +15,22 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jdom2.JDOMException;
 
-
 public class MostrarListadoOrdenesServlet extends HttpServlet {
 
     private OrdenTrabajoData ordenTrabajoData;
 
-  @Override
-protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    try {
-        ordenTrabajoData = new OrdenTrabajoData();
-
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            ArrayList<OrdenTrabajo> ordenesList = ordenTrabajoData.findAll();
-
-            // Por cada orden, cargamos los repuestos asociados y los asignamos
-            for (OrdenTrabajo orden : ordenesList) {
-                var repuestos = ordenTrabajoData.findRepuestosPorOrden(orden.getId());
-                if (orden.getDetalleOrden() == null) {
-                    orden.setDetalleOrden(new DetalleOrden()); // crea detalle si es null
-                }
-                orden.getDetalleOrden().setRepuestos(repuestos);
-            }
-
-            req.setAttribute("ordenesList", ordenesList);
-            req.getRequestDispatcher("/ordenes_listado.jsp").forward(req, resp);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "No se pudo cargar la lista de órdenes.");
+            this.ordenTrabajoData = new OrdenTrabajoData();
+            ArrayList<OrdenTrabajo> ordenes = new ArrayList<>();
+            ordenes = this.ordenTrabajoData.findAll();
+            
+            req.setAttribute("ordenes", ordenes);
+            req.getRequestDispatcher("ordenes_listado.jsp").forward(req, resp);
+        } catch (JDOMException ex) {
+            Logger.getLogger(MostrarListadoOrdenesServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
-    } catch (JDOMException ex) {
-        Logger.getLogger(MostrarListadoOrdenesServlet.class.getName()).log(Level.SEVERE, null, ex);
     }
-}
 
 }

@@ -60,7 +60,7 @@ public class ModificarOrdenTrabajoServlet extends HttpServlet {
             ordenes = this.ordenData.findAll();
             
             req.setAttribute("ordenes", ordenes);
-            req.getRequestDispatcher("mostrar_ordenes_trabajo.jsp").forward(req, resp);
+            req.getRequestDispatcher("ordenes_listado.jsp").forward(req, resp);
         } catch (JDOMException ex) {
             Logger.getLogger(ModificarOrdenTrabajoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

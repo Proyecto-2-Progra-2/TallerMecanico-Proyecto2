@@ -30,17 +30,10 @@ public class OrdenDetalleData {
     private Element raiz;
     private String rutaDocumento;
 
-    //public static final String RUTA_ARCHIVO = "C:\\Users\\jeffr\\OneDrive\\Documentos\\Proyecto2-Progra2\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\detallesOrden.xml";
-
-        public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\ProyectoProgra\\TallerMecanico-Proyecto2\\xml\\ordenDetalle.xml";
+    public static final String RUTA_ARCHIVO = "C:\\Users\\jeffr\\OneDrive\\Documentos\\Proyecto2-Progra2\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\detallesOrden.xml";
+    //public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\ProyectoProgra\\TallerMecanico-Proyecto2\\xml\\ordenDetalle.xml";
     //public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\detallesOrden.xml";
 
-    //public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\Taller\\TallerMecanico-Proyecto2\\xml\\ordenDetalle";
-    //public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\TallerMecanico\\TallerMecanico-Proyecto2\\xml\\ordenDetalle";
-   // public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\detallesOrden.xml";
-
-
-    
     public OrdenDetalleData() throws IOException, JDOMException {
         File archivo = new File(RUTA_ARCHIVO);
         if (archivo.exists()) {
@@ -119,7 +112,7 @@ public class OrdenDetalleData {
             String id = elemento.getAttributeValue("id");
             String observaciones = elemento.getChildText("observaciones");
             double manoObra = Double.parseDouble(elemento.getChildText("manoObra"));
-            
+
             ArrayList<Repuesto> repuestos = new ArrayList<>();
             Element repuestosElement = elemento.getChild("repuestos");
             if (repuestosElement != null) {
@@ -132,7 +125,7 @@ public class OrdenDetalleData {
                     repuestos.add(new Repuesto(repuestoId, nombre, cantidad, precio));
                 }
             }
-            
+
             // El precioTotal se calcula automáticamente en el constructor de DetalleOrden
             DetalleOrden detalle = new DetalleOrden(id, observaciones, manoObra, repuestos);
             detallesOrden.add(detalle);
