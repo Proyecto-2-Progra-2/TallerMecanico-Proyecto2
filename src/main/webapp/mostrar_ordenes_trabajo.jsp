@@ -1,90 +1,119 @@
-<%--
-    Document   : mostrar_ordenes_trabajo
-    Created on : 27 jun 2025, 18:37:33
-    Author     : jeffr
---%>
-
 <%@page import="com.mycompany.proyecto2_progra2.domain.OrdenTrabajo"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Mostrar Ordenes de Trabajo</title>
+        <meta charset="UTF-8">
+        <title>Listado de Órdenes de Trabajo</title>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
         <style>
             body {
                 margin: 0;
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                background-color: #f4f6f9;
+                font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #eef2f7;
                 color: #333;
+                line-height: 1.6;
             }
 
             header {
                 background-color: #2c3e50;
                 color: white;
-                padding: 20px;
+                padding: 25px 0;
                 text-align: center;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                margin-bottom: 30px;
             }
 
             header img {
-                width: 50px;
+                width: 60px;
                 vertical-align: middle;
-                margin-right: 10px;
+                margin-right: 15px;
+                filter: invert(1);
             }
 
             h1 {
                 display: inline-block;
-                font-size: 2em;
+                font-size: 2.2em;
                 margin: 0;
+                font-weight: 700;
+            }
+            
+            .page-title {
+                text-align: center;
+                color: #2c3e50;
+                font-size: 2em;
+                margin-top: 30px;
+                margin-bottom: 30px;
+                font-weight: 700;
             }
 
-            main {
-                padding: 30px;
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 20px;
             }
 
             .mensaje {
                 background-color: #d4edda;
                 color: #155724;
-                padding: 10px 15px;
-                border-radius: 5px;
-                margin-bottom: 20px;
+                padding: 12px 20px;
+                border-radius: 8px;
+                margin-bottom: 25px;
                 border: 1px solid #c3e6cb;
-                font-weight: bold;
+                font-weight: 500;
+                text-align: center;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.05);
             }
 
             table {
                 width: 100%;
                 border-collapse: collapse;
                 background-color: white;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                border-radius: 10px;
+                box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+                border-radius: 12px;
                 overflow: hidden;
             }
 
             th, td {
-                padding: 14px 16px;
+                padding: 15px;
                 text-align: left;
-                border-bottom: 1px solid #ddd;
+                border-bottom: 1px solid #e0e0e0;
             }
 
             th {
                 background-color: #3498db;
                 color: white;
+                font-weight: 600;
+                text-transform: uppercase;
+                font-size: 0.95em;
+            }
+            
+            tbody tr:last-child td {
+                border-bottom: none;
             }
 
             tr:hover {
                 background-color: #f0f8ff;
+                transition: background-color 0.3s ease;
             }
 
             .action-btn {
-                margin: 2px;
-                padding: 6px 10px;
+                margin: 4px;
+                padding: 8px 14px;
                 border: none;
-                border-radius: 4px;
+                border-radius: 6px;
                 cursor: pointer;
                 color: white;
                 font-size: 0.9em;
+                font-weight: 600;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+                text-decoration: none;
+                display: inline-block;
+            }
+            .action-btn:hover {
+                transform: translateY(-1px);
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             }
 
             .modificar-btn {
@@ -101,9 +130,8 @@
                 background-color: #2471a3;
             }
 
-            /* Nuevo estilo para el botón de ver detalle */
             .detalle-btn {
-                background-color: #17a2b8; /* Un color más de "información" o "azul claro" */
+                background-color: #17a2b8;
             }
             .detalle-btn:hover {
                 background-color: #138496;
@@ -117,7 +145,29 @@
             }
 
             form {
-                display: inline;
+                display: inline-block;
+                margin: 0;
+            }
+
+            .no-orders-message {
+                text-align: center;
+                font-size: 1.2em;
+                color: #777;
+                margin-top: 50px;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            }
+
+            @media screen and (max-width: 992px) {
+                th, td {
+                    padding: 12px;
+                }
+                .action-btn {
+                    padding: 7px 12px;
+                    font-size: 0.85em;
+                }
             }
 
             @media screen and (max-width: 768px) {
@@ -125,77 +175,96 @@
                     display: block;
                 }
 
-                th {
-                    text-align: right;
-                    padding-right: 50%;
+                thead tr {
+                    position: absolute;
+                    top: -9999px;
+                    left: -9999px;
                 }
 
                 td {
-                    text-align: right;
-                    padding-left: 50%;
+                    border: none;
+                    border-bottom: 1px solid #e0e0e0;
                     position: relative;
+                    padding-left: 50%;
+                    text-align: right;
+                }
+                
+                td:last-child {
+                    border-bottom: none;
                 }
 
                 td::before {
                     content: attr(data-label);
                     position: absolute;
-                    left: 16px;
+                    left: 15px;
+                    width: calc(50% - 30px);
+                    white-space: nowrap;
                     font-weight: bold;
-                    color: #555;
+                    color: #2c3e50;
+                    text-align: left;
+                }
+                
+                .action-btn {
+                    display: block;
+                    width: calc(100% - 8px);
+                    margin: 4px auto;
                 }
             }
         </style>
     </head>
     <body>
         <header>
-            <img src="https://cdn-icons-png.flaticon.com/512/1995/1995574.png" alt="Ícono Vehículo">
-            <h1>Mostrar Ordenes de Trabajo</h1>
+            <img src="https://cdn-icons-png.flaticon.com/512/2972/2972528.png" alt="Icono Orden de Trabajo">
+            <h1>Gestión de Órdenes de Trabajo</h1>
         </header>
-        <main>
+
+        <h2 class="page-title">Listado Actual de Órdenes</h2>
+
+        <div class="container">
             <%
                 String mensaje = request.getParameter("mensaje");
                 if ("eliminado".equals(mensaje)) {
             %>
-            <div class="mensaje">🚗 Orden de trabajo eliminada correctamente.</div>
+            <div class="mensaje">✅ Orden de trabajo eliminada correctamente.</div>
             <% } %>
 
             <% ArrayList<OrdenTrabajo> ordenes = (ArrayList<OrdenTrabajo>) request.getAttribute("ordenes"); %>
 
+            <% if (ordenes != null && !ordenes.isEmpty()) { %>
             <table>
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Descripción</th>
-                        <th>Fecha de Ingreso</th>
+                        <th>Fecha Ingreso</th>
                         <th>Estado</th>
-                        <th>Detalle de Recepción del Vehículo</th>
-                        <th>Fecha Estimada de Devolución</th>
-                        <th>Precio</th>
+                        <th>Detalle Recepción</th>
+                        <th>Fecha Devolución</th>
+                        <th>Precio Total</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% if (ordenes != null) {
-                            for (OrdenTrabajo orden : ordenes) {%>
+                    <% for (OrdenTrabajo orden : ordenes) {%>
                     <tr>
                         <td data-label="ID"><%= orden.getId()%></td>
                         <td data-label="Descripción"><%= orden.getDescripcion()%></td>
-                        <td data-label="Fecha de Ingreso"><%= orden.getFechaIngreso()%></td>
+                        <td data-label="Fecha Ingreso"><%= orden.getFechaIngreso()%></td>
                         <td data-label="Estado"><%= orden.getEstado()%></td>
-                        <td data-label="Detalle de Recepción"><%= orden.getDetalleRecepcionVehiculo()%></td>
-                        <td data-label="Fecha de Devolución"><%= orden.getFechaDevolucion()%></td>
-                        <td data-label="Precio">₡<%= String.format("%,.2f", orden.getPrecio())%></td>
-                        <td>
+                        <td data-label="Detalle Recepción"><%= orden.getDetalleRecepcionVehiculo()%></td>
+                        <td data-label="Fecha Devolución"><%= orden.getFechaDevolucion()%></td>
+                        <td data-label="Precio Total">₡<%= String.format("%,.2f", orden.getPrecio())%></td>
+                        <td data-label="Acciones">
                             <form action="${pageContext.request.contextPath}/modificarOrdenTrabajo" method="GET">
                                 <input type="hidden" name="id" value="<%= orden.getId()%>">
                                 <button type="submit" class="action-btn modificar-btn">Modificar</button>
                             </form>
                             <form action="${pageContext.request.contextPath}/mostrarVehiculo" method="GET">
-                                <input type="hidden" name="vehiculo" value="<%= orden.getVehiculo().getPlaca()%>">
+                                <input type="hidden" name="vehiculoPlaca" value="<%= orden.getVehiculo().getPlaca()%>">
                                 <button type="submit" class="action-btn cliente-btn">Ver Vehículo</button>
                             </form>
                             <form action="${pageContext.request.contextPath}/mostrarDetalleOrden" method="GET">
-                                <input type="hidden" name="idDetalleOrden" value="<%= orden.getDetalleOrden().getId()%>"> <%-- Cambié el nombre del parámetro a 'idDetalleOrden' --%>
+                                <input type="hidden" name="idDetalleOrden" value="<%= orden.getDetalleOrden().getId()%>">
                                 <button type="submit" class="action-btn detalle-btn">Ver Detalle</button>
                             </form>
                             <form action="${pageContext.request.contextPath}/eliminarOrdenTrabajo" method="POST" onsubmit="return confirm('¿Está seguro que desea eliminar esta orden de trabajo?');">
@@ -204,12 +273,14 @@
                             </form>
                         </td>
                     </tr>
-                    <% }
-                    } else { %>
-                    <tr><td colspan="8" style="text-align:center;">No hay órdenes registradas.</td></tr>
-                    <% }%>
+                    <% } %>
                 </tbody>
             </table>
-        </main>
+            <% } else { %>
+                <div class="no-orders-message">
+                    <p>No hay órdenes de trabajo registradas en el sistema.</p>
+                </div>
+            <% }%>
+        </div>
     </body>
 </html>

@@ -84,7 +84,7 @@
 </head>
 <body>
     <header>
-        <img src="https://cdn-icons-png.flaticon.com/512/744/744465.png" alt="Icono Vehículo">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv9gYwzogs3QYQJTwGY7SYzcVuMt5_oHpaCg&s" alt="Icono Vehículo">
         <h1>Registrar Vehículo</h1>
     </header>
 

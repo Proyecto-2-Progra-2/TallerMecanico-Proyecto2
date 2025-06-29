@@ -112,7 +112,7 @@
         </div>
         
         <div class="box">
-            <img src="https://i.pinimg.com/736x/0f/24/36/0f243658b7ad1e72dfaef6b7a6b541c2.jpg" alt="Repuesto Icono">
+            <img src="https://img.freepik.com/vector-premium/ilustracion-vectorial-mecanica-automotriz-escena-dibujos-animados-tipo-arreglando-coches-taller-reparacion-neumaticos-cambiando-ruedas-sosteniendo-llaves-fondo-blanco_812561-657.jpg" alt="Repuesto Icono">
             <h2>Repuestos</h2>
             <form action="registrarRepuesto" method="GET">
                 <input type="submit" value="Registrar Repuesto">
