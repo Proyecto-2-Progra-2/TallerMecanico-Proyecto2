@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+<web-app version="6.0"
+         xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+
     <servlet>
         <servlet-name>RegistrarClienteServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.cliente.RegistrarClienteServlet</servlet-class>
@@ -32,10 +37,13 @@
         <servlet-name>ModificarOrdenTrabajoServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.ModificarOrdenTrabajoServlet</servlet-class>
     </servlet>
+    
+   
     <servlet>
         <servlet-name>MostrarVehiculoServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.MostrarVehiculoServlet</servlet-class>
     </servlet>
+    
     <servlet>
         <servlet-name>EliminarOrdenTrabajoServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.EliminarOrdenTrabajoServlet</servlet-class>
@@ -56,65 +64,40 @@
         <servlet-name>ModificarRepuestoServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.ModificarRepuestoServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>RegistrarClienteServlet</servlet-name>
-        <url-pattern>/registrarCliente</url-pattern>
-    </servlet-mapping>
+
     <servlet>
         <servlet-name>MostrarClientesServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.cliente.MostrarClientesServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>MostrarClientesServlet</servlet-name>
-        <url-pattern>/mostrarClientes</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>ModificarClienteServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.cliente.ModificarClienteServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>ModificarClienteServlet</servlet-name>
-        <url-pattern>/modificarCliente</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>ActualizarClienteServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.cliente.ActualizarClienteServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>ActualizarClienteServlet</servlet-name>
-        <url-pattern>/actualizarCliente</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>RegistrarVehiculoServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.vehiculo.RegistrarVehiculoServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>RegistrarVehiculoServlet</servlet-name>
-        <url-pattern>/registrarVehiculo</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>MostrarVehiculosServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.vehiculo.MostrarVehiculosServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>MostrarVehiculosServlet</servlet-name>
-        <url-pattern>/mostrarVehiculos</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>ModificarVehiculoServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.vehiculo.ModificarVehiculoServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>ModificarVehiculoServlet</servlet-name>
-        <url-pattern>/modificarVehiculo</url-pattern>
-    </servlet-mapping>
     <servlet>
         <servlet-name>MostrarClienteServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.vehiculo.MostrarClienteServlet</servlet-class>
     </servlet>
+
+   
     <servlet-mapping>
-        <servlet-name>MostrarClienteServlet</servlet-name>
-        <url-pattern>/mostrarCliente</url-pattern>
+        <servlet-name>RegistrarClienteServlet</servlet-name>
+        <url-pattern>/registrarCliente</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegistrarRepuestoServlet</servlet-name>
@@ -164,6 +147,35 @@
         <servlet-name>ModificarRepuestoServlet</servlet-name>
         <url-pattern>/modificarRepuesto</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarClientesServlet</servlet-name>
+        <url-pattern>/mostrarClientes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarClienteServlet</servlet-name>
+        <url-pattern>/modificarCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActualizarClienteServlet</servlet-name>
+        <url-pattern>/actualizarCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrarVehiculoServlet</servlet-name>
+        <url-pattern>/registrarVehiculo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarVehiculosServlet</servlet-name>
+        <url-pattern>/mostrarVehiculos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarVehiculoServlet</servlet-name>
+        <url-pattern>/modificarVehiculo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarClienteServlet</servlet-name>
+        <url-pattern>/mostrarCliente</url-pattern>
+    </servlet-mapping>
+
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
