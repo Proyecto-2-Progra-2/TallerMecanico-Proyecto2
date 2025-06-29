@@ -16,7 +16,7 @@
             color: #333;
             line-height: 1.6;
         }
-        
+
         header {
             background-color: #2c3e50;
             color: white;
@@ -89,7 +89,7 @@
         }
 
         .btn-modificar {
-            background-color: #f39c12;
+            background-color: #f39c12; /* Orange for modify */
             color: white;
             border: none;
             padding: 10px 18px;
@@ -103,23 +103,30 @@
         }
 
         .btn-modificar:hover {
-            background-color: #e67e22;
+            background-color: #e67e22; /* Darker orange on hover */
             transform: translateY(-1px);
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        
-        .btn-eliminar {
-            background-color: #f39c12;
-            color: white;
-            border: none;
-            padding: 8px 14px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
 
         .btn-eliminar {
-            background-color: #e67e22;
+            background-color: #e74c3c; /* Red for delete */
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-left: 10px; /* Spacing between buttons */
+        }
+
+        .btn-eliminar:hover {
+            background-color: #c0392b; /* Darker red on hover */
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
     </style>
 </head>
@@ -128,14 +135,16 @@
         <img src="https://cdn-icons-png.flaticon.com/512/3233/3233481.png" alt="Icono Repuesto">
         <h1>Gestión de Repuestos</h1>
     </header>
-    
+
     <h2 class="page-title">Inventario Actual de Repuestos</h2>
 
-<<<<<<< HEAD
     <div class="container">
-        <% ArrayList<Repuesto> repuestosList = (ArrayList<Repuesto>) request.getAttribute("repuesto"); %>
+        <%
+            // Assuming the list of spare parts is passed as "repuestos" attribute
+            ArrayList<Repuesto> repuestos = (ArrayList<Repuesto>) request.getAttribute("repuestos");
+        %>
 
-        <% if (repuestosList != null && !repuestosList.isEmpty()) { %>
+        <% if (repuestos != null && !repuestos.isEmpty()) { %>
             <table>
                 <thead>
                     <tr>
@@ -147,16 +156,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for (Repuesto repuesto : repuestosList) { %>
+                    <% for (Repuesto repuesto : repuestos) { %>
                     <tr>
                         <td><%= repuesto.getId() %></td>
                         <td><%= repuesto.getNombre() %></td>
                         <td><%= repuesto.getCantidad() %></td>
                         <td>₡<%= String.format("%.2f", repuesto.getPrecio()) %></td>
                         <td>
-                            <form action="modificarRepuesto" method="GET" style="margin:0; display:inline-block;">
+                            <form action="${pageContext.request.contextPath}/modificarRepuesto" method="GET" style="margin:0; display:inline-block;">
                                 <input type="hidden" name="id" value="<%= repuesto.getId() %>">
                                 <button type="submit" class="btn-modificar">Modificar</button>
+                            </form>
+                            <form action="${pageContext.request.contextPath}/eliminarRepuesto" method="POST" style="display:inline-block; margin:0;" onsubmit="return confirm('¿Está seguro de que desea eliminar este repuesto?');">
+                                <input type="hidden" name="id" value="<%= repuesto.getId() %>">
+                                <button type="submit" class="btn-eliminar">Eliminar</button>
                             </form>
                         </td>
                     </tr>
@@ -169,40 +182,6 @@
             </p>
         <% } %>
     </div>
-
-    <% ArrayList<Repuesto> repuestos = (ArrayList<Repuesto>) request.getAttribute("repuestos"); %>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Identificación</th>
-                <th>Nombre</th>
-                <th>Cantidad (Stock)</th>
-                <th>Precio</th> 
-                <th>Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% for (Repuesto repuesto : repuestos) { %>
-            <tr>
-                <td><%= repuesto.getId() %></td>
-                <td><%= repuesto.getNombre() %></td>
-                <td><%= repuesto.getCantidad() %></td>
-                <td><%= repuesto.getPrecio() %></td>    
-                <td>                 
-                    <form action="${pageContext.request.contextPath}/modificarRepuesto" method="GET">
-                        <input type="hidden" name="id" value="<%= repuesto.getId()%>">
-                        <input type="submit" class="btn-modificar" value="Modificar">
-                    </form>    
-                    <form action="${pageContext.request.contextPath}/eliminarRepuesto" method="POST" style="display:inline-block; margin:0;" onsubmit="return confirm('¿Está seguro de que desea eliminar este repuesto?');">
-                        <input type="hidden" name="id" value="<%= repuesto.getId() %>">
-                        <input type="submit" class="btn-eliminar" value="Eliminar">
-                    </form>
-                </td>
-            </tr>
-            <% } %>
-        </tbody>
-    </table>
 
 </body>
 </html>
