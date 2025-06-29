@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -29,9 +30,9 @@ public class RepuestosData {
     private String rutaDocumento;
     // => Se tiene que cambiar la ruta
     //public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\TallerMecanico-Proyecto2\\xml\\repuestos.xml";
-    //public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\xml\\repuestos.xml";
+    public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\repuestos.xml";
    // public static final String RUTA_ARCHIVO = "C:\\Users\\jeffr\\OneDrive\\Documentos\\Proyecto2-Progra2\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\repuestos.xml";
-     public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\Taller\\TallerMecanico-Proyecto2\\xml\\repuestos";
+    // public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\Taller\\TallerMecanico-Proyecto2\\xml\\repuestos";
     
     public RepuestosData() throws IOException, JDOMException {
         File archivo = new File(RUTA_ARCHIVO);
@@ -134,6 +135,27 @@ public class RepuestosData {
                 break; 
             }
         }
-    }    
+    }  
+    
+    public void eliminar(String id) throws IOException {
+        List<Element> eRepuestos = this.raiz.getChildren();
+        boolean eliminado = false;
+
+        Iterator<Element> iterator = eRepuestos.iterator();
+        while (iterator.hasNext()) {
+            Element eRepuesto = iterator.next();
+            if (eRepuesto.getAttributeValue("id").equals(id)) {
+                iterator.remove();
+                eliminado = true;
+                break;
+            }
+        }
+
+        if (eliminado) {
+            guardar();
+        } else {
+            System.out.println("Repuesto con identificacion: " + id + " no encontrado.");
+        }
+    }
 
 }

@@ -73,6 +73,20 @@
         .btn-modificar:hover {
             background-color: #e67e22;
         }
+        
+        .btn-eliminar {
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-eliminar {
+            background-color: #e67e22;
+        }
     </style>
 </head>
 <body>
@@ -83,7 +97,7 @@
     
     <h1>Lista de Repuestos</h1>
 
-    <% ArrayList<Repuesto> clientes = (ArrayList<Repuesto>) request.getAttribute("repuesto"); %>
+    <% ArrayList<Repuesto> repuestos = (ArrayList<Repuesto>) request.getAttribute("repuestos"); %>
 
     <table>
         <thead>
@@ -96,16 +110,20 @@
             </tr>
         </thead>
         <tbody>
-            <% for (Repuesto repuesto : clientes) { %>
+            <% for (Repuesto repuesto : repuestos) { %>
             <tr>
                 <td><%= repuesto.getId() %></td>
                 <td><%= repuesto.getNombre() %></td>
                 <td><%= repuesto.getCantidad() %></td>
                 <td><%= repuesto.getPrecio() %></td>    
-                <td>
-                    <form action="modificarCliente" method="GET" style="margin:0;">
-                        <input type="hidden" name="id" value="<%= repuesto.getId() %>">
+                <td>                 
+                    <form action="${pageContext.request.contextPath}/modificarRepuesto" method="GET">
+                        <input type="hidden" name="id" value="<%= repuesto.getId()%>">
                         <input type="submit" class="btn-modificar" value="Modificar">
+                    </form>    
+                    <form action="${pageContext.request.contextPath}/eliminarRepuesto" method="POST" style="display:inline-block; margin:0;" onsubmit="return confirm('¿Está seguro de que desea eliminar este repuesto?');">
+                        <input type="hidden" name="id" value="<%= repuesto.getId() %>">
+                        <input type="submit" class="btn-eliminar" value="Eliminar">
                     </form>
                 </td>
             </tr>
