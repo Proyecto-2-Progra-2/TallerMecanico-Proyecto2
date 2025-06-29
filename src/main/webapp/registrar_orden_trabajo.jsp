@@ -8,7 +8,6 @@
         <title>Registrar Orden de Trabajo</title>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
         <style>
-            /* Your existing CSS remains here */
             body {
                 margin: 0;
                 font-family: 'Roboto', sans-serif;
@@ -16,7 +15,6 @@
                 color: #333;
                 line-height: 1.6;
             }
-
             header {
                 background-color: #2c3e50;
                 color: white;
@@ -24,27 +22,23 @@
                 text-align: center;
                 box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             }
-
             header img {
                 width: 60px;
                 vertical-align: middle;
                 margin-right: 15px;
                 filter: invert(1);
             }
-
             h1 {
                 display: inline-block;
                 font-size: 2.2em;
                 margin: 0;
                 font-weight: 700;
             }
-
             main {
                 display: flex;
                 justify-content: center;
                 padding: 40px 20px;
             }
-
             form {
                 background-color: white;
                 padding: 40px;
@@ -56,11 +50,9 @@
                 grid-template-columns: 1fr 1fr;
                 gap: 20px 30px;
             }
-
             form div {
                 margin-bottom: 0;
             }
-
             label {
                 display: block;
                 font-weight: 600;
@@ -68,11 +60,10 @@
                 color: #555;
                 font-size: 0.95em;
             }
-
             input[type="text"],
             input[type="number"],
             input[type="date"],
-            select, /* Keep select for 'Estado Actual' */
+            select,
             textarea {
                 width: calc(100% - 24px);
                 padding: 12px;
@@ -81,7 +72,6 @@
                 font-size: 1em;
                 transition: border-color 0.3s ease, box-shadow 0.3s ease;
             }
-
             input[type="text"]:focus,
             input[type="number"]:focus,
             input[type="date"]:focus,
@@ -91,20 +81,17 @@
                 box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
                 outline: none;
             }
-
             textarea {
                 min-height: 80px;
                 max-height: 200px;
                 resize: vertical;
             }
-
             hr {
                 grid-column: 1 / -1;
                 border: none;
                 border-top: 1px solid #eee;
                 margin: 25px 0;
             }
-
             .item-section {
                 grid-column: 1 / -1;
                 border: 1px solid #e0e0e0;
@@ -113,7 +100,6 @@
                 margin-top: 0;
                 background-color: #fcfcfc;
             }
-
             .item-header {
                 display: flex;
                 justify-content: space-between;
@@ -122,14 +108,12 @@
                 padding-bottom: 10px;
                 border-bottom: 1px dashed #e9e9e9;
             }
-
             .item-header h3 {
                 margin: 0;
                 color: #2c3e50;
                 font-size: 1.3em;
                 font-weight: 700;
             }
-
             .add-button {
                 background-color: #28a745;
                 color: white;
@@ -141,12 +125,10 @@
                 font-weight: 600;
                 transition: background-color 0.3s ease, transform 0.2s ease;
             }
-
             .add-button:hover {
                 background-color: #218838;
                 transform: translateY(-1px);
             }
-
             .remove-button {
                 background-color: #dc3545;
                 color: white;
@@ -158,11 +140,9 @@
                 transition: background-color 0.3s ease;
                 margin-left: 10px;
             }
-
             .remove-button:hover {
                 background-color: #c82333;
             }
-
             .item-entry {
                 display: flex;
                 gap: 15px;
@@ -173,8 +153,7 @@
                 border-radius: 6px;
                 border: 1px solid #f0f0f0;
             }
-
-            .item-entry input[type="text"],
+            .item-entry select,
             .item-entry input[type="number"] {
                 flex: 1;
                 margin: 0;
@@ -186,13 +165,6 @@
             .item-entry input[name$=".price"] {
                 flex: 0.5;
             }
-            .item-entry input[name^="services["] {
-                flex: 1;
-            }
-            .item-entry input[name^="services["][name$=".price"] {
-                flex: 0.5;
-            }
-
             .total-price {
                 grid-column: 1 / -1;
                 font-size: 1.4em;
@@ -203,14 +175,12 @@
                 border-top: 2px solid #aec6e0;
                 color: #2c3e50;
             }
-
             .total-price label {
                 font-size: 1em;
                 display: inline-block;
                 margin-right: 15px;
                 color: #2c3e50;
             }
-
             .total-price input {
                 width: 150px;
                 text-align: right;
@@ -218,7 +188,6 @@
                 background-color: #eef7ff;
                 border-color: #c0d9ef;
             }
-
             input[type="submit"] {
                 grid-column: 1 / -1;
                 background-color: #3498db;
@@ -233,13 +202,11 @@
                 transition: background-color 0.3s ease, transform 0.2s ease;
                 margin-top: 30px;
             }
-
             input[type="submit"]:hover {
                 background-color: #2980b9;
                 transform: translateY(-2px);
                 box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             }
-
             @media (max-width: 768px) {
                 form {
                     grid-template-columns: 1fr;
@@ -251,7 +218,8 @@
                     align-items: stretch;
                     gap: 8px;
                 }
-                .item-entry input { /* Adjusted for all inputs in item-entry */
+                .item-entry select,
+                .item-entry input {
                     width: 100%;
                 }
                 .remove-button {
@@ -314,8 +282,7 @@
                         <h3>Repuestos Requeridos</h3>
                         <button type="button" class="add-button" onclick="addSparePart()">+ Agregar Repuesto</button>
                     </div>
-                    <div id="sparePartsContainer">
-                        </div>
+                    <div id="sparePartsContainer"></div>
                 </div>
 
                 <div class="item-section">
@@ -323,8 +290,7 @@
                         <h3>Servicios Requeridos</h3>
                         <button type="button" class="add-button" onclick="addService()">+ Agregar Servicio</button>
                     </div>
-                    <div id="servicesContainer">
-                        </div>
+                    <div id="servicesContainer"></div>
                 </div>
 
                 <div class="total-price">
@@ -341,113 +307,151 @@
             let sparePartCount = 0;
             let serviceCount = 0;
 
-            // Retrieve the list of Repuesto objects from the request scope
-            // and convert it into a JavaScript array using JSP scriptlets.
+            // Cargar los repuestos desde el servidor al arreglo JS
             const repuestosData = [];
             <%
-                // Get the repuestosList from the request attribute
                 ArrayList<Repuesto> availableRepuestos = (ArrayList<Repuesto>) request.getAttribute("repuestosList");
-                // Ensure it's not null to prevent NullPointerExceptions
                 if (availableRepuestos == null) {
                     availableRepuestos = new ArrayList<>();
                 }
-
-                // Loop through the Java list and populate the JavaScript array
                 for (Repuesto r : availableRepuestos) {
             %>
-                        repuestosData.push({
-                            id: "<%= r.getId() %>",
-                            nombre: "<%= r.getNombre() %>",
-                            // Ensure price is a number if you intend to use it as such in JS
-                            precio: <%= r.getPrecio() %>
-                        });
-            <%
-                }
-            %>
+                    repuestosData.push({
+                        id: "<%= r.getId() %>",
+                        nombre: "<%= r.getNombre() %>",
+                        precio: <%= r.getPrecio() %>
+                    });
+            <% } %>
 
+            /**
+             * Añade una nueva fila para seleccionar un repuesto.
+             */
             function addSparePart() {
                 const container = document.getElementById('sparePartsContainer');
+                const index = sparePartCount; // Usamos un contador para asegurar nombres únicos en el array de Spring
+
                 const div = document.createElement('div');
                 div.classList.add('item-entry');
 
-                // Changed from select to text input for name, and added hidden ID field
+                // Construye las opciones del select dinámicamente con los datos de repuestos
+                let optionsHTML = '<option value="">Seleccione un repuesto</option>';
+                repuestosData.forEach(r => {
+                    optionsHTML += `<option value="${r.id}" data-price="${r.precio}">${r.nombre}</option>`;
+                });
+
                 div.innerHTML = `
-                    <input type="text" name="spareParts[${sparePartCount}].name" placeholder="Nombre del Repuesto" required oninput="updateSparePartPriceByName(this, ${sparePartCount})">
-                    <input type="hidden" name="spareParts[${sparePartCount}].id" value=""> <input type="number" name="spareParts[${sparePartCount}].quantity" placeholder="Cantidad" min="1" value="1" required onchange="calculateTotal()">
-                    <input type="number" name="spareParts[${sparePartCount}].price" placeholder="Precio Unitario" min="0" step="0.01" value="0.00" readonly required>
+                    <select name="spareParts[${index}].id" required onchange="updateSparePartPrice(this, ${index})">
+                        ${optionsHTML}
+                    </select>
+                    <input type="number" name="spareParts[${index}].quantity" placeholder="Cantidad" min="1" value="1" required onchange="calculateTotal()">
+                    <input type="number" name="spareParts[${index}].price" placeholder="Precio Unitario" min="0" step="0.01" value="0.00" readonly required>
                     <button type="button" class="remove-button" onclick="removeParent(this); calculateTotal();">X</button>
                 `;
+
                 container.appendChild(div);
-                sparePartCount++;
-                calculateTotal();
+                sparePartCount++; // Incrementa el contador para el siguiente repuesto
+                calculateTotal(); // Recalcula el total al añadir un nuevo elemento
             }
 
-            function updateSparePartPriceByName(inputElement, index) {
-                const sparePartName = inputElement.value.toLowerCase();
-                const priceInput = inputElement.parentNode.querySelector(`input[name="spareParts[${index}].price"]`);
-                const idInput = inputElement.parentNode.querySelector(`input[name="spareParts[${index}].id"]`); // Get the hidden ID input
+            /**
+             * Actualiza el campo de precio de un repuesto cuando se selecciona una opción en el select.
+             * @param {HTMLSelectElement} selectElement - El elemento <select> que disparó el cambio.
+             * @param {number} index - El índice del repuesto en el formulario (usado para el nombre del input).
+             */
+            function updateSparePartPrice(selectElement, index) {
+                const selectedOption = selectElement.options[selectElement.selectedIndex];
+                // Obtiene el precio del atributo data-price; si no es un número, usa 0
+                const price = parseFloat(selectedOption.getAttribute('data-price')) || 0;
 
-                let foundPrice = "0.00";
-                let foundId = "";
+                // Encuentra el input de precio asociado a este select
+                const parentDiv = selectElement.parentNode;
+                const priceInput = parentDiv.querySelector(`input[name="spareParts[${index}].price"]`);
 
-                // Look for a matching spare part name in repuestosData
-                const foundRepuesto = repuestosData.find(repuesto => repuesto.nombre.toLowerCase() === sparePartName);
-
-                if (foundRepuesto) {
-                    foundPrice = foundRepuesto.precio.toFixed(2);
-                    foundId = foundRepuesto.id;
-                }
-
-                priceInput.value = foundPrice;
-                idInput.value = foundId; // Set the ID of the found repuesto
-                calculateTotal();
+                // Actualiza el valor del input de precio y formatea a dos decimales
+                priceInput.value = price.toFixed(2);
+                calculateTotal(); // Recalcula el total después de actualizar el precio
             }
 
+            /**
+             * Añade una nueva fila para ingresar un servicio.
+             */
             function addService() {
                 const container = document.getElementById('servicesContainer');
+                const index = serviceCount; // Usamos un contador para nombres únicos
+
                 const div = document.createElement('div');
                 div.classList.add('item-entry');
                 div.innerHTML = `
-                    <input type="text" name="services[${serviceCount}].name" placeholder="Nombre del Servicio" required>
-                    <input type="number" name="services[${serviceCount}].price" placeholder="Costo del Servicio" min="0" step="0.01" value="0.00" required onchange="calculateTotal()">
+                    <input type="text" name="services[${index}].name" placeholder="Nombre del Servicio" required>
+                    <input type="number" name="services[${index}].price" placeholder="Costo del Servicio" min="0" step="0.01" value="0.00" required onchange="calculateTotal()">
                     <button type="button" class="remove-button" onclick="removeParent(this); calculateTotal();">X</button>
                 `;
                 container.appendChild(div);
-                serviceCount++;
-                calculateTotal();
+                serviceCount++; // Incrementa el contador para el siguiente servicio
+                calculateTotal(); // Recalcula el total al añadir un nuevo elemento
             }
 
+            /**
+             * Elimina el elemento padre de un botón (usado para eliminar filas de repuestos/servicios).
+             * @param {HTMLButtonElement} button - El botón "X" que fue clickeado.
+             */
             function removeParent(button) {
                 button.parentNode.remove();
             }
 
+            /**
+             * Calcula el costo total de todos los repuestos y servicios.
+             */
             function calculateTotal() {
                 let total = 0;
 
+                // Suma los costos de los repuestos
                 document.querySelectorAll('#sparePartsContainer .item-entry').forEach(item => {
-                    const quantity = parseFloat(item.querySelector('input[name$=".quantity"]').value) || 0;
-                    const price = parseFloat(item.querySelector('input[name$=".price"]').value) || 0;
-                    total += (quantity * price);
+                    // Asegúrate de que los inputs existan antes de intentar acceder a sus valores
+                    const quantityInput = item.querySelector('input[name$=".quantity"]');
+                    const priceInput = item.querySelector('input[name$=".price"]');
+                    
+                    if (quantityInput && priceInput) {
+                        const quantity = parseFloat(quantityInput.value) || 0;
+                        const price = parseFloat(priceInput.value) || 0;
+                        total += quantity * price;
+                    }
                 });
 
+                // Suma los costos de los servicios
                 document.querySelectorAll('#servicesContainer .item-entry').forEach(item => {
-                    const price = parseFloat(item.querySelector('input[name$=".price"]').value) || 0;
-                    total += price;
+                    const priceInput = item.querySelector('input[name$=".price"]');
+                    if (priceInput) {
+                        const price = parseFloat(priceInput.value) || 0;
+                        total += price;
+                    }
                 });
 
+                // Actualiza el campo de costo total
                 document.getElementById('totalCost').value = '₡' + total.toFixed(2);
             }
 
-            document.addEventListener('DOMContentLoaded', calculateTotal);
+            // --- LLAMADA INICIAL AL CARGAR LA PÁGINA ---
+            document.addEventListener('DOMContentLoaded', () => {
+                // Asegurarse de que al menos un select de repuesto y un servicio se muestren al cargar
+                addSparePart(); // Muestra el primer select de repuestos
+                addService();   // Muestra el primer campo de servicio
 
-            document.addEventListener('DOMContentLoaded', function() {
+                calculateTotal(); // Inicializa el cálculo del total
+
+                // Este bloque para la fecha de ingreso puede permanecer si lo necesitas
+                // para inicializar la fecha en el lado del cliente si el servlet no la provee.
                 const fechaIngresoInput = document.getElementById('fechaIngreso');
-                if (!fechaIngresoInput.value) {
+                if (!fechaIngresoInput.value) { // Solo si el servlet no la estableció
                     const today = new Date();
                     const dd = String(today.getDate()).padStart(2, '0');
                     const mm = String(today.getMonth() + 1).padStart(2, '0');
                     const yyyy = today.getFullYear();
-                    fechaIngresoInput.value = `${yyyy}-${mm}-${dd}`;
+                    // Si 'fechaIngreso' es tipo text y el servlet no lo ha rellenado,
+                    // esta línea lo formatearía para un input type="date".
+                    // Como el servlet ya lo llena con "dd/MM/yyyy", esta línea no es estrictamente necesaria
+                    // a menos que cambies el input a type="date".
+                    // fechaIngresoInput.value = `${yyyy}-${mm}-${dd}`;
                 }
             });
         </script>

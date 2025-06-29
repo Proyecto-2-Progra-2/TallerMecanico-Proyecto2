@@ -31,7 +31,11 @@ public class VehiculoData {
     //public static final String RUTA_ARCHIVO ="C:\\Users\\jimen\\OneDrive\\Escritorio\\2025\\Progra\\Proyecto-2\\TallerMecanico-Proyecto2\\xml\\vehiculos.xml";
     //public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\vehiculos.xml";
     //public static final String RUTA_ARCHIVO = "C:\\Users\\jeffr\\OneDrive\\Documentos\\Proyecto2-Progra2\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\vehiculos.xml";
+<<<<<<< HEAD
     public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\ProyectoProgra\\TallerMecanico-Proyecto2\\xml\\vehiculos.xml";
+=======
+    //public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\TallerMecanico\\TallerMecanico-Proyecto2\\xml\\vehiculos";
+>>>>>>> 555b2b8c19e16bb7f743b704ae6994a667e49b08
     
     public VehiculoData() throws IOException, JDOMException {
         File archivo = new File(RUTA_ARCHIVO);

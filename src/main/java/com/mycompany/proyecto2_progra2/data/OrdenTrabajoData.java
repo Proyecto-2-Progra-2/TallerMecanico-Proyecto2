@@ -32,9 +32,23 @@ public class OrdenTrabajoData {
     private Element raiz;
     private String rutaDocumento;
 
+<<<<<<< HEAD
   //  public static final String RUTA_ARCHIVO = "C:\\Users\\jeffr\\OneDrive\\Documentos\\Proyecto2-Progra2\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\ordenes.xml";
       public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\ProyectoProgra\\TallerMecanico-Proyecto2\\xml\\ordenTrabajo.xml";
   //  public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\ordenes.xml";
+=======
+     //public static final String RUTA_ARCHIVO = "C:\\Users\\jeffr\\OneDrive\\Documentos\\Proyecto2-Progra2\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\ordenes.xml";
+    //public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\Taller\\TallerMecanico-Proyecto2\\xml\\ordenTrabajo";
+
+  //  public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\ordenes.xml";
+
+    
+    public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\TallerMecanico\\TallerMecanico-Proyecto2\\xml\\ordenTrabajo";
+
+   // public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\ordenes.xml";
+    //public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\TallerMecanico\\TallerMecanico-Proyecto2\\xml\\ordenTrabajo";
+    
+>>>>>>> 555b2b8c19e16bb7f743b704ae6994a667e49b08
 
     public OrdenTrabajoData() throws IOException, JDOMException {
         File archivo = new File(RUTA_ARCHIVO);
@@ -115,29 +129,64 @@ public class OrdenTrabajoData {
         return false;
     }
 
-    // Falta las clases del detalle de la orden
-    public ArrayList<OrdenTrabajo> findAll() throws JDOMException, IOException {
-        // hay que eliminar esto
+     public ArrayList<OrdenTrabajo> findAll() throws JDOMException, IOException {
+        ArrayList<OrdenTrabajo> ordenes = new ArrayList<>();
+
+        if (this.raiz == null) {
+            System.err.println("Raiz es null, no se pudo cargar el XML o no existe contenido.");
+            return ordenes; // lista vacía
+        }
+
+        // Datos dummy para repuestos (puedes cambiar esto para que traiga los reales)
         ArrayList<Repuesto> repuestos = new ArrayList<>();
         repuestos.add(new Repuesto("1", "repuesto1", 2, 25000));
         repuestos.add(new Repuesto("2", "repuesto2", 1, 75000));
 
-        ArrayList<OrdenTrabajo> ordenes = new ArrayList<>();
-
         List<Element> elementos = this.raiz.getChildren();
+
         for (Element elemento : elementos) {
-            OrdenTrabajo o = new OrdenTrabajo(elemento.getAttributeValue("id"),
-                    elemento.getChildText("descripcion"), elemento.getChildText("fechaIngreso"),
-                    elemento.getChildText("estado"), elemento.getChildText("detalleRecepcion"),
-                    elemento.getChildText("fechaDevolucion"),
-                    new VehiculoData().findOne(elemento.getChildText("vehiculo")), 
-                    new DetalleOrden("123", "Sin observacion", 20000, repuestos));
-            o.setPrecio(Double.parseDouble(elemento.getChildText("precio")));
-            ordenes.add(o);
+            try {
+                String id = elemento.getAttributeValue("id");
+                String descripcion = elemento.getChildText("descripcion");
+                String fechaIngreso = elemento.getChildText("fechaIngreso");
+                String estado = elemento.getChildText("estado");
+                String detalleRecepcion = elemento.getChildText("detalleRecepcion");
+                String fechaDevolucion = elemento.getChildText("fechaDevolucion");
+                String vehiculoId = elemento.getChildText("vehiculo");
+                String precioStr = elemento.getChildText("precio");
+
+                Vehiculo vehiculo = new VehiculoData().findOne(vehiculoId);
+                if (vehiculo == null) {
+                    System.err.println("Vehículo no encontrado para ID: " + vehiculoId);
+                    vehiculo = new Vehiculo("N/A", "Desconocido", "Desconocido", "Desconocido"); // Vehículo por defecto
+                    // o con el constructor que ya teniamos vehiculo = new Vehiculo("N/A", "Desconocido", "Desconocido", "Desconocido", "", "", 0, null);
+
+                }
+
+                DetalleOrden detalleOrden = new DetalleOrden("123", "Sin observacion", 20000, repuestos);
+
+                OrdenTrabajo o = new OrdenTrabajo(id, descripcion, fechaIngreso, estado,
+                        detalleRecepcion, fechaDevolucion, vehiculo, detalleOrden);
+
+                if (precioStr != null && !precioStr.isEmpty()) {
+                    try {
+                        o.setPrecio(Double.parseDouble(precioStr));
+                    } catch (NumberFormatException nfe) {
+                        System.err.println("Error al parsear precio para orden " + id + ": " + nfe.getMessage());
+                        o.setPrecio(0);
+                    }
+                }
+
+                ordenes.add(o);
+            } catch (Exception e) {
+                System.err.println("Error leyendo un elemento de orden: " + e.getMessage());
+                e.printStackTrace();
+            }
         }
 
         return ordenes;
     }
+
     
     public OrdenTrabajo findOne(String id) throws JDOMException, IOException {
         ArrayList<OrdenTrabajo> ordenes = findAll();
@@ -193,5 +242,55 @@ public class OrdenTrabajoData {
             System.out.println("La orden con el id: " + id + ", no encontrada.");
         }
     }
+  
+public ArrayList<Repuesto> findRepuestosPorOrden(String idOrden) {
+    ArrayList<Repuesto> repuestos = new ArrayList<>();
+
+    try {
+        List<Element> elementos = this.raiz.getChildren();
+
+        for (Element elemento : elementos) {
+            String id = elemento.getAttributeValue("id");
+            if (id.equalsIgnoreCase(idOrden)) {
+                Element detalleOrden = elemento.getChild("detalleOrden");
+                if (detalleOrden != null) {
+                    // Aquí asumimos que dentro de detalleOrden hay elementos <repuesto>
+                    List<Element> repuestosElems = detalleOrden.getChildren("repuesto");
+
+                    for (Element repuestoElem : repuestosElems) {
+                        String repuestoId = repuestoElem.getChildText("id");
+                        String nombre = repuestoElem.getChildText("nombre");
+                        int cantidad = 0;
+                        double precio = 0;
+
+                        try {
+                            cantidad = Integer.parseInt(repuestoElem.getChildText("cantidad"));
+                        } catch (NumberFormatException e) {
+                            // Manejo de error, cantidad = 0
+                        }
+                        try {
+                            precio = Double.parseDouble(repuestoElem.getChildText("precio"));
+                        } catch (NumberFormatException e) {
+                            // Manejo de error, precio = 0
+                        }
+
+                        Repuesto repuesto = new Repuesto();
+                        repuesto.setId(repuestoId);
+                        repuesto.setNombre(nombre);
+                        repuesto.setCantidad(cantidad);
+                        repuesto.setPrecio(precio);
+
+                        repuestos.add(repuesto);
+                    }
+                }
+                break; // Ya encontramos la orden, salimos del ciclo
+            }
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    return repuestos;
+}
 
 }

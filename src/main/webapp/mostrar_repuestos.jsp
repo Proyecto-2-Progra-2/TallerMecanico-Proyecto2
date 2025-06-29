@@ -107,6 +107,7 @@
             transform: translateY(-1px);
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+<<<<<<< HEAD
 
         .btn-eliminar {
             background-color: #e74c3c; /* Red for delete */
@@ -128,6 +129,27 @@
             transform: translateY(-1px);
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+=======
+        
+        .btn-eliminar {
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-eliminar {
+            background-color: #e67e22;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);        }
+>>>>>>> 555b2b8c19e16bb7f743b704ae6994a667e49b08
     </style>
 </head>
 <body>
@@ -137,12 +159,17 @@
     </header>
 
     <h2 class="page-title">Inventario Actual de Repuestos</h2>
+<<<<<<< HEAD
 
     <div class="container">
         <%
             // Assuming the list of spare parts is passed as "repuestos" attribute
             ArrayList<Repuesto> repuestos = (ArrayList<Repuesto>) request.getAttribute("repuestos");
         %>
+=======
+    <div class="container">
+        <% ArrayList<Repuesto> repuestosList = (ArrayList<Repuesto>) request.getAttribute("repuestos"); %>
+>>>>>>> 555b2b8c19e16bb7f743b704ae6994a667e49b08
 
         <% if (repuestos != null && !repuestos.isEmpty()) { %>
             <table>
@@ -167,10 +194,17 @@
                                 <input type="hidden" name="id" value="<%= repuesto.getId() %>">
                                 <button type="submit" class="btn-modificar">Modificar</button>
                             </form>
+<<<<<<< HEAD
                             <form action="${pageContext.request.contextPath}/eliminarRepuesto" method="POST" style="display:inline-block; margin:0;" onsubmit="return confirm('¿Está seguro de que desea eliminar este repuesto?');">
                                 <input type="hidden" name="id" value="<%= repuesto.getId() %>">
                                 <button type="submit" class="btn-eliminar">Eliminar</button>
                             </form>
+=======
+                                <form action="${pageContext.request.contextPath}/eliminarRepuesto" method="POST" style="display:inline-block; margin:0;" onsubmit="return confirm('¿Está seguro de que desea eliminar este repuesto?');">
+                            <input type="hidden" name="id" value="<%= repuesto.getId() %>">
+                            <input type="submit" class="btn-eliminar" value="Eliminar">
+                        </form>  
+>>>>>>> 555b2b8c19e16bb7f743b704ae6994a667e49b08
                         </td>
                     </tr>
                     <% } %>
@@ -182,6 +216,9 @@
             </p>
         <% } %>
     </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 555b2b8c19e16bb7f743b704ae6994a667e49b08
 </body>
 </html>
