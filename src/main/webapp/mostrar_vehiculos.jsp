@@ -134,7 +134,8 @@
     </head>
     <body>
         <header>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv9gYwzogs3QYQJTwGY7SYzcVuMt5_oHpaCg&s" alt="Ícono Vehículo">
+            <%-- The only change: new image URL for the car icon --%>
+            <img src="https://cdn-icons-png.flaticon.com/512/189/189679.png" alt="Ícono de Coche">
             <h1>Lista de Vehículos</h1>
         </header>
 
@@ -190,7 +191,7 @@
                         </td>
                     </tr>
                     <% }
-                } else { %>
+                    } else { %>
                     <tr><td colspan="9" style="text-align:center;">No hay vehículos registrados.</td></tr>
                     <% }%>
                 </tbody>

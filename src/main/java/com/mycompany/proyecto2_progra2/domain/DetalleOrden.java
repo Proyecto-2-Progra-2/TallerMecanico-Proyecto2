@@ -99,4 +99,9 @@ public DetalleOrden(String id, String observaciones, double manoObra, ArrayList<
         return "DetalleOrden{" + "id=" + id + ", observaciones=" + observaciones + ", manoObra=" + manoObra +
                ", precioTotal=" + precioTotal + ", repuestos=" + repuestos + ", servicios=" + servicios + '}';
     }
+
+    
 }
+
+
+
