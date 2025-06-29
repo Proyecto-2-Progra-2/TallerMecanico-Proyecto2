@@ -5,6 +5,7 @@
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
                              https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
 
+    <!-- Definición de servlets -->
     <servlet>
         <servlet-name>RegistrarClienteServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.cliente.RegistrarClienteServlet</servlet-class>
@@ -37,13 +38,10 @@
         <servlet-name>ModificarOrdenTrabajoServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.ModificarOrdenTrabajoServlet</servlet-class>
     </servlet>
-    
-   
     <servlet>
         <servlet-name>MostrarVehiculoServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.MostrarVehiculoServlet</servlet-class>
     </servlet>
-    
     <servlet>
         <servlet-name>EliminarOrdenTrabajoServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.EliminarOrdenTrabajoServlet</servlet-class>
@@ -64,7 +62,6 @@
         <servlet-name>ModificarRepuestoServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.ModificarRepuestoServlet</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>MostrarClientesServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.cliente.MostrarClientesServlet</servlet-class>
@@ -94,7 +91,19 @@
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.vehiculo.MostrarClienteServlet</servlet-class>
     </servlet>
 
-   
+    <servlet>
+        <servlet-name>MostrarListadoOrdenesServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.MostrarListadoOrdenesServlet</servlet-class>
+    </servlet>
+
+  <servlet>
+        <servlet-name>MostrarFacturaOrdenTrabajoServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.MostrarFacturaOrdenTrabajoServlet</servlet-class>
+    </servlet>
+    
+    
+    
+    <!-- Mapeo de URLs -->
     <servlet-mapping>
         <servlet-name>RegistrarClienteServlet</servlet-name>
         <url-pattern>/registrarCliente</url-pattern>
@@ -175,7 +184,15 @@
         <servlet-name>MostrarClienteServlet</servlet-name>
         <url-pattern>/mostrarCliente</url-pattern>
     </servlet-mapping>
-
+    <servlet-mapping>
+        <servlet-name>MostrarListadoOrdenesServlet</servlet-name>
+        <url-pattern>/listadoOrdenes</url-pattern>
+    </servlet-mapping>
+  <servlet-mapping>
+        <servlet-name>MostrarFacturaOrdenTrabajoServlet</servlet-name>
+        <url-pattern>/mostrarFacturaOrdenTrabajo</url-pattern>
+    </servlet-mapping>
+    <!-- Configuración de sesión -->
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>

@@ -2,57 +2,57 @@ package com.mycompany.proyecto2_progra2.servlets.ordenTrabajo;
 
 
 import com.mycompany.proyecto2_progra2.data.OrdenDetalleData;
+import com.mycompany.proyecto2_progra2.data.OrdenTrabajoData;
+import com.mycompany.proyecto2_progra2.data.RepuestosData;
 import com.mycompany.proyecto2_progra2.domain.DetalleOrden;
+import com.mycompany.proyecto2_progra2.domain.Repuesto;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.jdom2.JDOMException;
 
 
-@WebServlet(name = "MostrarDetalleOrdenServlet", urlPatterns = {"/mostrarDetalleOrden"})
 public class MostrarDetalleOrdenServlet extends HttpServlet {
 
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String idDetalleOrden = request.getParameter("idDetalleOrden");
-        DetalleOrden detalleOrden = null;
+    private OrdenDetalleData detalleData;
+    private RepuestosData repuestoData;
 
-        if (idDetalleOrden != null && !idDetalleOrden.isEmpty()) {
-            try {
-                OrdenDetalleData detalleOrdenData = new OrdenDetalleData();
-                detalleOrden = detalleOrdenData.findOne(idDetalleOrden);
-            } catch (JDOMException e) {
-                // Manejo de excepción, por ejemplo, loggear el error o mostrar un mensaje al usuario
-                e.printStackTrace();
-                request.setAttribute("mensajeError", "Error al cargar el detalle de la orden: " + e.getMessage());
-            }
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String idDetalle = req.getParameter("idDetalleOrden");
+
+        if (idDetalle == null || idDetalle.trim().isEmpty()) {
+            resp.sendRedirect(req.getContextPath() + "/listadoOrdenes?mensaje=detalleNoEncontrado");
+            return;
         }
 
-        request.setAttribute("detalleOrden", detalleOrden);
-        request.getRequestDispatcher("mostrar_detalle_orden.jsp").forward(request, response);
-    }
+        try {
+            detalleData = new OrdenDetalleData();
+            repuestoData = new RepuestosData();
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Servlet para mostrar el detalle de una orden de trabajo";
+            DetalleOrden detalleOrden = detalleData.findOne(idDetalle.trim());
+
+            if (detalleOrden == null) {
+                resp.sendRedirect(req.getContextPath() + "/listadoOrdenes?mensaje=detalleNoEncontrado");
+                return;
+            }
+
+            // Obtener los repuestos (puedes filtrar o obtener todos, según tu lógica)
+            ArrayList<Repuesto> repuestosList = repuestoData.findAll();
+
+            req.setAttribute("ordenDetalle", detalleOrden);
+            req.setAttribute("repuestosList", repuestosList);
+
+            req.getRequestDispatcher("/ordenTrabajo/ordenDetalle_view.jsp").forward(req, resp);
+
+        } catch (Exception ex) {
+            Logger.getLogger(MostrarDetalleOrdenServlet.class.getName()).log(Level.SEVERE, null, ex);
+            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al obtener el detalle de la orden.");
+        }
     }
 }

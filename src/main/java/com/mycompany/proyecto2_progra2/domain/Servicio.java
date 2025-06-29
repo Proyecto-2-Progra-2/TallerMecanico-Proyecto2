@@ -1,21 +1,20 @@
 package com.mycompany.proyecto2_progra2.domain;
 
-public class Repuesto {
-    
-    private String id, nombre;
-    private int cantidad;
+public class Servicio {
+    private String id;
+    private String nombre;
     private double precio;
 
-    public Repuesto(String id, String nombre, int cantidad, double precio) {
+    public Servicio() {
+    }
+
+    public Servicio(String id, String nombre, double precio) {
         this.id = id;
         this.nombre = nombre;
-        this.cantidad = cantidad;
         this.precio = precio;
     }
 
-    public Repuesto() {
-        
-    }
+    // Getters y setters
 
     public String getId() {
         return id;
@@ -33,14 +32,6 @@ public class Repuesto {
         this.nombre = nombre;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
     public double getPrecio() {
         return precio;
     }
@@ -51,7 +42,10 @@ public class Repuesto {
 
     @Override
     public String toString() {
-        return "Repuesto{" + "id=" + id + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio=" + precio + '}';
+        return "Servicio{" +
+                "id='" + id + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", precio=" + precio +
+                '}';
     }
-
 }

@@ -8,6 +8,7 @@ C:\Users\jimen\OneDrive\Escritorio\TallerMecanico\TallerMecanico-Proyecto2\src\m
 C:\Users\jimen\OneDrive\Escritorio\TallerMecanico\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\domain\DetalleOrden.java
 C:\Users\jimen\OneDrive\Escritorio\TallerMecanico\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\domain\OrdenTrabajo.java
 C:\Users\jimen\OneDrive\Escritorio\TallerMecanico\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\domain\Repuesto.java
+C:\Users\jimen\OneDrive\Escritorio\TallerMecanico\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\domain\Servicio.java
 C:\Users\jimen\OneDrive\Escritorio\TallerMecanico\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\domain\Vehiculo.java
 C:\Users\jimen\OneDrive\Escritorio\TallerMecanico\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\JakartaRestConfiguration.java
 C:\Users\jimen\OneDrive\Escritorio\TallerMecanico\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\resources\JakartaEE11Resource.java
@@ -19,7 +20,8 @@ C:\Users\jimen\OneDrive\Escritorio\TallerMecanico\TallerMecanico-Proyecto2\src\m
 C:\Users\jimen\OneDrive\Escritorio\TallerMecanico\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\ordenTrabajo\EliminarOrdenTrabajoServlet.java
 C:\Users\jimen\OneDrive\Escritorio\TallerMecanico\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\ordenTrabajo\ModificarOrdenTrabajoServlet.java
 C:\Users\jimen\OneDrive\Escritorio\TallerMecanico\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\ordenTrabajo\MostrarDetalleOrdenServlet.java
-C:\Users\jimen\OneDrive\Escritorio\TallerMecanico\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\ordenTrabajo\MostrarOrdenesTrabajoServlet.java
+C:\Users\jimen\OneDrive\Escritorio\TallerMecanico\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\ordenTrabajo\MostrarFacturaOrdenTrabajoServlet.java
+C:\Users\jimen\OneDrive\Escritorio\TallerMecanico\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\ordenTrabajo\MostrarListadoOrdenesServlet.java
 C:\Users\jimen\OneDrive\Escritorio\TallerMecanico\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\ordenTrabajo\MostrarVehiculoServlet.java
 C:\Users\jimen\OneDrive\Escritorio\TallerMecanico\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\ordenTrabajo\RegistrarOrdenTrabajoServlet.java
 C:\Users\jimen\OneDrive\Escritorio\TallerMecanico\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\repuesto\ActualizarRepuestoServlet.java
