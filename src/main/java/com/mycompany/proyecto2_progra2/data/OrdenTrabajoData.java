@@ -33,8 +33,10 @@ public class OrdenTrabajoData {
     private String rutaDocumento;
 
 
-    public static final String RUTA_ARCHIVO = "C:\\Users\\jeffr\\OneDrive\\Documentos\\Proyecto2-Progra2\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\ordenes.xml";
-//      public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\ProyectoProgra\\TallerMecanico-Proyecto2\\xml\\ordenTrabajo.xml";
+   // public static final String RUTA_ARCHIVO = "C:\\Users\\jeffr\\OneDrive\\Documentos\\Proyecto2-Progra2\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\ordenes.xml";
+ //Jime 
+     public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\TallerMecanico\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\ordenes.xml";
+
   //  public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\ordenes.xml";
 
     public OrdenTrabajoData() throws IOException, JDOMException {
@@ -278,6 +280,21 @@ public ArrayList<Repuesto> findRepuestosPorOrden(String idOrden) {
     }
 
     return repuestos;
+}
+// todas las ordenes de  los vehiculos con el mismo dueño segun el id
+public ArrayList<OrdenTrabajo> findByClienteId(String clienteId) throws JDOMException, FileNotFoundException, IOException {
+    ArrayList<OrdenTrabajo> resultado = new ArrayList<>();
+    ArrayList<OrdenTrabajo> todas = this.findAll();
+
+    for (OrdenTrabajo orden : todas) {
+        if (orden.getVehiculo() != null &&
+            orden.getVehiculo().getDuenno() != null &&
+            orden.getVehiculo().getDuenno().getId().equals(clienteId)) {
+            resultado.add(orden);
+        }
+    }
+
+    return resultado;
 }
 
 }
