@@ -135,21 +135,30 @@
                     <label for="vehiculo">Ingrese la placa del vehiculo:</label>
                     <input type="text" id="vehiculo" name="vehiculo" required>
                 </div>
+
+                <!-- Aquí empieza el formulario de agregar detalle de la orden -->
                 <div>
-                    <label for="detalleOrden">ID del detalle de la orden:</label>
-                    <input type="text" name="detalleOrden" value="" readOnly>
+                    <h3>Agregar detalle de la orden</h3>
                 </div>
                 <div>
-                    <label for="precio">Precio:</label>
+                    <label for="id">ID:</label>
+                    <input type="text" id="id" name="idOrden" value="${idDetalle}" readonly required>
+                </div>
+                <div>
+                    <label for="descripcion">Observaciones:</label>
+                    <textarea id="descripcion" name="observaciones" rows="6" cols="5" required=""></textarea>
+                </div>
+                <div>
+                    <label for="precio">Precio Total de la Mano de Obra:</label>
+                    <input type="number" name="precioManoObra">
+                </div>
+                <!-- fin formulario detalle de orden -->
+                <div>
+                    <label for="precio">Precio total a pagar:</label>
                     <input type="number" name="precio" value="100000" readonly>
                 </div>
                 <div>
                     <input type="submit" name="registrar" value="Registrar">
-                </div>
-            </form>
-            <form action="registrarDetalleOrden" method="GET">
-                <div>
-                    <input type="submit" name="registrar" value="Añadir Detalle de la Orden">
                 </div>
             </form>
         </main>

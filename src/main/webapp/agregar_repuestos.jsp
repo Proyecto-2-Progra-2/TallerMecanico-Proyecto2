@@ -87,6 +87,9 @@
                 font-size: 0.9em;
             }
 
+            .agregado-btn {
+                background-color: #92a396;
+            }
             .modificar-btn {
                 background-color: #f39c12;
             }
@@ -149,43 +152,8 @@
                 Repuesto repuestoAgregado = (Repuesto) request.getAttribute("repuestoAgregado");
                 if (repuestoAgregado != null) {
                     repuestosAgregados.add(repuestoAgregado);
-                    System.out.println("Repuesto recibido: " + repuestoAgregado.getId() + " - " + repuestoAgregado.getNombre());
-                    System.out.println("Lista actual:");
-                    for (Repuesto r : repuestosAgregados) {
-                        System.out.println("-> " + r.getId() + r.getNombre());
-                    }
                 }
             %>
-
-            <% if (!repuestosAgregados.isEmpty()) {%>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Identificación</th>
-                        <th>Nombre</th>
-                        <th>Cantidad (Stock)</th>
-                        <th>Precio (₡)</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for (Repuesto repuesto : repuestosAgregados) {%>
-                    <tr>
-                        <td><%= repuesto.getId()%></td>
-                        <td><%= repuesto.getNombre()%></td>
-                        <td><%= repuesto.getCantidad()%></td>
-                        <td>₡<%= String.format("%.2f", repuesto.getPrecio())%></td>
-                        <td>
-                            <form action="${pageContext.request.contextPath}/modificarRepuesto" method="GET" style="margin:0; display:inline-block;">
-                                <input type="hidden" name="id" value="<%= repuesto.getId()%>">
-                                <button type="submit" class="action-btn eliminar-btn">Eliminar Repuesto</button>
-                            </form>
-                        </td>
-                    </tr>
-                    <% }%>
-                </tbody>
-            </table>
-            <%}%>
 
             <% ArrayList<Repuesto> repuestos = (ArrayList<Repuesto>) request.getAttribute("repuestos");
                 if (repuestos != null) {%>
@@ -207,10 +175,14 @@
                         <td><%= repuesto.getCantidad()%></td>
                         <td>₡<%= String.format("%.2f", repuesto.getPrecio())%></td>
                         <td>
-                            <form action="${pageContext.request.contextPath}/ingresaListaRepuestos" method="GET" style="margin:0; display:inline-block;">
+                            <% if (repuestoAgregado != null && repuestoAgregado.getId().equalsIgnoreCase(repuesto.getId())) {%>
+                                <button type="submit" class="action-btn agregado-btn">Repuesto Agregado</button>
+                            <%} else {%>
+                            <form action="ingresaListaRepuestos" method="GET" style="margin:0; display:inline-block;">
                                 <input type="hidden" name="id" value="<%= repuesto.getId()%>">
                                 <button type="submit" class="action-btn modificar-btn">Agregar Repuesto</button>
                             </form>
+                            <%}%>
                         </td>
                     </tr>
                     <% }

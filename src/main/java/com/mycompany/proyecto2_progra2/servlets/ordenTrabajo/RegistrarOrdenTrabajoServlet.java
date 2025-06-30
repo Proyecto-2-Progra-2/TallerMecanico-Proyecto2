@@ -25,16 +25,20 @@ public class RegistrarOrdenTrabajoServlet extends HttpServlet {
     private OrdenTrabajoData ordenTrabajoData;
     private OrdenDetalleData detalleData;
     private DetalleOrden detalleOrden;
-    private String id;
+    private String id, idDetalle;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            this.detalleOrden = null;
             this.ordenTrabajoData = new OrdenTrabajoData();
+            this.detalleData = new OrdenDetalleData();
             do {
                 this.id = generarID();
             } while (this.ordenTrabajoData.existe(this.id));
+            
+            do {
+                this.idDetalle = generarID();
+            } while (this.detalleData.existe(this.idDetalle));
             
             LocalDate fechaIngreso = LocalDate.now();
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -46,6 +50,7 @@ public class RegistrarOrdenTrabajoServlet extends HttpServlet {
             
             req.setAttribute("fechaIngreso", fechaFormateada);
             req.setAttribute("id", this.id);
+            req.setAttribute("idDetalle", this.idDetalle);
             req.getRequestDispatcher("registrar_orden_trabajo.jsp").forward(req, resp);
         } catch (JDOMException ex) {
             Logger.getLogger(RegistrarOrdenTrabajoServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,6 +65,11 @@ public class RegistrarOrdenTrabajoServlet extends HttpServlet {
             repuestos.add(new Repuesto("1", "repuesto1", 2, 25000));
             repuestos.add(new Repuesto("2", "repuesto2", 1, 75000));
             this.ordenTrabajoData = new OrdenTrabajoData();
+            
+            this.detalleOrden = new DetalleOrden(req.getParameter("idOrden"), 
+                    req.getParameter("observaciones"), Double.parseDouble(req.getParameter("precioManoObra")), 
+                    repuestos);
+            this.detalleData.insertar(this.detalleOrden);
 
             String fechaDevolucion = req.getParameter("fechaDevolucion");
             LocalDate fecha = LocalDate.parse(fechaDevolucion);
@@ -68,8 +78,7 @@ public class RegistrarOrdenTrabajoServlet extends HttpServlet {
 
             OrdenTrabajo orden = new OrdenTrabajo(req.getParameter("id"), req.getParameter("descripcion"),
                     req.getParameter("fechaIngreso"), req.getParameter("estado"), req.getParameter("detalleRecepcion"),
-                    fechaFormateada, new VehiculoData().findOne(req.getParameter("vehiculo")),
-                    new DetalleOrden("123", "Sin observacion", 20000, repuestos));
+                    fechaFormateada, new VehiculoData().findOne(req.getParameter("vehiculo")), this.detalleOrden);
             this.ordenTrabajoData.insertar(orden);
 
             req.getRequestDispatcher("index.jsp").forward(req, resp);

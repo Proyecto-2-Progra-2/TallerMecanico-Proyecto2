@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<detallesOrden />
+<detallesOrden><detalleOrden id="684662"><observaciones>Observación primer detalle de orden</observaciones><manoObra>50000.0</manoObra><repuestos><repuesto>1</repuesto><repuesto>2</repuesto></repuestos><precioTotal>150000.0</precioTotal></detalleOrden></detallesOrden>

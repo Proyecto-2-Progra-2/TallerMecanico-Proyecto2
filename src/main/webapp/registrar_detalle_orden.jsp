@@ -105,7 +105,7 @@
             <h1>Registrar detalle de la orden</h1>
         </header>
         <main>
-            <form action="registrarOrdenTrabajo" method="POST" class="formulario">
+            <form action="registrarDetalleOrden" method="POST" class="formulario">
                 <div>
                     <label for="id">ID:</label>
                     <input type="text" id="id" name="id" value="${id}" readonly required>
