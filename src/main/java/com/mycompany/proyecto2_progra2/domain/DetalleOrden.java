@@ -7,42 +7,26 @@ public class DetalleOrden {
     private String id, observaciones;
     private double manoObra, precioTotal;
     private ArrayList<Repuesto> repuestos;
-    private ArrayList<Servicio> servicios;  // nuevo atributo para servicios
 
-    public DetalleOrden(String id, String observaciones, double manoObra, ArrayList<Repuesto> repuestos, ArrayList<Servicio> servicios) {
+    public DetalleOrden(String id, String observaciones, double manoObra, ArrayList<Repuesto> repuestos) {
         this.id = id;
         this.observaciones = observaciones;
-        this.repuestos = repuestos;
-        this.servicios = servicios;
         this.manoObra = manoObra;
+        this.repuestos = repuestos;
         this.precioTotal = calcularPrecioTotal();
     }
 
-    public DetalleOrden() {
-        this.repuestos = new ArrayList<>();
-        this.servicios = new ArrayList<>();
-    }
-public DetalleOrden(String id, String observaciones, double manoObra, ArrayList<Repuesto> repuestos) {
-    this.id = id;
-    this.observaciones = observaciones;
-    this.manoObra = manoObra;
-    this.repuestos = repuestos;
-    this.precioTotal = calcularPrecioTotal();
-}
+    private double calcularPrecioTotal() {
+        double precioTotalCalculado = 0;
 
-
-   private double calcularPrecioTotal() {
-    double precioTotalCalculado = 0;
-    
-    if (this.repuestos != null) {
-        for (Repuesto repuesto : this.repuestos) {
-            precioTotalCalculado += repuesto.getPrecio();
+        if (this.repuestos != null) {
+            for (Repuesto repuesto : this.repuestos) {
+                precioTotalCalculado += repuesto.getPrecio();
+            }
         }
-    }
-    
-    return precioTotalCalculado + this.manoObra;
-}
 
+        return precioTotalCalculado + this.manoObra;
+    }
 
     public String getId() {
         return id;
@@ -69,7 +53,6 @@ public DetalleOrden(String id, String observaciones, double manoObra, ArrayList<
     }
 
     public double getPrecioTotal() {
-        // recalcular total antes de devolver
         this.precioTotal = calcularPrecioTotal();
         return precioTotal;
     }
@@ -86,22 +69,4 @@ public DetalleOrden(String id, String observaciones, double manoObra, ArrayList<
         this.repuestos = repuestos;
     }
 
-    public ArrayList<Servicio> getServicios() {
-        return servicios;
-    }
-
-    public void setServicios(ArrayList<Servicio> servicios) {
-        this.servicios = servicios;
-    }
-
-    @Override
-    public String toString() {
-        return "DetalleOrden{" + "id=" + id + ", observaciones=" + observaciones + ", manoObra=" + manoObra +
-               ", precioTotal=" + precioTotal + ", repuestos=" + repuestos + ", servicios=" + servicios + '}';
-    }
-
-    
 }
-
-
-

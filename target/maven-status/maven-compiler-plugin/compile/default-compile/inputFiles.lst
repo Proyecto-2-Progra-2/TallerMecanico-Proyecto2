@@ -17,6 +17,9 @@ C:\Users\jeffr\OneDrive\Documentos\Proyecto2-Progra2\TallerMecanico-Proyecto2\sr
 C:\Users\jeffr\OneDrive\Documentos\Proyecto2-Progra2\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\cliente\ModificarClienteServlet.java
 C:\Users\jeffr\OneDrive\Documentos\Proyecto2-Progra2\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\cliente\MostrarClientesServlet.java
 C:\Users\jeffr\OneDrive\Documentos\Proyecto2-Progra2\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\cliente\RegistrarClienteServlet.java
+C:\Users\jeffr\OneDrive\Documentos\Proyecto2-Progra2\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\detalleOrden\AgregarRepuestosServlet.java
+C:\Users\jeffr\OneDrive\Documentos\Proyecto2-Progra2\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\detalleOrden\IngresaListaRepuestosServlet.java
+C:\Users\jeffr\OneDrive\Documentos\Proyecto2-Progra2\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\detalleOrden\RegistrarDetalleOrdenServlet.java
 C:\Users\jeffr\OneDrive\Documentos\Proyecto2-Progra2\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\ordenTrabajo\EliminarOrdenTrabajoServlet.java
 C:\Users\jeffr\OneDrive\Documentos\Proyecto2-Progra2\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\ordenTrabajo\ModificarOrdenTrabajoServlet.java
 C:\Users\jeffr\OneDrive\Documentos\Proyecto2-Progra2\TallerMecanico-Proyecto2\src\main\java\com\mycompany\proyecto2_progra2\servlets\ordenTrabajo\MostrarDetalleOrdenServlet.java

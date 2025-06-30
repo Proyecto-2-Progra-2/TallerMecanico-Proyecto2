@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<vehiculos><repuesto id="123"><nombre>asd</nombre><cantidad>120</cantidad><precio>123.0</precio></repuesto></vehiculos>
+<vehiculos><repuesto id="123"><nombre>asd</nombre><cantidad>120</cantidad><precio>123.0</precio></repuesto><repuesto id="147"><nombre>Repuesto prueba</nombre><cantidad>25</cantidad><precio>25000.0</precio></repuesto></vehiculos>

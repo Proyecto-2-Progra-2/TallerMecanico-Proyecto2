@@ -1,11 +1,15 @@
-<%@page import="com.mycompany.proyecto2_progra2.domain.Repuesto"%>
-<%@page import="java.util.ArrayList"%>
+<%-- 
+    Document   : registrar_detalle_orden
+    Created on : 29 jun 2025, 16:18:38
+    Author     : jeffr
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Registrar Orden de Trabajo</title>
+        <title>Registrar detalle de la orden</title>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
         <style>
             body {
@@ -97,8 +101,8 @@
     </head>
     <body>
         <header>
-            <img src="https://cdn-icons-png.flaticon.com/512/2972/2972528.png" alt="Icono de Orden de Trabajo">
-            <h1>Registrar Orden de Trabajo</h1>
+            <img src="https://cdn-icons-png.flaticon.com/512/2972/2972528.png" alt="Icono de detalle orden">
+            <h1>Registrar detalle de la orden</h1>
         </header>
         <main>
             <form action="registrarOrdenTrabajo" method="POST" class="formulario">
@@ -107,50 +111,19 @@
                     <input type="text" id="id" name="id" value="${id}" readonly required>
                 </div>
                 <div>
-                    <label for="descripcion">Descripcion:</label>
-                    <textarea id="descripcion" name="descripcion" rows="6" cols="5" required=""></textarea>
+                    <label for="descripcion">Observaciones:</label>
+                    <textarea id="descripcion" name="observaciones" rows="6" cols="5" required=""></textarea>
                 </div>
                 <div>
-                    <label for="fechaIngreso">Fecha de Ingreso:</label>
-                    <input type="text" id="fechaIngreso" name="fechaIngreso" value="${fechaIngreso}" readonly required>
-                </div>
-                <div>
-                    <label for="estado">Estado:</label>
-                    <select id="estado" name="estado" required>
-                        <option value="diagnóstico">Diagnóstico</option>
-                        <option value="en reparación">En reparación</option>
-                        <option value="listo para entrega">Listo para entrega</option>
-                    </select>
-
-                </div>
-                <div>
-                    <label for="detalleRecepcion">Detalles en la recepcion del vehiculo:</label>
-                    <textarea id="detalleRecepcion" name="detalleRecepcion" rows="6" cols="5" required=""></textarea>
-                </div>
-                <div>
-                    <label for="fechaDevolucion">Fecha estimada de devolución del vehiculo:</label>
-                    <input type="date" id="fechaDevolucion" name="fechaDevolucion" required>
-                </div>
-                <div>
-                    <label for="vehiculo">Ingrese la placa del vehiculo:</label>
-                    <input type="text" id="vehiculo" name="vehiculo" required>
-                </div>
-                <div>
-                    <label for="detalleOrden">ID del detalle de la orden:</label>
-                    <input type="text" name="detalleOrden" value="" readOnly>
-                </div>
-                <div>
-                    <label for="precio">Precio:</label>
-                    <input type="number" name="precio" value="100000" readonly>
+                    <label for="precio">Precio Total de la Mano de Obra:</label>
+                    <input type="number" name="precio">
                 </div>
                 <div>
                     <input type="submit" name="registrar" value="Registrar">
                 </div>
             </form>
-            <form action="registrarDetalleOrden" method="GET">
-                <div>
-                    <input type="submit" name="registrar" value="Añadir Detalle de la Orden">
-                </div>
+            <form action="agregarRepuestos" method="GET">
+                <input type="submit" name="registrar" value="Añadir Repuestos">
             </form>
         </main>
     </body>

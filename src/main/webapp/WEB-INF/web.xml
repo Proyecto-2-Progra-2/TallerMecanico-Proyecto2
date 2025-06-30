@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="6.0"
-         xmlns="https://jakarta.ee/xml/ns/jakartaee"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
-                             https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
-
+<web-app version="6.0" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee                              https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
     <!-- Definición de servlets -->
     <servlet>
         <servlet-name>RegistrarClienteServlet</servlet-name>
@@ -90,20 +85,27 @@
         <servlet-name>MostrarClienteServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.vehiculo.MostrarClienteServlet</servlet-class>
     </servlet>
-
     <servlet>
         <servlet-name>MostrarListadoOrdenesServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.MostrarListadoOrdenesServlet</servlet-class>
     </servlet>
-
-  <servlet>
+    <servlet>
         <servlet-name>MostrarFacturaOrdenTrabajoServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.MostrarFacturaOrdenTrabajoServlet</servlet-class>
     </servlet>
-    
-    
-    
     <!-- Mapeo de URLs -->
+    <servlet>
+        <servlet-name>RegistrarDetalleOrdenServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.detalleOrden.RegistrarDetalleOrdenServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AgregarRepuestosServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.detalleOrden.AgregarRepuestosServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>IngresaListaRepuestosServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.detalleOrden.IngresaListaRepuestosServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrarClienteServlet</servlet-name>
         <url-pattern>/registrarCliente</url-pattern>
@@ -188,11 +190,23 @@
         <servlet-name>MostrarListadoOrdenesServlet</servlet-name>
         <url-pattern>/listadoOrdenes</url-pattern>
     </servlet-mapping>
-  <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>MostrarFacturaOrdenTrabajoServlet</servlet-name>
         <url-pattern>/mostrarFacturaOrdenTrabajo</url-pattern>
     </servlet-mapping>
     <!-- Configuración de sesión -->
+    <servlet-mapping>
+        <servlet-name>RegistrarDetalleOrdenServlet</servlet-name>
+        <url-pattern>/registrarDetalleOrden</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AgregarRepuestosServlet</servlet-name>
+        <url-pattern>/agregarRepuestos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IngresaListaRepuestosServlet</servlet-name>
+        <url-pattern>/ingresaListaRepuestos</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>

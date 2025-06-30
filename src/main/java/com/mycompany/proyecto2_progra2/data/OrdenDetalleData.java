@@ -71,14 +71,11 @@ public class OrdenDetalleData {
         Element manoObra = new Element("manoObra");
         manoObra.addContent(String.valueOf(detalleOrden.getManoObra()));
 
-        // Guardar los repuestos asociados a este DetalleOrden
+        
         Element repuestosElement = new Element("repuestos");
         for (Repuesto repuesto : detalleOrden.getRepuestos()) {
             Element eRepuesto = new Element("repuesto");
-            eRepuesto.setAttribute("id", repuesto.getId());
-            eRepuesto.addContent(new Element("nombre").addContent(repuesto.getNombre()));
-            eRepuesto.addContent(new Element("cantidad").addContent(String.valueOf(repuesto.getCantidad())));
-            eRepuesto.addContent(new Element("precio").addContent(String.valueOf(repuesto.getPrecio())));
+            eRepuesto.addContent(repuesto.getId());
             repuestosElement.addContent(eRepuesto);
         }
 
