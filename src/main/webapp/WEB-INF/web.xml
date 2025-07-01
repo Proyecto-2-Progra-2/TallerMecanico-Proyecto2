@@ -93,6 +93,10 @@
         <servlet-name>MostrarFacturaOrdenTrabajoServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.MostrarFacturaOrdenTrabajoServlet</servlet-class>
     </servlet>
+    <servlet>
+    <servlet-name>HistorialClientePorPlacaServlet</servlet-name>
+    <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.HistorialClientePorPlacaServlet</servlet-class>
+</servlet>
     <!-- Mapeo de URLs -->
     <servlet>
         <servlet-name>RegistrarDetalleOrdenServlet</servlet-name>
@@ -193,6 +197,10 @@
     <servlet-mapping>
         <servlet-name>MostrarFacturaOrdenTrabajoServlet</servlet-name>
         <url-pattern>/mostrarFacturaOrdenTrabajo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>HistorialClientePorPlacaServlet</servlet-name>
+    <url-pattern>/historialPorPlaca</url-pattern>
     </servlet-mapping>
     <!-- Configuración de sesión -->
     <servlet-mapping>

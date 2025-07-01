@@ -12,6 +12,7 @@ com\mycompany\proyecto2_progra2\data\OrdenDetalleData.class
 com\mycompany\proyecto2_progra2\resources\JakartaEE11Resource.class
 com\mycompany\proyecto2_progra2\servlets\ordenTrabajo\MostrarVehiculoServlet.class
 com\mycompany\proyecto2_progra2\servlets\ordenTrabajo\ModificarOrdenTrabajoServlet.class
+com\mycompany\proyecto2_progra2\servlets\ordenTrabajo\HistorialClientePorPlacaServlet.class
 com\mycompany\proyecto2_progra2\data\OrdenTrabajoData.class
 com\mycompany\proyecto2_progra2\domain\Servicio.class
 com\mycompany\proyecto2_progra2\servlets\cliente\MostrarClientesServlet.class

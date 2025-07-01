@@ -102,10 +102,11 @@
                     <button type="submit">Modificar</button>
                 </form>
 
-                <form action="historialCliente" method="get" style="width:48%;">
+               <form action="historialCliente" method="get" style="width:48%;">
                     <input type="hidden" name="id" value="<%= cliente.getId() %>"/>
                     <button type="submit">Ver Historial</button>
                 </form>
+
             </div>
         <% } %>
     </div>
