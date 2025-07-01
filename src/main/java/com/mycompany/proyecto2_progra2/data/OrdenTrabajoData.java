@@ -232,69 +232,70 @@ public class OrdenTrabajoData {
         }
     }
   
-public ArrayList<Repuesto> findRepuestosPorOrden(String idOrden) {
-    ArrayList<Repuesto> repuestos = new ArrayList<>();
+    public ArrayList<Repuesto> findRepuestosPorOrden(String idOrden) {
+        ArrayList<Repuesto> repuestos = new ArrayList<>();
 
-    try {
-        List<Element> elementos = this.raiz.getChildren();
+        try {
+            List<Element> elementos = this.raiz.getChildren();
 
-        for (Element elemento : elementos) {
-            String id = elemento.getAttributeValue("id");
-            if (id.equalsIgnoreCase(idOrden)) {
-                Element detalleOrden = elemento.getChild("detalleOrden");
-                if (detalleOrden != null) {
-                    // Aquí asumimos que dentro de detalleOrden hay elementos <repuesto>
-                    List<Element> repuestosElems = detalleOrden.getChildren("repuesto");
+            for (Element elemento : elementos) {
+                String id = elemento.getAttributeValue("id");
+                if (id.equalsIgnoreCase(idOrden)) {
+                    Element detalleOrden = elemento.getChild("detalleOrden");
+                    if (detalleOrden != null) {
+                        // Aquí asumimos que dentro de detalleOrden hay elementos <repuesto>
+                        List<Element> repuestosElems = detalleOrden.getChildren("repuesto");
 
-                    for (Element repuestoElem : repuestosElems) {
-                        String repuestoId = repuestoElem.getChildText("id");
-                        String nombre = repuestoElem.getChildText("nombre");
-                        int cantidad = 0;
-                        double precio = 0;
+                        for (Element repuestoElem : repuestosElems) {
+                            String repuestoId = repuestoElem.getChildText("id");
+                            String nombre = repuestoElem.getChildText("nombre");
+                            int cantidad = 0;
+                            double precio = 0;
 
-                        try {
-                            cantidad = Integer.parseInt(repuestoElem.getChildText("cantidad"));
-                        } catch (NumberFormatException e) {
-                            // Manejo de error, cantidad = 0
+                            try {
+                                cantidad = Integer.parseInt(repuestoElem.getChildText("cantidad"));
+                            } catch (NumberFormatException e) {
+                                // Manejo de error, cantidad = 0
+                            }
+                            try {
+                                precio = Double.parseDouble(repuestoElem.getChildText("precio"));
+                            } catch (NumberFormatException e) {
+                                // Manejo de error, precio = 0
+                            }
+
+                            Repuesto repuesto = new Repuesto();
+                            repuesto.setId(repuestoId);
+                            repuesto.setNombre(nombre);
+                            repuesto.setCantidad(cantidad);
+                            repuesto.setPrecio(precio);
+
+                            repuestos.add(repuesto);
                         }
-                        try {
-                            precio = Double.parseDouble(repuestoElem.getChildText("precio"));
-                        } catch (NumberFormatException e) {
-                            // Manejo de error, precio = 0
-                        }
-
-                        Repuesto repuesto = new Repuesto();
-                        repuesto.setId(repuestoId);
-                        repuesto.setNombre(nombre);
-                        repuesto.setCantidad(cantidad);
-                        repuesto.setPrecio(precio);
-
-                        repuestos.add(repuesto);
                     }
+                    break; // Ya encontramos la orden, salimos del ciclo
                 }
-                break; // Ya encontramos la orden, salimos del ciclo
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return repuestos;
+    }
+    
+    // todas las ordenes de  los vehiculos con el mismo dueño segun el id
+    public ArrayList<OrdenTrabajo> findByClienteId(String clienteId) throws JDOMException, FileNotFoundException, IOException {
+        ArrayList<OrdenTrabajo> resultado = new ArrayList<>();
+        ArrayList<OrdenTrabajo> todas = this.findAll();
+
+        for (OrdenTrabajo orden : todas) {
+            if (orden.getVehiculo() != null &&
+                orden.getVehiculo().getDuenno() != null &&
+                orden.getVehiculo().getDuenno().getId().equals(clienteId)) {
+                resultado.add(orden);
             }
         }
-    } catch (Exception e) {
-        e.printStackTrace();
+
+        return resultado;
     }
-
-    return repuestos;
-}
-// todas las ordenes de  los vehiculos con el mismo dueño segun el id
-public ArrayList<OrdenTrabajo> findByClienteId(String clienteId) throws JDOMException, FileNotFoundException, IOException {
-    ArrayList<OrdenTrabajo> resultado = new ArrayList<>();
-    ArrayList<OrdenTrabajo> todas = this.findAll();
-
-    for (OrdenTrabajo orden : todas) {
-        if (orden.getVehiculo() != null &&
-            orden.getVehiculo().getDuenno() != null &&
-            orden.getVehiculo().getDuenno().getId().equals(clienteId)) {
-            resultado.add(orden);
-        }
-    }
-
-    return resultado;
-}
 
 }

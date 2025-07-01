@@ -24,16 +24,17 @@ public class Vehiculo {
         this.annio = annio;
         this.duenno = duenno;
     }
-public Vehiculo(String placa, String color, String marca, String estilo) {
-    this.placa = placa;
-    this.color = color;
-    this.marca = marca;
-    this.estilo = estilo;
-    this.vin = "";
-    this.cilindraje = "";
-    this.annio = 0;
-    this.duenno = null;
-}
+    
+    public Vehiculo(String placa, String color, String marca, String estilo) {
+        this.placa = placa;
+        this.color = color;
+        this.marca = marca;
+        this.estilo = estilo;
+        this.vin = "";
+        this.cilindraje = "";
+        this.annio = 0;
+        this.duenno = null;
+    }
 
     public String getPlaca() {
         return placa;

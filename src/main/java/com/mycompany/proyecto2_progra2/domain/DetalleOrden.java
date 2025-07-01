@@ -69,4 +69,11 @@ public class DetalleOrden {
         this.repuestos = repuestos;
     }
 
+    @Override
+    public String toString() {
+        return "DetalleOrden{" + "id=" + id + ", observaciones=" + observaciones + ", manoObra=" + manoObra + ", precioTotal=" + precioTotal + ", repuestos=" + repuestos + '}';
+    }
+    
+    
+
 }

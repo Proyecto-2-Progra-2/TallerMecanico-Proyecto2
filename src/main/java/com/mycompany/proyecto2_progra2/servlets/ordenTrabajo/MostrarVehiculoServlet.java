@@ -20,8 +20,6 @@ import org.jdom2.JDOMException;
  */
 public class MostrarVehiculoServlet extends HttpServlet { 
 
-
-
     private VehiculoData vehiculoData;
 
     @Override
@@ -43,7 +41,6 @@ public class MostrarVehiculoServlet extends HttpServlet {
         }
     }
 
-  
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         

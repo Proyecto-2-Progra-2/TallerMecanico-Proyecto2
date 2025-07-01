@@ -106,7 +106,8 @@ public class OrdenDetalleData {
     public ArrayList<DetalleOrden> findAll() throws JDOMException, IOException {
         ArrayList<DetalleOrden> detallesOrden = new ArrayList<>();
         List<Element> elementos = this.raiz.getChildren();
-
+        RepuestosData repuestosData = new RepuestosData();  
+        
         for (Element elemento : elementos) {
             String id = elemento.getAttributeValue("id");
             String observaciones = elemento.getChildText("observaciones");
@@ -116,12 +117,20 @@ public class OrdenDetalleData {
             Element repuestosElement = elemento.getChild("repuestos");
             if (repuestosElement != null) {
                 List<Element> repuestoElements = repuestosElement.getChildren("repuesto");
+              
                 for (Element eRepuesto : repuestoElements) {
-                    String repuestoId = eRepuesto.getAttributeValue("id");
-                    String nombre = eRepuesto.getChildText("nombre");
-                    int cantidad = Integer.parseInt(eRepuesto.getChildText("cantidad"));
-                    double precio = Double.parseDouble(eRepuesto.getChildText("precio"));
-                    repuestos.add(new Repuesto(repuestoId, nombre, cantidad, precio));
+                    String repuestoId = eRepuesto.getTextNormalize();          
+                   if (repuestoId != null && !repuestoId.isBlank()) {
+                        Repuesto repuesto = repuestosData.findOne(repuestoId);
+                        if (repuesto != null) {
+                            repuestos.add(repuesto);
+                            System.out.println("⚠️ Repuesto con ID " + repuestoId + " encontrado en esa orden de detalle.");
+                        } else {
+                            System.out.println("⚠️ Repuesto con ID " + repuestoId + " no encontrado en esa orden de detalle.");
+                        }
+                    } else {
+                        System.out.println("⚠️ ID de repuesto vacío o nulo.");
+                    }
                 }
             }
 
