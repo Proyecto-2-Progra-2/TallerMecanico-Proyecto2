@@ -13,33 +13,46 @@ import java.util.logging.Logger;
 import org.jdom2.JDOMException;
 
 
-
-/**
- *
- * @author jime
- */
 public class MostrarVehiculoServlet extends HttpServlet { 
 
     private VehiculoData vehiculoData;
+@Override
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    String placa = req.getParameter("vehiculo");
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    try {
+        this.vehiculoData = new VehiculoData();
 
-        try {
-            this.vehiculoData = new VehiculoData();
-            ArrayList<Vehiculo> vehiculos = new ArrayList<>();
-            vehiculos = this.vehiculoData.findAll(); 
+        if (placa != null && !placa.trim().isEmpty()) {
+            // Buscar por placa
+            Vehiculo vehiculo = vehiculoData.findOne(placa.trim());
 
-            req.setAttribute("vehiculos", vehiculos); 
-            req.getRequestDispatcher("mostrar_vehiculos.jsp").forward(req, resp); 
-        } catch (JDOMException ex) {
-            Logger.getLogger(MostrarVehiculoServlet.class.getName()).log(Level.SEVERE, "Error al cargar los vehículos desde XML", ex);
-            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error interno del servidor al intentar mostrar los vehículos.");
-        } catch (Exception ex) {
-            Logger.getLogger(MostrarVehiculoServlet.class.getName()).log(Level.SEVERE, "Error inesperado al intentar mostrar los vehículos", ex);
-            resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Ocurrió un error inesperado al cargar la lista de vehículos.");
+            if (vehiculo != null) {
+                ArrayList<Vehiculo> listaVehiculos = new ArrayList<>();
+                listaVehiculos.add(vehiculo);
+                req.setAttribute("vehiculos", listaVehiculos);
+            } else {
+                // Si no lo encuentra, manda lista vacía y mensaje
+                req.setAttribute("vehiculos", new ArrayList<>());
+                req.setAttribute("mensaje", "Vehículo no encontrado con placa: " + placa);
+            }
+        } else {
+            // Si no viene parámetro, mostrar todos
+            ArrayList<Vehiculo> vehiculos = this.vehiculoData.findAll();
+            req.setAttribute("vehiculos", vehiculos);
         }
+
+        req.getRequestDispatcher("mostrar_vehiculos.jsp").forward(req, resp);
+
+    } catch (JDOMException ex) {
+        // manejo excepciones
+        Logger.getLogger(MostrarVehiculoServlet.class.getName()).log(Level.SEVERE, "Error al cargar los vehículos desde XML", ex);
+        resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error interno del servidor al intentar mostrar los vehículos.");
+    } catch (Exception ex) {
+        Logger.getLogger(MostrarVehiculoServlet.class.getName()).log(Level.SEVERE, "Error inesperado al intentar mostrar los vehículos", ex);
+        resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Ocurrió un error inesperado al cargar la lista de vehículos.");
     }
+}
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -59,7 +72,7 @@ public class MostrarVehiculoServlet extends HttpServlet {
                     return;
                 }
             }
-            // Si no encontró vehículo o parámetro inválido, redirigir o mostrar mensaje
+            // Si no encontró vehículo o parámetro inválido
             resp.sendRedirect(req.getContextPath() + "/listadoOrdenes?mensaje=vehiculoNoEncontrado");
         } catch (JDOMException ex) {
             Logger.getLogger(MostrarVehiculoServlet.class.getName()).log(Level.SEVERE, null, ex);

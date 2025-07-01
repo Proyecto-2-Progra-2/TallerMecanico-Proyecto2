@@ -8,7 +8,7 @@
         <title>Detalle de Orden de Trabajo</title>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
         <style>
-            /* (Aquí va todo tu CSS original) */
+            
             body {
                 margin: 0;
                 font-family: 'Roboto', sans-serif;
