@@ -20,7 +20,7 @@ import org.jdom2.JDOMException;
 
 public class RegistrarVehiculoServlet extends HttpServlet {
 
-   private VehiculoData vehiculoData;
+    private VehiculoData vehiculoData;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,16 +31,32 @@ public class RegistrarVehiculoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        try {
            this.vehiculoData = new VehiculoData();
-           Vehiculo v = new Vehiculo(req.getParameter("placa"), req.getParameter("color"), req.getParameter("marca"), 
-                   req.getParameter("estilo"), req.getParameter("VIN"), req.getParameter("cilindraje"), 
-                   Integer.parseInt(req.getParameter("annio")), new ClienteData().findOne(req.getParameter("duennio")));
+           Vehiculo v = new Vehiculo(
+                   req.getParameter("placa"), 
+                   req.getParameter("color"), 
+                   req.getParameter("marca"), 
+                   req.getParameter("estilo"), 
+                   req.getParameter("VIN"), 
+                   req.getParameter("cilindraje"), 
+                   Integer.parseInt(req.getParameter("annio")), 
+                   new ClienteData().findOne(req.getParameter("duennio"))
+           );
+           
            this.vehiculoData.insertar(v);
-           req.getRequestDispatcher("registrar_vehiculo.jsp").forward(req, resp);
-       } catch (JDOMException ex) {
+           req.getRequestDispatcher("registrar_vehiculo.jsp").forward(req, resp);//deberia regresar al index?
+       } catch (JDOMException | FileNotFoundException ex) {
            Logger.getLogger(RegistrarVehiculoServlet.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (FileNotFoundException ex) {
-           Logger.getLogger(RegistrarVehiculoServlet.class.getName()).log(Level.SEVERE, null, ex);
-       }
+       }catch (IOException ex) {
+            // Detecta si es el caso de vehñiculo ya registrado
+            if (ex.getMessage() != null && ex.getMessage().contains("Ya existe un vehículo")) {
+                req.setAttribute("error", "El vehículo con la placa " + req.getParameter("placa") + " ya está registrada.");
+                req.getRequestDispatcher("registrar_vehiculo.jsp").forward(req, resp);
+            } else {
+                Logger.getLogger(RegistrarVehiculoServlet.class.getName()).log(Level.SEVERE, null, ex);
+                resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al registrar el vehículo.");
+            }
+        } 
+       
     }
     
 }

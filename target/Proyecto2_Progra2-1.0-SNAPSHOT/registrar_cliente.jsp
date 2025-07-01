@@ -90,6 +90,14 @@
     </header>
 
     <main>
+        <% String error = (String) request.getAttribute("error"); %>
+        <% if (error != null) { %>
+            <script>
+                alert("<%= error %>");
+            </script>
+        <% } %>
+
+        
         <form action="registrarCliente" method="POST">
             <div>
                 <label for="id">Identificación:</label>

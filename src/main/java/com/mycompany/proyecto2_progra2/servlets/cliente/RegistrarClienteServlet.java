@@ -34,17 +34,33 @@ public class RegistrarClienteServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             this.clienteData = new ClienteData();
-            Cliente cliente = new Cliente(req.getParameter("id"), req.getParameter("nombre"), req.getParameter("primerApellido"),
-                    req.getParameter("segundoApellido"), Integer.parseInt(req.getParameter("telefono")),
-                    req.getParameter("direccion"), req.getParameter("email"));
+            Cliente cliente = new Cliente(
+                    req.getParameter("id"), 
+                    req.getParameter("nombre"), 
+                    req.getParameter("primerApellido"),
+                    req.getParameter("segundoApellido"), 
+                    Integer.parseInt(req.getParameter("telefono")),
+                    req.getParameter("direccion"), 
+                    req.getParameter("email")
+            );
+            
             this.clienteData.insertar(cliente);
             req.getRequestDispatcher("index.jsp").forward(req, resp);
+        
             //hacer una ventanaa de registrado exitoso
-        } catch (JDOMException ex) {
+        }catch (JDOMException | FileNotFoundException ex) {
             Logger.getLogger(RegistrarClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(RegistrarClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }catch (IOException ex) {
+            // Detecta si es el caso de cliente ya registrado
+            if (ex.getMessage() != null && ex.getMessage().contains("Ya existe un cliente")) {
+                req.setAttribute("error", "El cliente con ID " + req.getParameter("id") + " ya está registrado.");
+                req.getRequestDispatcher("registrar_cliente.jsp").forward(req, resp);
+            } else {
+                Logger.getLogger(RegistrarClienteServlet.class.getName()).log(Level.SEVERE, null, ex);
+                resp.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error al registrar el cliente.");
+            }
+        } 
+        
     }
 
 }

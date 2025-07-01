@@ -89,6 +89,13 @@
     </header>
 
     <main>
+        <% String error = (String) request.getAttribute("error"); %>
+        <% if (error != null) { %>
+            <script>
+                alert("<%= error %>");
+            </script>
+        <% } %>
+        
         <form action="registrarVehiculo" method="POST">
             <div>
                 <label for="placa">Placa:</label>

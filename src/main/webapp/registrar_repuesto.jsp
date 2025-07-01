@@ -109,10 +109,18 @@
         <h1>Registrar Repuestos</h1>
     </header>
     <main>
+        
+        <% String error = (String) request.getAttribute("error"); %>
+        <% if (error != null) { %>
+            <script>
+                alert("<%= error %>");
+            </script>
+        <% } %>
+        
         <form action="registrarRepuesto" method="POST">
             <div>
                 <label for="id">Identificación del Repuesto:</label>
-                <input type="text" id="id" name="id" required placeholder="Ej: REP001">
+                <input type="text" id="id" name="id" value="${id}" readonly required>
             </div>
             <div>
                 <label for="nombre">Nombre del Repuesto:</label>

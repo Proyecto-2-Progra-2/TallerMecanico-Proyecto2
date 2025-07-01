@@ -20,20 +20,18 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ClienteDataTest {
     
 //    @Test
-//    public void insertar_Cliente() {
+//    void insertar_Cliente() {
 //        Cliente cliente1 = new Cliente("A12","Luis","Sibaja","Otarola",90878908,"Cartago","luis@gmail.com");
 //        Cliente cliente2 = new Cliente("B12","Axel","Ramirez","Hernandes",12312312,"San Jose","axel@gmail.com");
 //        Cliente cliente3 = new Cliente("C12","Maria","Hernandez","Castro",12365323,"Alajuela","maria@gmail.com");
-//
 //        
 //        try {
 //            ClienteData clienteData = new ClienteData();
 //            
-////            clienteData.insertar(cliente1);
-////            clienteData.insertar(cliente2);
-////            clienteData.insertar(cliente3);
-//
-//            
+//            clienteData.insertar(cliente1);
+//            clienteData.insertar(cliente2);
+//            clienteData.insertar(cliente3);
+//           
 //            ArrayList<Cliente> clientes = clienteData.findAll();
 //            
 //            for(Cliente clienteActual: clientes){
@@ -42,12 +40,105 @@ public class ClienteDataTest {
 //            
 //            int tamano = clientes.size();
 //            
-////            assertEquals(tamano, 9);
-////            
+//            assertEquals(tamano, 3);
+//            
+//            
+//        } catch (IOException | JDOMException ex) {
+//            Logger.getLogger(ClienteDataTest.class.getName()).log(Level.SEVERE, null, ex);
+//        } 
+//    }
+//    
+//    @Test
+//    void no_insertar_Cliente() {
+//        Cliente cliente1 = new Cliente("A12","Luis","Sibaja","Otarola",90878908,"Cartago","luis@gmail.com");
+//        Cliente cliente2 = new Cliente("A12","Axel","Ramirez","Hernandes",12312312,"San Jose","axel@gmail.com");
+//        Cliente cliente3 = new Cliente("C12","Maria","Hernandez","Castro",12365323,"Alajuela","maria@gmail.com");
+//        
+//        try {
+//            ClienteData clienteData = new ClienteData();
+//            
+//            clienteData.insertar(cliente1);
+//            clienteData.insertar(cliente2);
+//            clienteData.insertar(cliente3);
+//           
+//            ArrayList<Cliente> clientes = clienteData.findAll();
+//            
+//            for(Cliente clienteActual: clientes){
+//                System.out.println(clienteActual);
+//            }
+//            
+//            int tamano = clientes.size();
+//            
+//            assertEquals(tamano, 3);
+//            
+//            
+//        } catch (IOException | JDOMException ex) {
+//            Logger.getLogger(ClienteDataTest.class.getName()).log(Level.SEVERE, null, ex);
+//        } 
+//    }
+//    
+//    @Test
+//    void findOne_Cliente_existe() {
+//        try {
+//            ClienteData clienteData = new ClienteData();
+//            
+//            Cliente cliente = clienteData.findOne("BV12");
+//           
+//            assertNotNull(cliente);
+//                        
+//            String clienteEsperado = "Cliente{id=BV12, nombre=Luis , primerApellido=Sibaja, segundoApellido=Otárola, direccion=San José, Escazu, email=carlos@hotmail.com, telefono=78542152}";
+//            
+//            assertEquals(clienteEsperado, cliente.toString());
+//            
+//        } catch (IOException | JDOMException ex) {
+//            Logger.getLogger(ClienteDataTest.class.getName()).log(Level.SEVERE, null, ex);
+//        } 
+//    }
+//    
+//    @Test
+//    void findOne_Cliente_no_existe() {
+//        try {
+//            ClienteData clienteData = new ClienteData();
+//            
+//            Cliente cliente = clienteData.findOne("A12C");
+//           
+//            assertNull(cliente);           
+//            
+//            assertEquals(null, cliente);
 //            
 //        } catch (IOException | JDOMException ex) {
 //            Logger.getLogger(RepuestosDataTest.class.getName()).log(Level.SEVERE, null, ex);
 //        } 
+//    }
+//    
+//    @Test
+//    void actualizar_cliente(){
+//        try {
+//            ClienteData clienteData = new ClienteData();   
+//            Cliente clienteSinActualizadar = clienteData.findOne("A12");
+//            
+//            Cliente clienteActualizado = new Cliente("A12","Luis","Sibaja","Otarola",78904567,"Alajuela","sibaja@gmail.com");
+//            clienteData.actualizar(clienteActualizado);
+//
+//            assertNotEquals(clienteSinActualizadar,clienteActualizado);           
+//            
+//        } catch (IOException | JDOMException ex) {
+//            Logger.getLogger(ClienteDataTest.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+//    
+//    @Test
+//    void eliminar_cliente(){
+//        try {
+//            ClienteData clienteData = new ClienteData();   
+//            clienteData.eliminar("BV");
+//            Cliente clienteEliminado = clienteData.findOne("BV");
+//            
+//            assertEquals(null,clienteEliminado);           
+//            
+//        } catch (IOException | JDOMException ex) {
+//            Logger.getLogger(ClienteDataTest.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 //    }
     
 }

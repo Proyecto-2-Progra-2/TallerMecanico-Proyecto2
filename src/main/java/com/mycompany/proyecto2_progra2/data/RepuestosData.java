@@ -30,9 +30,9 @@ public class RepuestosData {
     private Element raiz;
     private String rutaDocumento;
     // => Se tiene que cambiar la ruta
-    
-    //public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\repuestos.xml";
-    public static final String RUTA_ARCHIVO = "C:\\Users\\jeffr\\OneDrive\\Documentos\\Proyecto2-Progra2\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\repuestos.xml";
+    public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\repuestos.xml";
+
+    //public static final String RUTA_ARCHIVO = "C:\\Users\\jeffr\\OneDrive\\Documentos\\Proyecto2-Progra2\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\repuestos.xml";
     //Jime 
 //     public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\TallerMecanico\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\repuestos.xml";
 
@@ -66,6 +66,15 @@ public class RepuestosData {
     }
 
     public void insertar(Repuesto repuesto) throws IOException {
+        
+        List<Element> repuestos = this.raiz.getChildren();
+        for (Element eRepuesto : repuestos) {
+            String id = eRepuesto.getAttributeValue("id");
+            if (id != null && id.equalsIgnoreCase(repuesto.getId())) {
+                throw new IOException("No se puede insertar el repuesto. Ya existe un repuesto con el id: " + repuesto.getId());
+            }
+        } 
+         
         Element eRepuesto = new Element("repuesto");
         eRepuesto.setAttribute("id", repuesto.getId());
 
@@ -159,6 +168,16 @@ public class RepuestosData {
         } else {
             System.out.println("Repuesto con identificacion: " + id + " no encontrado.");
         }
+    }
+    
+    public boolean existe(String id) {
+        List<Element> elementos = this.raiz.getChildren();
+        for (Element elemento : elementos) {
+            if (elemento.getAttributeValue("id").equalsIgnoreCase(id)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

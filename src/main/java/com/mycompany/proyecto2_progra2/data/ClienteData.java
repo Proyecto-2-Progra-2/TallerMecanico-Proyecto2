@@ -28,8 +28,8 @@ public class ClienteData {
     // => Se tiene que cambiar la ruta
 
 
-   // public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\clientes.xml";
-    public static final String RUTA_ARCHIVO = "C:\\Users\\jeffr\\OneDrive\\Documentos\\Proyecto2-Progra2\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\clientes.xml";
+   public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\clientes.xml";
+    //public static final String RUTA_ARCHIVO = "C:\\Users\\jeffr\\OneDrive\\Documentos\\Proyecto2-Progra2\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\clientes.xml";
   //Jime 
 //     public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\TallerMecanico\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\clientes.xml";
 
@@ -63,6 +63,15 @@ public class ClienteData {
     }
 
     public void insertar(Cliente cliente) throws IOException {
+        
+        List<Element> clientes = this.raiz.getChildren();
+        for (Element eCliente : clientes) {
+            String idExistente = eCliente.getAttributeValue("id");
+            if (idExistente != null && idExistente.equalsIgnoreCase(cliente.getId())) {
+                throw new IOException("No se puede insertar el cliente. Ya existe un cliente con el id: " + cliente.getId());
+            }
+        }   
+        
         Element eCliente = new Element("cliente");
         eCliente.setAttribute("id", cliente.getId());
 

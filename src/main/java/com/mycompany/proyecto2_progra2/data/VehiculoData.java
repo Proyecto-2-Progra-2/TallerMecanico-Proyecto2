@@ -28,11 +28,11 @@ public class VehiculoData {
     private Element raiz;
     private String rutaDocumento;
     // => Se tiene que cambiar la ruta
-    //public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\vehiculos.xml";
-    public static final String RUTA_ARCHIVO = "C:\\Users\\jeffr\\OneDrive\\Documentos\\Proyecto2-Progra2\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\vehiculos.xml";
+    public static final String RUTA_ARCHIVO = "C:\\Repositorios\\Proyecto2-Programación2\\Original\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\vehiculos.xml";
+    //public static final String RUTA_ARCHIVO = "C:\\Users\\jeffr\\OneDrive\\Documentos\\Proyecto2-Progra2\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\vehiculos.xml";
 
     //Jime 
-//     public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\TallerMecanico\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\vehiculos.xml";
+    //public static final String RUTA_ARCHIVO = "C:\\Users\\jimen\\OneDrive\\Escritorio\\TallerMecanico\\TallerMecanico-Proyecto2\\src\\main\\java\\com\\mycompany\\proyecto2_progra2\\xml\\vehiculos.xml";
 
     
     public VehiculoData() throws IOException, JDOMException {
@@ -64,6 +64,15 @@ public class VehiculoData {
     }
 
     public void insertar(Vehiculo vehiculo) throws IOException {
+        
+        List<Element> vehiculos = this.raiz.getChildren();
+        for (Element eVehiculo : vehiculos) {
+            String placa = eVehiculo.getAttributeValue("placa");
+            if (placa != null && placa.equalsIgnoreCase(vehiculo.getPlaca())) {
+                throw new IOException("No se puede insertar el vehículo. Ya existe un vehículo con la placa: " + vehiculo.getPlaca());
+            }
+        } 
+        
         Element eVehiculo = new Element("vehiculo");
         eVehiculo.setAttribute("placa", vehiculo.getPlaca());
         Element color = new Element("color");
