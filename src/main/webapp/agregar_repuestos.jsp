@@ -87,6 +87,9 @@
                 font-size: 0.9em;
             }
 
+            .agregar-btn {
+                background-color: #3498db;
+            }
             .agregado-btn {
                 background-color: #92a396;
             }
@@ -113,6 +116,11 @@
 
             form {
                 display: inline;
+            }
+            .enviar {
+                display: flex;
+                align-items: center;
+                text-align: center;
             }
 
             @media screen and (max-width: 768px) {
@@ -148,12 +156,13 @@
         </header>
         <main>
             <%
+                Repuesto repuestoSelect = (Repuesto) request.getAttribute("repuestoAgregado");
                 ArrayList<Repuesto> repuestosAgregados = new ArrayList<>();
-                Repuesto repuestoAgregado = (Repuesto) request.getAttribute("repuestoAgregado");
-                if (repuestoAgregado != null) {
-                    repuestosAgregados.add(repuestoAgregado);
+                if (repuestoSelect != null) {
+                    repuestosAgregados.add(repuestoSelect);
                 }
             %>
+
 
             <% ArrayList<Repuesto> repuestos = (ArrayList<Repuesto>) request.getAttribute("repuestos");
                 if (repuestos != null) {%>
@@ -175,20 +184,57 @@
                         <td><%= repuesto.getCantidad()%></td>
                         <td>₡<%= String.format("%.2f", repuesto.getPrecio())%></td>
                         <td>
-                            <% if (repuestoAgregado != null && repuestoAgregado.getId().equalsIgnoreCase(repuesto.getId())) {%>
-                                <button type="submit" class="action-btn agregado-btn">Repuesto Agregado</button>
-                            <%} else {%>
-                            <form action="ingresaListaRepuestos" method="GET" style="margin:0; display:inline-block;">
+                            <% boolean estaAgregado = repuestosAgregados.stream().anyMatch(r -> r.getId().equalsIgnoreCase(repuesto.getId())); %>
+                            <% if (estaAgregado) { %>
+                            <button type="button" class="action-btn agregado-btn" disabled>Repuesto Agregado</button>
+                            <% } else {%>
+                            <form action="ingresaListaRepuestos" method="GET">
                                 <input type="hidden" name="id" value="<%= repuesto.getId()%>">
                                 <button type="submit" class="action-btn modificar-btn">Agregar Repuesto</button>
                             </form>
-                            <%}%>
+                            <% } %>
                         </td>
                     </tr>
                     <% }
                         }%>
                 </tbody>
             </table>
+            <% if (!repuestosAgregados.isEmpty()) { %>
+            <h3>Repuestos agregados:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Identificación</th>
+                        <th>Nombre</th>
+                        <th>Cantidad (Stock)</th>
+                        <th>Precio (₡)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%
+
+                        for (Repuesto repuesto : repuestosAgregados) {%>
+                    <tr>
+                        <td><%= repuesto.getId()%></td>
+                        <td><%= repuesto.getNombre()%></td>
+                        <td><%= repuesto.getCantidad()%></td>
+                        <td>₡<%= String.format("%.2f", repuesto.getPrecio())%></td>
+                    </tr>
+                    <% }%>
+                </tbody>
+            </table>
+
+            <% if (repuestoSelect != null) {%>
+            <div class="enviar">
+                <form action="registrarOrdenTrabajo" method="GET">
+                    <div>
+                        <input type="hidden" name="repuesto" value="<%= repuestoSelect.getId()%>">
+                        <button type="submit" class="action-btn agregar-btn">Agregar Repuestos</button>
+                    </div>
+                </form>
+            </div>
+            <%}%>
+            <% }%>
         </main>
     </body>
 </html>

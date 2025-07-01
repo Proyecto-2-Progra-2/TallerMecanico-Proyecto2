@@ -161,6 +161,11 @@
                     <input type="submit" name="registrar" value="Registrar">
                 </div>
             </form>
+                <form action="agregarRepuestos" method="GET">
+                    <div>
+                        <input type="submit" name="agregarRepuestos" value="Agregar Repuestos">
+                    </div>
+                </form>
         </main>
     </body>
 </html>

@@ -2,6 +2,7 @@ package com.mycompany.proyecto2_progra2.servlets.ordenTrabajo;
 
 import com.mycompany.proyecto2_progra2.data.OrdenDetalleData;
 import com.mycompany.proyecto2_progra2.data.OrdenTrabajoData;
+import com.mycompany.proyecto2_progra2.data.RepuestosData;
 import com.mycompany.proyecto2_progra2.data.VehiculoData;
 import com.mycompany.proyecto2_progra2.domain.DetalleOrden;
 import com.mycompany.proyecto2_progra2.domain.OrdenTrabajo;
@@ -25,11 +26,15 @@ public class RegistrarOrdenTrabajoServlet extends HttpServlet {
     private OrdenTrabajoData ordenTrabajoData;
     private OrdenDetalleData detalleData;
     private DetalleOrden detalleOrden;
+    private RepuestosData repuestosData;
     private String id, idDetalle;
+    private ArrayList<Repuesto> repuestos;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
+            this.repuestosData = new RepuestosData();
+            this.repuestos = new ArrayList<>();
             this.ordenTrabajoData = new OrdenTrabajoData();
             this.detalleData = new OrdenDetalleData();
             do {
@@ -48,6 +53,10 @@ public class RegistrarOrdenTrabajoServlet extends HttpServlet {
                 req.setAttribute("precio", this.detalleOrden.getPrecioTotal());
             }
             
+            if (req.getParameter("repuesto") != null) {
+                this.repuestos.add(this.repuestosData.findOne(req.getParameter("repuesto")));
+            }
+            
             req.setAttribute("fechaIngreso", fechaFormateada);
             req.setAttribute("id", this.id);
             req.setAttribute("idDetalle", this.idDetalle);
@@ -61,14 +70,14 @@ public class RegistrarOrdenTrabajoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             this.detalleData = new OrdenDetalleData();
-            ArrayList<Repuesto> repuestos = new ArrayList<>();
-            repuestos.add(new Repuesto("1", "repuesto1", 2, 25000));
-            repuestos.add(new Repuesto("2", "repuesto2", 1, 75000));
+//            ArrayList<Repuesto> repuestos = new ArrayList<>();
+//            repuestos.add(new Repuesto("1", "repuesto1", 2, 25000));
+//            repuestos.add(new Repuesto("2", "repuesto2", 1, 75000));
             this.ordenTrabajoData = new OrdenTrabajoData();
             
             this.detalleOrden = new DetalleOrden(req.getParameter("idOrden"), 
                     req.getParameter("observaciones"), Double.parseDouble(req.getParameter("precioManoObra")), 
-                    repuestos);
+                    this.repuestos);
             this.detalleData.insertar(this.detalleOrden);
 
             String fechaDevolucion = req.getParameter("fechaDevolucion");
