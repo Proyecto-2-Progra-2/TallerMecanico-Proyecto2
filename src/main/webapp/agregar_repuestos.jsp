@@ -1,240 +1,202 @@
-<%-- 
-    Document   : agregarRepuestos
-    Created on : 29 jun 2025, 17:50:13
-    Author     : jeffr
---%>
-
 <%@page import="com.mycompany.proyecto2_progra2.domain.Repuesto"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    HttpSession sesion = request.getSession();
+    ArrayList<Repuesto> repuestosAgregados = (ArrayList<Repuesto>) sesion.getAttribute("repuestosAgregados");
+    if (repuestosAgregados == null) {
+        repuestosAgregados = new ArrayList<>();
+    }
+%>
+
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Agregar Repuestos</title>
-        <style>
-            body {
-                margin: 0;
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                background-color: #f4f6f9;
-                color: #333;
-            }
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Repuestos</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+        }
 
-            header {
-                background-color: #2c3e50;
-                color: white;
-                padding: 20px;
-                text-align: center;
-            }
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
 
-            header img {
-                width: 50px;
-                vertical-align: middle;
-                margin-right: 10px;
-            }
+        h1 {
+            display: inline-block;
+            font-size: 2em;
+            margin: 0;
+        }
 
-            h1 {
-                display: inline-block;
-                font-size: 2em;
-                margin: 0;
-            }
+        main {
+            padding: 30px;
+        }
 
-            main {
-                padding: 30px;
-            }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
 
-            .mensaje {
-                background-color: #d4edda;
-                color: #155724;
-                padding: 10px 15px;
-                border-radius: 5px;
-                margin-bottom: 20px;
-                border: 1px solid #c3e6cb;
-                font-weight: bold;
-            }
+        th, td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
 
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                background-color: white;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                border-radius: 10px;
-                overflow: hidden;
-            }
+        th {
+            background-color: #3498db;
+            color: white;
+        }
 
-            th, td {
-                padding: 14px 16px;
-                text-align: left;
-                border-bottom: 1px solid #ddd;
-            }
+        tr:hover {
+            background-color: #f0f8ff;
+        }
 
-            th {
-                background-color: #3498db;
-                color: white;
-            }
+        .action-btn {
+            margin: 2px;
+            padding: 6px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: white;
+            font-size: 0.9em;
+        }
 
-            tr:hover {
-                background-color: #f0f8ff;
-            }
+        .agregar-btn {
+            background-color: #3498db;
+        }
 
-            .action-btn {
-                margin: 2px;
-                padding: 6px 10px;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                color: white;
-                font-size: 0.9em;
-            }
+        .agregado-btn {
+            background-color: #92a396;
+        }
 
-            .agregar-btn {
-                background-color: #3498db;
-            }
-            .agregado-btn {
-                background-color: #92a396;
-            }
-            .modificar-btn {
-                background-color: #f39c12;
-            }
-            .modificar-btn:hover {
-                background-color: #e67e22;
-            }
+        .modificar-btn {
+            background-color: #f39c12;
+        }
 
-            .cliente-btn {
-                background-color: #2980b9;
-            }
-            .cliente-btn:hover {
-                background-color: #2471a3;
-            }
+        .modificar-btn:hover {
+            background-color: #e67e22;
+        }
 
-            .eliminar-btn {
-                background-color: #e74c3c;
-            }
-            .eliminar-btn:hover {
-                background-color: #c0392b;
-            }
+        .enviar {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
 
-            form {
-                display: inline;
-            }
-            .enviar {
-                display: flex;
-                align-items: center;
-                text-align: center;
-            }
+        /* Estilo para el botón de quitar (X) */
+        .quitar-btn {
+            background-color: transparent;
+            border: none;
+            color: red;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.3em;
+            line-height: 1;
+            padding: 0 8px;
+            transition: color 0.3s ease;
+        }
 
-            @media screen and (max-width: 768px) {
-                table, thead, tbody, th, td, tr {
-                    display: block;
-                }
+        .quitar-btn:hover {
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Agregar Repuestos</h1>
+</header>
+<main>
+    <%
+        ArrayList<Repuesto> repuestos = (ArrayList<Repuesto>) request.getAttribute("repuestos");
+        if (repuestos != null) {
+    %>
+    <table>
+        <thead>
+            <tr>
+                <th>Identificación</th>
+                <th>Nombre</th>
+                <th>Cantidad (Stock)</th>
+                <th>Precio (₡)</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        <% for (Repuesto repuesto : repuestos) {
+            boolean yaAgregado = repuestosAgregados.stream().anyMatch(r -> r.getId().equalsIgnoreCase(repuesto.getId()));
+        %>
+            <tr>
+                <td><%= repuesto.getId() %></td>
+                <td><%= repuesto.getNombre() %></td>
+                <td><%= repuesto.getCantidad() %></td>
+                <td>₡<%= String.format("%.2f", repuesto.getPrecio()) %></td>
+                <td>
+                    <% if (yaAgregado) { %>
+                        <button type="button" class="action-btn agregado-btn" disabled>Repuesto Agregado</button>
+                    <% } else { %>
+                        <form action="ingresaListaRepuestos" method="GET" style="margin:0;">
+                            <input type="hidden" name="id" value="<%= repuesto.getId() %>">
+                            <button type="submit" class="action-btn modificar-btn">Agregar Repuesto</button>
+                        </form>
+                    <% } %>
+                </td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+    <% } %>
 
-                th {
-                    text-align: right;
-                    padding-right: 50%;
-                }
+   <% if (!repuestosAgregados.isEmpty()) { %>
+    <h3>Repuestos agregados:</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Identificación</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio (₡)</th>
+                <th>Quitar</th> 
+            </tr>
+        </thead>
+        <tbody>
+        <% for (Repuesto r : repuestosAgregados) { %>
+            <tr>
+                <td><%= r.getId() %></td>
+                <td><%= r.getNombre() %></td>
+                <td><%= r.getCantidad() %></td>
+                <td>₡<%= String.format("%.2f", r.getPrecio()) %></td>
+                <td>
+                   <form action="quitarRepuesto" method="POST" style="margin:0;">
+                        <input type="hidden" name="id" value="<%= r.getId() %>">
+                        <button type="submit" class="quitar-btn" title="Quitar repuesto" onclick="return confirm('¿Está seguro de quitar este repuesto?');">×</button>
+                    </form>
+                </td>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+   <% } %>
 
-                td {
-                    text-align: right;
-                    padding-left: 50%;
-                    position: relative;
-                }
-
-                td::before {
-                    content: attr(data-label);
-                    position: absolute;
-                    left: 16px;
-                    font-weight: bold;
-                    color: #555;
-                }
-            }
-        </style>
-    </head>
-    <body>
-
-        <header>
-            <h1>Agregar Repuestos</h1>
-        </header>
-        <main>
-            <%
-                Repuesto repuestoSelect = (Repuesto) request.getAttribute("repuestoAgregado");
-                ArrayList<Repuesto> repuestosAgregados = new ArrayList<>();
-                if (repuestoSelect != null) {
-                    repuestosAgregados.add(repuestoSelect);
-                }
-            %>
-
-
-            <% ArrayList<Repuesto> repuestos = (ArrayList<Repuesto>) request.getAttribute("repuestos");
-                if (repuestos != null) {%>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Identificación</th>
-                        <th>Nombre</th>
-                        <th>Cantidad (Stock)</th>
-                        <th>Precio (₡)</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for (Repuesto repuesto : repuestos) {%>
-                    <tr>
-                        <td><%= repuesto.getId()%></td>
-                        <td><%= repuesto.getNombre()%></td>
-                        <td><%= repuesto.getCantidad()%></td>
-                        <td>₡<%= String.format("%.2f", repuesto.getPrecio())%></td>
-                        <td>
-                            <% boolean estaAgregado = repuestosAgregados.stream().anyMatch(r -> r.getId().equalsIgnoreCase(repuesto.getId())); %>
-                            <% if (estaAgregado) { %>
-                            <button type="button" class="action-btn agregado-btn" disabled>Repuesto Agregado</button>
-                            <% } else {%>
-                            <form action="ingresaListaRepuestos" method="GET">
-                                <input type="hidden" name="id" value="<%= repuesto.getId()%>">
-                                <button type="submit" class="action-btn modificar-btn">Agregar Repuesto</button>
-                            </form>
-                            <% } %>
-                        </td>
-                    </tr>
-                    <% }
-                        }%>
-                </tbody>
-            </table>
-            <% if (!repuestosAgregados.isEmpty()) { %>
-            <h3>Repuestos agregados:</h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Identificación</th>
-                        <th>Nombre</th>
-                        <th>Cantidad (Stock)</th>
-                        <th>Precio (₡)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%
-
-                        for (Repuesto repuesto : repuestosAgregados) {%>
-                    <tr>
-                        <td><%= repuesto.getId()%></td>
-                        <td><%= repuesto.getNombre()%></td>
-                        <td><%= repuesto.getCantidad()%></td>
-                        <td>₡<%= String.format("%.2f", repuesto.getPrecio())%></td>
-                    </tr>
-                    <% }%>
-                </tbody>
-            </table>
-
-            <% if (repuestoSelect != null) {%>
-            <div class="enviar">
-                <form action="registrarOrdenTrabajo" method="GET">
-                    <div>
-                        <input type="hidden" name="repuesto" value="<%= repuestoSelect.getId()%>">
-                        <button type="submit" class="action-btn agregar-btn">Agregar Repuestos</button>
-                    </div>
-                </form>
-            </div>
-            <%}%>
-            <% }%>
-        </main>
-    </body>
+    <div class="enviar">
+        <form action="registrarOrdenTrabajo" method="POST">
+            <% for (Repuesto r : repuestosAgregados) { %>
+                <input type="hidden" name="repuestosAgregados" value="<%= r.getId() %>">
+            <% } %>
+            <button type="submit" class="action-btn agregar-btn">Volver a Orden de Trabajo</button>
+        </form>
+    </div>
+</main>
+</body>
 </html>

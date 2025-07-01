@@ -22,23 +22,55 @@ import org.jdom2.JDOMException;
  *
  * @author jeffr
  */
+
+
 public class IngresaListaRepuestosServlet extends HttpServlet {
 
-    private Repuesto repuesto;
     private RepuestosData repuestoData;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
         try {
             this.repuestoData = new RepuestosData();
-            this.repuesto = this.repuestoData.findOne(req.getParameter("id"));
-            
-            req.setAttribute("repuestoAgregado", this.repuesto);
-            req.setAttribute("repuestos", this.repuestoData.findAll());
+
+            // Obtener el ID del repuesto enviado por el botón
+            String repuestoId = req.getParameter("id");
+            Repuesto repuestoSeleccionado = repuestoData.findOne(repuestoId);
+
+            // Obtener la sesión
+            HttpSession session = req.getSession();
+
+            // Obtener lista actual de repuestos agregados
+            ArrayList<Repuesto> repuestosAgregados = (ArrayList<Repuesto>) session.getAttribute("repuestosAgregados");
+            if (repuestosAgregados == null) {
+                repuestosAgregados = new ArrayList<>();
+            }
+
+            // Evitar agregar duplicados
+            boolean yaExiste = false;
+            for (Repuesto r : repuestosAgregados) {
+                if (r.getId().equalsIgnoreCase(repuestoId)) {
+                    yaExiste = true;
+                    break;
+                }
+            }
+
+            if (!yaExiste && repuestoSeleccionado != null) {
+                repuestosAgregados.add(repuestoSeleccionado);
+            }
+
+            // Guardar en sesión
+            session.setAttribute("repuestosAgregados", repuestosAgregados);
+
+            // Obtener todos los repuestos para la tabla general
+            req.setAttribute("repuestos", repuestoData.findAll());
+
+            // Redirigir a la interfaz
             req.getRequestDispatcher("agregar_repuestos.jsp").forward(req, response);
+
         } catch (JDOMException ex) {
             Logger.getLogger(IngresaListaRepuestosServlet.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error procesando el XML.");
         }
     }
-
 }
