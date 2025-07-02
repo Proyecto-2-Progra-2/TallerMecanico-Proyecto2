@@ -223,54 +223,59 @@
         <p><em>No hay repuestos disponibles.</em></p>
     <% } %>
 
-    <% if (!repuestosAgregados.isEmpty()) { %>
-    <h3>Repuestos Agregados</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Identificación</th>
-                <th>Nombre</th>
-                <th>Cantidad Seleccionada</th>
-                <th>Precio (₡)</th>
-                <th>Subtotal (₡)</th>
-                <th>Quitar</th>
-            </tr>
-        </thead>
-        <tbody>
-        <%
-            double totalFactura = 0;
-            for (Repuesto r : repuestosAgregados) {
-                double subtotal = r.getCantidad() * r.getPrecio();
-                totalFactura += subtotal;
-        %>
-            <tr>
-                <td><%= r.getId() %></td>
-                <td><%= r.getNombre() %></td>
-                <td><%= r.getCantidad() %></td>
-                <td>₡ <%= String.format("%.2f", r.getPrecio()) %></td>
-                <td>₡ <%= String.format("%.2f", subtotal) %></td>
-                <td>
-                   <form action="quitarRepuesto" method="POST" style="margin:0;">
-                        <input type="hidden" name="id" value="<%= r.getId() %>">
-                        <button type="submit" class="quitar-btn" title="Quitar repuesto" onclick="return confirm('¿Está seguro de quitar este repuesto?');">×</button>
-                    </form>
-                </td>
-            </tr>
-        <% } %>
-        </tbody>
-    </table>
-    <div class="total">Total: ₡ <%= String.format("%.2f", totalFactura) %></div>
+    <%-- ... (todo tu código igual hasta aquí) --%>
 
-    <form action="registrarOrdenTrabajo" method="POST">
-        <% for (Repuesto r : repuestosAgregados) { %>
-            <input type="hidden" name="repuestosAgregados" value="<%= r.getId() %>">
-            <input type="hidden" name="cantidades" value="<%= r.getCantidad() %>">
-        <% } %>
-        <button type="submit" class="btn-registrar-todos">Registrar todos los repuestos seleccionados</button>
-    </form>
-    <% } else { %>
-        <p><em>No hay repuestos seleccionados.</em></p>
+<% if (!repuestosAgregados.isEmpty()) { %>
+<h3>Repuestos Agregados</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Identificación</th>
+            <th>Nombre</th>
+            <th>Cantidad Seleccionada</th>
+            <th>Precio (₡)</th>
+            <th>Subtotal (₡)</th>
+            <th>Quitar</th>
+        </tr>
+    </thead>
+    <tbody>
+    <%
+        double totalFactura = 0;
+        for (Repuesto r : repuestosAgregados) {
+            double subtotal = r.getCantidad() * r.getPrecio();
+            totalFactura += subtotal;
+    %>
+        <tr>
+            <td><%= r.getId() %></td>
+            <td><%= r.getNombre() %></td>
+            <td><%= r.getCantidad() %></td>
+            <td>₡ <%= String.format("%.2f", r.getPrecio()) %></td>
+            <td>₡ <%= String.format("%.2f", subtotal) %></td>
+            <td>
+                <form action="quitarRepuesto" method="POST" style="margin:0;">
+                    <input type="hidden" name="id" value="<%= r.getId() %>">
+                    <button type="submit" class="quitar-btn" title="Quitar repuesto" onclick="return confirm('¿Está seguro de quitar este repuesto?');">×</button>
+                </form>
+            </td>
+        </tr>
     <% } %>
+    </tbody>
+</table>
+<div class="total">Total: ₡ <%= String.format("%.2f", totalFactura) %></div>
+
+
+<form action="facturaResumen.jsp" method="POST">
+    <% for (Repuesto r : repuestosAgregados) { %>
+        <input type="hidden" name="repuestosAgregados" value="<%= r.getId() %>">
+        <input type="hidden" name="cantidades" value="<%= r.getCantidad() %>">
+    <% } %>
+    <button type="submit" class="btn-registrar-todos">Registrar todos los repuestos seleccionados</button>
+</form>
+<% } else { %>
+    <p><em>
+            Selecciona algun repuesto!</em></p>
+<% } %>
+
 </main>
 </body>
 </html>
