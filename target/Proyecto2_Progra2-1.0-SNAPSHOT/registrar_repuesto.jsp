@@ -140,29 +140,22 @@
         </form>
     </main>
 
-    <!-- Botón flotante en esquina inferior derecha -->
+    <!-- Botón registrar todos  -->
     <div style="
         position: fixed;
         bottom: 30px;
         right: 30px;
         z-index: 999;
     ">
-        <form action="registrarTodosRepuestos" method="POST">
-            <button type="submit" style="
-                background-color: #e67e22;
-                color: white;
-                padding: 14px 22px;
-                border: none;
-                border-radius: 10px;
-                font-size: 1em;
-                font-weight: bold;
-                cursor: pointer;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-                transition: background-color 0.3s ease;
-            ">
-                Registrar todos los repuestos seleccionados
-            </button>
-        </form>
+       <form action="registrarTodosRepuestos" method="POST">
+    <% for (Repuesto r : repuestosAgregados) { %>
+        <input type="hidden" name="repuestosAgregados" value="<%= r.getId() %>">
+        <input type="hidden" name="cantidades" value="<%= r.getCantidad() %>">
+    <% } %>
+    <button type="submit" class="btn-registrar-todos">
+        Registrar todos los repuestos seleccionados
+    </button>
+</form>
     </div>
 </body>
 </html>

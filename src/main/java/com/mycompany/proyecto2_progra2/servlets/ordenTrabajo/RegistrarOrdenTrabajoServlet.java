@@ -65,36 +65,70 @@ public class RegistrarOrdenTrabajoServlet extends HttpServlet {
             Logger.getLogger(RegistrarOrdenTrabajoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+  @Override
+protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    try {
+        this.detalleData = new OrdenDetalleData();
+        this.ordenTrabajoData = new OrdenTrabajoData();
+        this.repuestosData = new RepuestosData();
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        try {
-            this.detalleData = new OrdenDetalleData();
-//            ArrayList<Repuesto> repuestos = new ArrayList<>();
-//            repuestos.add(new Repuesto("1", "repuesto1", 2, 25000));
-//            repuestos.add(new Repuesto("2", "repuesto2", 1, 75000));
-            this.ordenTrabajoData = new OrdenTrabajoData();
-            
-            this.detalleOrden = new DetalleOrden(req.getParameter("idOrden"), 
-                    req.getParameter("observaciones"), Double.parseDouble(req.getParameter("precioManoObra")), 
-                    this.repuestos);
-            this.detalleData.insertar(this.detalleOrden);
+        // arreglos para poder almacenar 
+        String[] ids = req.getParameterValues("repuestosAgregados");
+        String[] cantidades = req.getParameterValues("cantidades");
 
-            String fechaDevolucion = req.getParameter("fechaDevolucion");
-            LocalDate fecha = LocalDate.parse(fechaDevolucion);
-            DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            String fechaFormateada = fecha.format(formato);
+        ArrayList<Repuesto> repuestos = new ArrayList<>();
+ 
+        if (ids != null && cantidades != null) { // ids tiene que tener algo igua cantidades
+            for (int i = 0; i < ids.length; i++) {
+                String id = ids[i];
+                int cantidad = Integer.parseInt(cantidades[i]);
 
-            OrdenTrabajo orden = new OrdenTrabajo(req.getParameter("id"), req.getParameter("descripcion"),
-                    req.getParameter("fechaIngreso"), req.getParameter("estado"), req.getParameter("detalleRecepcion"),
-                    fechaFormateada, new VehiculoData().findOne(req.getParameter("vehiculo")), this.detalleOrden);
-            this.ordenTrabajoData.insertar(orden);
-
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
-        } catch (JDOMException ex) {
-            Logger.getLogger(RegistrarOrdenTrabajoServlet.class.getName()).log(Level.SEVERE, null, ex);
+                Repuesto repuesto = repuestosData.findOne(id);
+                if (repuesto != null) {
+                    repuesto.setCantidad(cantidad);
+                    repuestos.add(repuesto);
+                }
+            }
         }
+
+       // parametros
+        String idOrden = req.getParameter("idOrden");
+        String observaciones = req.getParameter("observaciones");
+        double precioManoObra = Double.parseDouble(req.getParameter("precioManoObra"));
+
+        DetalleOrden detalleOrden = new DetalleOrden(idOrden, observaciones, precioManoObra, repuestos);
+        this.detalleData.insertar(detalleOrden);
+
+        String fechaDevolucion = req.getParameter("fechaDevolucion");
+        LocalDate fecha = LocalDate.parse(fechaDevolucion);
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String fechaFormateada = fecha.format(formato);
+
+        OrdenTrabajo orden = new OrdenTrabajo(
+                req.getParameter("id"),
+                req.getParameter("descripcion"),
+                req.getParameter("fechaIngreso"),
+                req.getParameter("estado"),
+                req.getParameter("detalleRecepcion"),
+                fechaFormateada,
+                new VehiculoData().findOne(req.getParameter("vehiculo")),
+                detalleOrden
+        );
+        this.ordenTrabajoData.insertar(orden);
+
+        // info para el jsp
+        req.setAttribute("ordenTrabajo", orden);
+req.setAttribute("detalleOrden", detalleOrden);
+req.setAttribute("repuestosFactura", repuestos);
+
+
+// dispatcher para volver al jsp
+        req.getRequestDispatcher("/factura.jsp").forward(req, resp);
+
+    } catch (JDOMException ex) {
+        Logger.getLogger(RegistrarOrdenTrabajoServlet.class.getName()).log(Level.SEVERE, null, ex);
     }
+}
 
     private String generarID() {
         SecureRandom secureRandom = new SecureRandom();

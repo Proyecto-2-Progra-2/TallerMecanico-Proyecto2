@@ -101,6 +101,10 @@
     <servlet-name>QuitarRepuestoServlet</servlet-name>
     <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.QuitarRepuestoServlet</servlet-class>
 </servlet>
+<servlet>
+    <servlet-name>RegistrarTodosRepuestosServlet</servlet-name>
+    <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.RegistrarTodosRepuestosServlet</servlet-class>
+</servlet>
     <!-- Mapeo de URLs -->
     <servlet>
         <servlet-name>RegistrarDetalleOrdenServlet</servlet-name>
@@ -210,7 +214,10 @@
     <servlet-name>QuitarRepuestoServlet</servlet-name>
     <url-pattern>/quitarRepuesto</url-pattern>
 </servlet-mapping>
-
+<servlet-mapping>
+    <servlet-name>RegistrarTodosRepuestosServlet</servlet-name>
+    <url-pattern>/registrarTodosRepuestos</url-pattern>
+</servlet-mapping>
 <servlet>
     <servlet-name>AgregarRepuestoSeleccionadoServlet</servlet-name>
     <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.AgregarRepuestoSeleccionadoServlet</servlet-class>
