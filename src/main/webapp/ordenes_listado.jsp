@@ -172,7 +172,7 @@
                         <td data-label="Estilo"><%= orden.getEstado()%></td>
                         <td data-label="VIN"><%= orden.getDetalleRecepcionVehiculo()%></td>
                         <td data-label="Cilindraje"><%= orden.getFechaDevolucion()%></td>
-                        <td data-label="Dueño"><%= orden.getDetalleOrden().getId() %></td>
+                        <td data-label="Dueño"><%= orden.getPrecio() %></td>
                         <td>
                             <form action="${pageContext.request.contextPath}/modificarOrdenTrabajo" method="GET">
                                 <input type="hidden" name="id" value="<%= orden.getId()%>">

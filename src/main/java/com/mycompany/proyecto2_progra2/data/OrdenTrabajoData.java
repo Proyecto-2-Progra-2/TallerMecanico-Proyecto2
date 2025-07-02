@@ -128,9 +128,9 @@ public class OrdenTrabajoData {
         }
 
         // Datos dummy para repuestos (puedes cambiar esto para que traiga los reales)
-        ArrayList<Repuesto> repuestos = new ArrayList<>();
-        repuestos.add(new Repuesto("1", "repuesto1", 2, 25000));
-        repuestos.add(new Repuesto("2", "repuesto2", 1, 75000));
+//        ArrayList<Repuesto> repuestos = new ArrayList<>();
+//        repuestos.add(new Repuesto("1", "repuesto1", 2, 25000));
+//        repuestos.add(new Repuesto("2", "repuesto2", 1, 75000));
 
         List<Element> elementos = this.raiz.getChildren();
 
@@ -143,6 +143,7 @@ public class OrdenTrabajoData {
                 String detalleRecepcion = elemento.getChildText("detalleRecepcion");
                 String fechaDevolucion = elemento.getChildText("fechaDevolucion");
                 String vehiculoId = elemento.getChildText("vehiculo");
+                String detalle = elemento.getChildText("detalleOrden");
                 String precioStr = elemento.getChildText("precio");
 
                 Vehiculo vehiculo = new VehiculoData().findOne(vehiculoId);
@@ -153,7 +154,7 @@ public class OrdenTrabajoData {
 
                 }
 
-                DetalleOrden detalleOrden = new DetalleOrden("123", "Sin observacion", 20000, repuestos);
+                DetalleOrden detalleOrden = new OrdenDetalleData().findOne(detalle);
 
                 OrdenTrabajo o = new OrdenTrabajo(id, descripcion, fechaIngreso, estado,
                         detalleRecepcion, fechaDevolucion, vehiculo, detalleOrden);
