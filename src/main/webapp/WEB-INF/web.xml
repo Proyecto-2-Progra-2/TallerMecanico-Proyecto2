@@ -105,6 +105,10 @@
     <servlet-name>RegistrarTodosRepuestosServlet</servlet-name>
     <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.RegistrarTodosRepuestosServlet</servlet-class>
 </servlet>
+<servlet>
+    <servlet-name>MostrarFacturaServlet</servlet-name>
+    <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.MostrarFacturaServlet</servlet-class>
+</servlet>
     <!-- Mapeo de URLs -->
     <servlet>
         <servlet-name>RegistrarDetalleOrdenServlet</servlet-name>
@@ -226,6 +230,11 @@
 <servlet-mapping>
     <servlet-name>AgregarRepuestoSeleccionadoServlet</servlet-name>
     <url-pattern>/AgregarRepuestoSeleccionadoServlet</url-pattern>
+</servlet-mapping>
+
+<servlet-mapping>
+    <servlet-name>MostrarFacturaServlet</servlet-name>
+    <url-pattern>/mostrarFactura</url-pattern>
 </servlet-mapping>
     <!-- Configuración de sesión -->
     <servlet-mapping>

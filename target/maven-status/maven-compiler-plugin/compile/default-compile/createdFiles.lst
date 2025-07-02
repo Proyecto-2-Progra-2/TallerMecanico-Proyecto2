@@ -2,6 +2,7 @@ com\mycompany\proyecto2_progra2\servlets\vehiculo\RegistrarVehiculoServlet.class
 com\mycompany\proyecto2_progra2\servlets\repuesto\ActualizarRepuestoServlet.class
 com\mycompany\proyecto2_progra2\domain\Vehiculo.class
 com\mycompany\proyecto2_progra2\servlets\cliente\ModificarClienteServlet.class
+com\mycompany\proyecto2_progra2\servlets\repuesto\MostrarFacturaServlet.class
 com\mycompany\proyecto2_progra2\servlets\cliente\EliminarClienteServlet.class
 com\mycompany\proyecto2_progra2\data\Test.class
 com\mycompany\proyecto2_progra2\servlets\repuesto\QuitarRepuestoServlet.class

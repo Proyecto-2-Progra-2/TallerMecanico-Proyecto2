@@ -220,10 +220,10 @@
         </tbody>
     </table>
     <% } else { %>
-        <p><em>No hay repuestos disponibles.</em></p>
+        <p><em>Agrega un repuesto!</em></p>
     <% } %>
 
-    <%-- ... (todo tu código igual hasta aquí) --%>
+  
 
 <% if (!repuestosAgregados.isEmpty()) { %>
 <h3>Repuestos Agregados</h3>
@@ -264,6 +264,16 @@
 <div class="total">Total: ₡ <%= String.format("%.2f", totalFactura) %></div>
 
 
+<%
+    String idCliente = (String) request.getAttribute("idCliente");
+    String idOrden = (String) request.getAttribute("idOrden");
+    if (idCliente == null) {
+        idCliente = request.getParameter("idCliente");
+    }
+    if (idOrden == null) {
+        idOrden = request.getParameter("idOrden");
+    }
+%>
 <form action="facturaResumen.jsp" method="POST">
     <% for (Repuesto r : repuestosAgregados) { %>
         <input type="hidden" name="repuestosAgregados" value="<%= r.getId() %>">
