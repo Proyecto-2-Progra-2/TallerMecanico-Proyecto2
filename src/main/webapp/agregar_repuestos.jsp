@@ -96,7 +96,6 @@
             justify-content: center;
         }
 
-        /* Estilo para el botón de quitar (X) */
         .quitar-btn {
             background-color: transparent;
             border: none;
@@ -198,5 +197,36 @@
         </form>
     </div>
 </main>
+
+<%-- BOTÓN FLOTANTE --%>
+<% if (!repuestosAgregados.isEmpty()) { %>
+    <div style="
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 1000;
+    ">
+        <form action="registrarRepuestosSeleccionados" method="POST">
+            <% for (Repuesto r : repuestosAgregados) { %>
+                <input type="hidden" name="repuestosAgregados" value="<%= r.getId() %>">
+            <% } %>
+            <button type="submit" style="
+                background-color: #27ae60;
+                color: white;
+                padding: 14px 22px;
+                border: none;
+                border-radius: 10px;
+                font-size: 1em;
+                font-weight: bold;
+                cursor: pointer;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+                transition: background-color 0.3s ease;
+            ">
+                Registrar todos los repuestos seleccionados
+            </button>
+        </form>
+    </div>
+<% } %>
+
 </body>
 </html>

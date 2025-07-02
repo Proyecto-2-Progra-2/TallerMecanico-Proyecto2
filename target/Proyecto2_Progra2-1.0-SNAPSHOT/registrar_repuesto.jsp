@@ -37,7 +37,7 @@
 
         main {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             padding: 40px 20px;
         }
@@ -109,14 +109,14 @@
         <h1>Registrar Repuestos</h1>
     </header>
     <main>
-        
+
         <% String error = (String) request.getAttribute("error"); %>
         <% if (error != null) { %>
             <script>
                 alert("<%= error %>");
             </script>
         <% } %>
-        
+
         <form action="registrarRepuesto" method="POST">
             <div>
                 <label for="id">Identificación del Repuesto:</label>
@@ -139,5 +139,30 @@
             </div>
         </form>
     </main>
+
+    <!-- Botón flotante en esquina inferior derecha -->
+    <div style="
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 999;
+    ">
+        <form action="registrarTodosRepuestos" method="POST">
+            <button type="submit" style="
+                background-color: #e67e22;
+                color: white;
+                padding: 14px 22px;
+                border: none;
+                border-radius: 10px;
+                font-size: 1em;
+                font-weight: bold;
+                cursor: pointer;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+                transition: background-color 0.3s ease;
+            ">
+                Registrar todos los repuestos seleccionados
+            </button>
+        </form>
+    </div>
 </body>
 </html>
