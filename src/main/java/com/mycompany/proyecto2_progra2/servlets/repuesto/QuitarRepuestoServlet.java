@@ -37,7 +37,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             session.setAttribute("repuestosAgregados", repuestosAgregados);
         }
         
-        // Ahora recargamos la lista completa desde XML para que la tabla se muestre de nuevo 
+        // Ahora recargamos  para que la tabla se muestre de nuevo 
         RepuestosData repuestosData = new RepuestosData();
         try {
             ArrayList<Repuesto> repuestos = repuestosData.findAll();
