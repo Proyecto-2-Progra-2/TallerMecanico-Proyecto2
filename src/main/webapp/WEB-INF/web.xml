@@ -210,6 +210,16 @@
     <servlet-name>QuitarRepuestoServlet</servlet-name>
     <url-pattern>/quitarRepuesto</url-pattern>
 </servlet-mapping>
+
+<servlet>
+    <servlet-name>AgregarRepuestoSeleccionadoServlet</servlet-name>
+    <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.AgregarRepuestoSeleccionadoServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+    <servlet-name>AgregarRepuestoSeleccionadoServlet</servlet-name>
+    <url-pattern>/AgregarRepuestoSeleccionadoServlet</url-pattern>
+</servlet-mapping>
     <!-- Configuración de sesión -->
     <servlet-mapping>
         <servlet-name>RegistrarDetalleOrdenServlet</servlet-name>

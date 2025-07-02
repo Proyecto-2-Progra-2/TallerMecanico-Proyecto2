@@ -37,6 +37,7 @@ com\mycompany\proyecto2_progra2\servlets\vehiculo\EliminarVehiculoServlet.class
 com\mycompany\proyecto2_progra2\servlets\detalleOrden\AgregarRepuestosServlet.class
 com\mycompany\proyecto2_progra2\domain\Cliente.class
 com\mycompany\proyecto2_progra2\servlets\cliente\ActualizarClienteServlet.class
+com\mycompany\proyecto2_progra2\servlets\repuesto\AgregarRepuestoSeleccionadoServlet.class
 com\mycompany\proyecto2_progra2\servlets\vehiculo\MostrarClienteServlet.class
 com\mycompany\proyecto2_progra2\servlets\ordenTrabajo\MostrarFacturaOrdenTrabajoServlet.class
 com\mycompany\proyecto2_progra2\servlets\cliente\RegistrarClienteServlet.class

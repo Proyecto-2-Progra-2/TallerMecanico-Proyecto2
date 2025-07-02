@@ -11,9 +11,9 @@
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Agregar Repuestos</title>
     <style>
         body {
@@ -111,6 +111,32 @@
         .quitar-btn:hover {
             color: darkred;
         }
+
+        /* Botón fijo para registrar todos */
+        .btn-registrar-todos {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #27ae60;
+            color: white;
+            padding: 14px 22px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: background-color 0.3s ease;
+            z-index: 1000;
+        }
+
+        .btn-registrar-todos:hover {
+            background-color: #219150;
+        }
+
+        input[type=number] {
+            width: 60px;
+        }
     </style>
 </head>
 <body>
@@ -127,28 +153,27 @@
             <tr>
                 <th>Identificación</th>
                 <th>Nombre</th>
-                <th>Cantidad (Stock)</th>
+                <th>Cantidad Disponible</th>
                 <th>Precio (₡)</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-        <% for (Repuesto repuesto : repuestos) {
-            boolean yaAgregado = repuestosAgregados.stream().anyMatch(r -> r.getId().equalsIgnoreCase(repuesto.getId()));
-        %>
+        <% for (Repuesto repuesto : repuestos) { %>
             <tr>
                 <td><%= repuesto.getId() %></td>
                 <td><%= repuesto.getNombre() %></td>
                 <td><%= repuesto.getCantidad() %></td>
                 <td>₡<%= String.format("%.2f", repuesto.getPrecio()) %></td>
                 <td>
-                    <% if (yaAgregado) { %>
-                        <button type="button" class="action-btn agregado-btn" disabled>Repuesto Agregado</button>
+                    <% if (repuesto.getCantidad() > 0) { %>
+                    <form action="AgregarRepuestoSeleccionadoServlet" method="GET" style="margin:0; display:flex; align-items:center; gap:8px;">
+                        <input type="hidden" name="id" value="<%= repuesto.getId() %>">
+                        <input type="number" name="cantidad" min="1" max="<%= repuesto.getCantidad() %>" value="1" required>
+                        <button type="submit" class="action-btn modificar-btn">Agregar</button>
+                    </form>
                     <% } else { %>
-                        <form action="ingresaListaRepuestos" method="GET" style="margin:0;">
-                            <input type="hidden" name="id" value="<%= repuesto.getId() %>">
-                            <button type="submit" class="action-btn modificar-btn">Agregar Repuesto</button>
-                        </form>
+                    <button type="button" class="action-btn agregado-btn" disabled>Sin Stock</button>
                     <% } %>
                 </td>
             </tr>
@@ -157,16 +182,16 @@
     </table>
     <% } %>
 
-   <% if (!repuestosAgregados.isEmpty()) { %>
+    <% if (!repuestosAgregados.isEmpty()) { %>
     <h3>Repuestos agregados:</h3>
     <table>
         <thead>
             <tr>
                 <th>Identificación</th>
                 <th>Nombre</th>
-                <th>Cantidad</th>
+                <th>Cantidad Seleccionada</th>
                 <th>Precio (₡)</th>
-                <th>Quitar</th> 
+                <th>Quitar</th>
             </tr>
         </thead>
         <tbody>
@@ -186,47 +211,15 @@
         <% } %>
         </tbody>
     </table>
-   <% } %>
+    <% } %>
 
-    <div class="enviar">
-        <form action="registrarOrdenTrabajo" method="POST">
-            <% for (Repuesto r : repuestosAgregados) { %>
-                <input type="hidden" name="repuestosAgregados" value="<%= r.getId() %>">
-            <% } %>
-            <button type="submit" class="action-btn agregar-btn">Volver a Orden de Trabajo</button>
-        </form>
-    </div>
+    <form action="registrarOrdenTrabajo" method="POST">
+        <% for (Repuesto r : repuestosAgregados) { %>
+            <input type="hidden" name="repuestosAgregados" value="<%= r.getId() %>">
+            <input type="hidden" name="cantidades" value="<%= r.getCantidad() %>">
+        <% } %>
+        <button type="submit" class="btn-registrar-todos">Registrar todos los repuestos seleccionados</button>
+    </form>
 </main>
-
-<%-- BOTÓN FLOTANTE --%>
-<% if (!repuestosAgregados.isEmpty()) { %>
-    <div style="
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        z-index: 1000;
-    ">
-        <form action="registrarRepuestosSeleccionados" method="POST">
-            <% for (Repuesto r : repuestosAgregados) { %>
-                <input type="hidden" name="repuestosAgregados" value="<%= r.getId() %>">
-            <% } %>
-            <button type="submit" style="
-                background-color: #27ae60;
-                color: white;
-                padding: 14px 22px;
-                border: none;
-                border-radius: 10px;
-                font-size: 1em;
-                font-weight: bold;
-                cursor: pointer;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-                transition: background-color 0.3s ease;
-            ">
-                Registrar todos los repuestos seleccionados
-            </button>
-        </form>
-    </div>
-<% } %>
-
 </body>
 </html>
