@@ -172,7 +172,7 @@
                         <td data-label="Estilo"><%= orden.getEstado()%></td>
                         <td data-label="VIN"><%= orden.getDetalleRecepcionVehiculo()%></td>
                         <td data-label="Cilindraje"><%= orden.getFechaDevolucion()%></td>
-                        <td data-label="Dueño"><%= orden.getPrecio()%></td>
+                        <td data-label="Dueño"><%= orden.getDetalleOrden().getId() %></td>
                         <td>
                             <form action="${pageContext.request.contextPath}/modificarOrdenTrabajo" method="GET">
                                 <input type="hidden" name="id" value="<%= orden.getId()%>">
@@ -182,8 +182,8 @@
                                 <input type="hidden" name="vehiculo" value="<%= orden.getVehiculo().getPlaca()%>">
                                 <button type="submit" class="action-btn cliente-btn">Ver Vehiculo</button>
                             </form>
-                            <form action="${pageContext.request.contextPath}/mostrarDetalleOrden" method="GET">
-                                <input type="hidden" name="detalle" value="<%= orden.getDetalleOrden().getId()%>">
+                            <form action="${pageContext.request.contextPath}/mostrarDetalle" method="GET">
+                                <input type="hidden" name="detalle" value="<%= orden.getDetalleOrden().getId() %>">
                                 <button type="submit" class="action-btn eliminar-btn">Ver Detalle de la Orden</button>
                             </form>
                             <form action="${pageContext.request.contextPath}/eliminarOrdenTrabajo" method="POST" onsubmit="return confirm('¿Está seguro que desea eliminar esta orden de trabajo?');">

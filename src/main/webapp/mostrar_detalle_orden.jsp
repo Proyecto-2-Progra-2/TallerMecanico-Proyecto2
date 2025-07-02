@@ -237,7 +237,7 @@
                     ⚠️ No se encontró el detalle de la orden.
                 </div>
                 <% } %>
-                <a href="${pageContext.request.contextPath}/mostrarOrdenesTrabajo" class="back-btn">Volver a Órdenes de Trabajo</a>
+                <a href="${pageContext.request.contextPath}/listadoOrdenes" class="back-btn">Volver a Órdenes de Trabajo</a>
             </div>
         </main>
     </body>

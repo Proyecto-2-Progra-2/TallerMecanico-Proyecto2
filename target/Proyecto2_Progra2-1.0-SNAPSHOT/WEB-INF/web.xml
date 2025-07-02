@@ -94,21 +94,21 @@
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.MostrarFacturaOrdenTrabajoServlet</servlet-class>
     </servlet>
     <servlet>
-    <servlet-name>HistorialClientePorPlacaServlet</servlet-name>
-    <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.HistorialClientePorPlacaServlet</servlet-class>
-</servlet>
-<servlet>
-    <servlet-name>QuitarRepuestoServlet</servlet-name>
-    <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.QuitarRepuestoServlet</servlet-class>
-</servlet>
-<servlet>
-    <servlet-name>RegistrarTodosRepuestosServlet</servlet-name>
-    <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.RegistrarTodosRepuestosServlet</servlet-class>
-</servlet>
-<servlet>
-    <servlet-name>MostrarFacturaServlet</servlet-name>
-    <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.MostrarFacturaServlet</servlet-class>
-</servlet>
+        <servlet-name>HistorialClientePorPlacaServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.HistorialClientePorPlacaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QuitarRepuestoServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.QuitarRepuestoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistrarTodosRepuestosServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.RegistrarTodosRepuestosServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarFacturaServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.MostrarFacturaServlet</servlet-class>
+    </servlet>
     <!-- Mapeo de URLs -->
     <servlet>
         <servlet-name>RegistrarDetalleOrdenServlet</servlet-name>
@@ -121,6 +121,10 @@
     <servlet>
         <servlet-name>IngresaListaRepuestosServlet</servlet-name>
         <servlet-class>com.mycompany.proyecto2_progra2.servlets.detalleOrden.IngresaListaRepuestosServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarDetalleServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.ordenTrabajo.MostrarDetalleServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegistrarClienteServlet</servlet-name>
@@ -211,31 +215,29 @@
         <url-pattern>/mostrarFacturaOrdenTrabajo</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-    <servlet-name>HistorialClientePorPlacaServlet</servlet-name>
-    <url-pattern>/historialPorPlaca</url-pattern>
+        <servlet-name>HistorialClientePorPlacaServlet</servlet-name>
+        <url-pattern>/historialPorPlaca</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-    <servlet-name>QuitarRepuestoServlet</servlet-name>
-    <url-pattern>/quitarRepuesto</url-pattern>
-</servlet-mapping>
-<servlet-mapping>
-    <servlet-name>RegistrarTodosRepuestosServlet</servlet-name>
-    <url-pattern>/registrarTodosRepuestos</url-pattern>
-</servlet-mapping>
-<servlet>
-    <servlet-name>AgregarRepuestoSeleccionadoServlet</servlet-name>
-    <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.AgregarRepuestoSeleccionadoServlet</servlet-class>
-</servlet>
-
-<servlet-mapping>
-    <servlet-name>AgregarRepuestoSeleccionadoServlet</servlet-name>
-    <url-pattern>/AgregarRepuestoSeleccionadoServlet</url-pattern>
-</servlet-mapping>
-
-<servlet-mapping>
-    <servlet-name>MostrarFacturaServlet</servlet-name>
-    <url-pattern>/mostrarFactura</url-pattern>
-</servlet-mapping>
+        <servlet-name>QuitarRepuestoServlet</servlet-name>
+        <url-pattern>/quitarRepuesto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrarTodosRepuestosServlet</servlet-name>
+        <url-pattern>/registrarTodosRepuestos</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>AgregarRepuestoSeleccionadoServlet</servlet-name>
+        <servlet-class>com.mycompany.proyecto2_progra2.servlets.repuesto.AgregarRepuestoSeleccionadoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AgregarRepuestoSeleccionadoServlet</servlet-name>
+        <url-pattern>/AgregarRepuestoSeleccionadoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarFacturaServlet</servlet-name>
+        <url-pattern>/mostrarFactura</url-pattern>
+    </servlet-mapping>
     <!-- Configuración de sesión -->
     <servlet-mapping>
         <servlet-name>RegistrarDetalleOrdenServlet</servlet-name>
@@ -248,6 +250,10 @@
     <servlet-mapping>
         <servlet-name>IngresaListaRepuestosServlet</servlet-name>
         <url-pattern>/ingresaListaRepuestos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarDetalleServlet</servlet-name>
+        <url-pattern>/mostrarDetalle</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
