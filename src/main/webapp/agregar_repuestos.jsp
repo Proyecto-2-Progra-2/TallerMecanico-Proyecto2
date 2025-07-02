@@ -152,7 +152,7 @@
             font-size: 1em;
         }
 
-        /* Estilo factura: totales */
+       
         .subtotal, .total {
             text-align: right;
             font-weight: 700;
