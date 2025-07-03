@@ -43,7 +43,7 @@ public class RegistrarVehiculoServlet extends HttpServlet {
            );
            
            this.vehiculoData.insertar(v);
-           req.getRequestDispatcher("registrar_vehiculo.jsp").forward(req, resp);//deberia regresar al index?
+           req.getRequestDispatcher("index.jsp").forward(req, resp);//deberia regresar al index?
        } catch (JDOMException | FileNotFoundException ex) {
            Logger.getLogger(RegistrarVehiculoServlet.class.getName()).log(Level.SEVERE, null, ex);
        }catch (IOException ex) {

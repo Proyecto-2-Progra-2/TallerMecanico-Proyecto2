@@ -70,9 +70,6 @@ public class RegistrarOrdenTrabajoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             this.detalleData = new OrdenDetalleData();
-//            ArrayList<Repuesto> repuestos = new ArrayList<>();
-//            repuestos.add(new Repuesto("1", "repuesto1", 2, 25000));
-//            repuestos.add(new Repuesto("2", "repuesto2", 1, 75000));
             this.ordenTrabajoData = new OrdenTrabajoData();
 
             this.detalleOrden = new DetalleOrden(req.getParameter("idOrden"),

@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<clientes><cliente id="1"><nombre>Wilmer</nombre><primerApellido>Sanchez</primerApellido><segundoApellido>Perez</segundoApellido><telefono>12345678</telefono><direccion>Cartago</direccion><email>willy@gmail.com</email></cliente><cliente id="2"><nombre>Camila</nombre><primerApellido>Gomez</primerApellido><segundoApellido>Ulloa</segundoApellido><telefono>12345678</telefono><direccion>Limon</direccion><email>cam@gmail.com</email></cliente><cliente id="3"><nombre>Jimena</nombre><primerApellido>Salas</primerApellido><segundoApellido>Thames</segundoApellido><telefono>84241194</telefono><direccion>San Francisco</direccion><email>jimenasalasthames@gmail.com</email></cliente></clientes>
+<clientes />

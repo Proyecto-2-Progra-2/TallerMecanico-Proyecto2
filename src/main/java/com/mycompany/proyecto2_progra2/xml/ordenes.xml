@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ordenes><orden id="308989"><descripcion>desc</descripcion><fechaIngreso>02/07/2025</fechaIngreso><estado>diagnóstico</estado><detalleRecepcion>det</detalleRecepcion><fechaDevolucion>11/07/2025</fechaDevolucion><vehiculo>C-100</vehiculo><detalleOrden>810034</detalleOrden><precio>20000.0</precio></orden></ordenes>
+<ordenes />
