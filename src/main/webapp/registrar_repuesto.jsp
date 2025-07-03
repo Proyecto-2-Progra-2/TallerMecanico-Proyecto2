@@ -1,3 +1,4 @@
+<%@page import="com.mycompany.proyecto2_progra2.domain.Repuesto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="es">
@@ -139,23 +140,5 @@
             </div>
         </form>
     </main>
-
-    <!-- Botón registrar todos  -->
-    <div style="
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        z-index: 999;
-    ">
-       <form action="registrarTodosRepuestos" method="POST">
-    <% for (Repuesto r : repuestosAgregados) { %>
-        <input type="hidden" name="repuestosAgregados" value="<%= r.getId() %>">
-        <input type="hidden" name="cantidades" value="<%= r.getCantidad() %>">
-    <% } %>
-    <button type="submit" class="btn-registrar-todos">
-        Registrar todos los repuestos seleccionados
-    </button>
-</form>
-    </div>
 </body>
 </html>

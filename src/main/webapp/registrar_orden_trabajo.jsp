@@ -101,6 +101,11 @@
             <h1>Registrar Orden de Trabajo</h1>
         </header>
         <main>
+            <form action="agregarRepuestos" method="GET">
+                <div>
+                    <input type="submit" name="agregarRepuestos" value="Agregar Repuestos">
+                </div>
+            </form>
             <form action="registrarOrdenTrabajo" method="POST" class="formulario">
                 <div>
                     <label for="id">ID:</label>
@@ -154,18 +159,9 @@
                 </div>
                 <!-- fin formulario detalle de orden -->
                 <div>
-                    <label for="precio">Precio total a pagar:</label>
-                    <input type="number" name="precio" value="100000" readonly>
-                </div>
-                <div>
                     <input type="submit" name="registrar" value="Registrar">
                 </div>
             </form>
-                <form action="agregarRepuestos" method="GET">
-                    <div>
-                        <input type="submit" name="agregarRepuestos" value="Agregar Repuestos">
-                    </div>
-                </form>
         </main>
     </body>
 </html>

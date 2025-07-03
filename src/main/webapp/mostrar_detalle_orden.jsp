@@ -206,7 +206,6 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Nombre</th>
-                                <th>Cantidad</th>
                                 <th>Precio Unitario</th>
                                 <th>Subtotal</th>
                             </tr>
@@ -216,9 +215,8 @@
                             <tr>
                                 <td data-label="ID"><%= repuesto.getId()%></td>
                                 <td data-label="Nombre"><%= repuesto.getNombre()%></td>
-                                <td data-label="Cantidad"><%= repuesto.getCantidad()%></td>
                                 <td data-label="Precio Unitario">₡<%= String.format("%,.2f", repuesto.getPrecio())%></td>
-                                <td data-label="Subtotal">₡<%= String.format("%,.2f", repuesto.getCantidad() * repuesto.getPrecio())%></td>
+                                <td data-label="Subtotal">₡<%= String.format("%,.2f", detalleOrden.getPrecioTotal())%></td>
                             </tr>
                             <% } %>
                         </tbody>
